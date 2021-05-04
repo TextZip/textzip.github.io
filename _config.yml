@@ -15,7 +15,7 @@ timezone: Asia/Kolkata
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # --------------------------
-title: Test 2.0                         # the main title
+title: Test 3.0                         # the main title
 
 tagline: A text-focused Jekyll theme   # it will display as the sub-title
 
