@@ -147,7 +147,7 @@ float64 y
 float64 z  
 ```
 
-## Custom Messages
+### Custom Messages
 In situations where standard messages don't do the job, you can create your own message types using the following steps.
 
 - **Create a `msg` folder in your package directory**
