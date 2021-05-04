@@ -234,6 +234,6 @@ The schematic for the above code is attached below, while the code might contain
 
 ## External Resouces
 
-<iframe width="420" height="315" src="https://www.youtube.com/watch?v=6q1yEb_ukw8" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="385" src="https://youtube.com/embed/6q1yEb_ukw8" frameborder="0" allowfullscreen></iframe>
 
-<iframe width="420" height="315" src="https://www.youtube.com/watch?v=UhTRrjYXqPU" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="385" src="https://youtube.com/embed/UhTRrjYXqPU" frameborder="0" allowfullscreen></iframe>
