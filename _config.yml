@@ -141,9 +141,9 @@ compress_html:
   comments: all
   endings: all
   profile: false
-  blanklines: false
+  blanklines: true
   ignore:
-    envs: [development]
+    envs: 
 
 exclude:
   - '*.gem'
