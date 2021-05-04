@@ -118,6 +118,7 @@ Port C – Analog Pins
 Port D – Digital pins 0 to 7
 
 <!-- ![arduino_label.png](/_resources/4333d701c6854c328f5e682972705999.png)-->
+![Image1](/assets/img/PortManipulation/arduino_label.png){: .shadow}
 
 What are ports ?
 
@@ -231,6 +232,7 @@ The schematic for the above code is attached below, while the code might contain
 
 
 <!--![breadboard.png](/_resources/5cd92fb41e6e44afb6bb5ac79b8b8fcf.png)-->
+![Image2](/assets/img/PortManipulation/breadboard.png){: .shadow}
 
 ## External Resouces
 
