@@ -10,7 +10,7 @@ To understand how the memory and speed get effected by using the arduino functio
 
 Here is the code for the arduino **pinMode()** function:
 
-```C++
+```c++
 void pinMode(uint8_t pin, uint8_t mode)
 {
         uint8_t bit = digitalPinToBitMask(pin);
@@ -65,7 +65,7 @@ As we can see irrespective of the initial state of the 4th bit, it is now set to
 
 To put this up as a syntax, assuming the given array is called **EXP**. The above logic can be written as
 
-```C
+```c++
 EXP = EXP | (1<<3); //One way to write it 
 EXP |= (1<<3); //A more compact way of writing the same expression.
 ```
@@ -79,7 +79,7 @@ Perform AND operation on the inverted array and the given array.
 Resulting array :: **xxxx 0xxx**
 
 Just like we saw in the previous example of setting a bit HIGH, only the 4th bit is set to 0 and all the other pins are left unaffected irrespective of their initial states. To put this in syntax, assuming the given array is called **EXP**. The above logic can be written as
-```C
+```c++
 EXP = EXP & ~(1<<3); //One way to write it 
 EXP &= ~(1<<3); //A more compact way of writing the same expression.
 ```
@@ -92,7 +92,7 @@ Perform AND operation with the shifted array and 0000 0001.
 Resulting array :: **0000 000y**
 
 The above logic can be written as,
-```C
+```c++
 RESULT = EXP>>3 & 1;
 ```
 ### Flipping the state of a bit
@@ -104,7 +104,7 @@ Perform XOR Operation on the two arrays.
 Resulting array :: **xxxx (~y)xxx**
 
 The above logic can be written as,
-```C++
+```c++
 EXP = EXP ^ (1<<3); //One way to write it
 EXP ^= (1<<3); //A more compact way of writing the same expression
 ```
@@ -141,7 +141,7 @@ The **DDR** register, determines whether the pin is an **INPUT** or **OUTPUT**. 
 Each bit of these registers corresponds to a single pin; e.g. the low bit of **DDRB**, **PORTB**, and **PINB** refers to pin **PB0** (digital pin 8).
 
 Let us look at some examples on how to use these registers.
-```C++
+```c++
 // LED Blinking Code 
 void setup(){
   DDRB |= 1<<6; //pinMode(13,OUTPUT);
@@ -155,7 +155,7 @@ void loop(){
 }  
 ```
 Note that the entire code block in void loop can be replaced by the following code:
-```C++
+```c++
 void loop(){
   PORTB ^= (1<<5);
   delay(1000);
@@ -167,7 +167,7 @@ PIN register reads the data from all the pins at once, and can be used like the 
 
 As a concluding example let us take up the following code.
 
-```C++
+```c++
 /*
 Objective : The void loop is busy with a process
 shown as delay(5000). You need the AVR to perform some smaller 
@@ -234,7 +234,6 @@ The schematic for the above code is attached below, while the code might contain
 
 ## External Resouces
 
+<iframe width="420" height="315" src="https://www.youtube.com/watch?v=6q1yEb_ukw8" frameborder="0" allowfullscreen></iframe>
 
-[Youtube Link](https://www.youtube.com/watch?v=6q1yEb_ukw8)
-
-[Youtube Link2](https://www.youtube.com/watch?v=UhTRrjYXqPU)
+<iframe width="420" height="315" src="https://www.youtube.com/watch?v=UhTRrjYXqPU" frameborder="0" allowfullscreen></iframe>
