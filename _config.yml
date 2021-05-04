@@ -15,9 +15,9 @@ timezone: Asia/Kolkata
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # --------------------------
-title: Lostvayne                         # the main title
+title: Jai Krishna                         # the main title
 
-tagline: My sacred treasure...    # it will display as the sub-title
+tagline: Robotics | MSc.Physics | B.E.Civil    # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
@@ -77,7 +77,7 @@ theme_mode:   # [light|dark]
 img_cdn: ''
 
 # the avatar on sidebar, support local or CORS resources
-avatar: /assets/img/logo_temp.png
+avatar: /assets/img/profile.jpg
 
 # boolean type, the global switch for ToC in posts.
 toc: true
