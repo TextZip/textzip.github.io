@@ -5,10 +5,7 @@ categories: [Tutorials, ROSCheatSheet]
 tags: [ros]     # TAG names should always be lowercase
 ---
 
-# ROS BASICS
-Last Modified: 03/05/2021 19:44 
-Author: TextZip
-Contents:   Packages, Nodes, Launch-Files, Parameter Server, Topics, Messages, Services, Actions
+**Contents**:   Packages, Nodes, Launch-Files, Parameter Server, Topics, Messages, Services, Actions
 
 * * *
 
@@ -72,6 +69,8 @@ A parameter server is a dictonary that ROS uses to store parameters. Any ROS pro
 `rosparam get <parameter_name>` - Gets the current value of that parameter
 `rosparam set <parameter_name> <value>` - Updates the parameter value
 
+* * * 
+
 ## Topics
 
 ROS Nodes communicate with each other via communication channels called "Topics", further messages are passed between nodes through topics. Every topic has a message type that it supports communication over. Nodes can subscribe to a topic to listen to data from other nodes or publish to topics to send data to other nodes which are subscribed to a given topic.
@@ -133,7 +132,7 @@ As explained before data is sent via messages inside topics. ROS has a rich set 
 
 You can get more information about what message type is used by a paticular node by using `rosnode info`. Messages can contain premitive datatypes or can be composed of multiple primitve datatypes. Here is an example `rosmsg show geometry_msgs/PointStamped`
 
-```python
+```
 [geometry_msgs/PointStamped]:
 std_msgs/Header header
 
@@ -214,7 +213,9 @@ Just add these 3 lines to the package.xml file.
 ```python
 from package_name.msg import Age
 ```
+
 * * *
+
 ## Services
 Messages over topics are not the only way nodes communicate with each other, Services are a synchronous way of commincation where a ROS program calls a service, and waits until it receives a result from the service before continuing.
 
@@ -362,9 +363,11 @@ Just add these 3 lines to the package.xml file.
   ```
 - **Using these in ROS Nodes**
 	
-	```
+	```python
 	from package_name.srv import MyCustomServiceMessage, MyCustomServiceRequest/Responce
 	```
+* * *
+
 
 ## Actions
 Actions are like asynchronous calls to services, therefore are very similar to services. When you call an action, you are calling a functionality that another node is providing. Just the same as with services. The difference is that when your node calls a service, it must wait until the service finishes. When your node calls an action, it doesn't necessarily have to wait for the action to complete.
@@ -378,7 +381,7 @@ When a robot provides an action, you will see that in the topics list. There are
 
 **For example, here the name of the action server is "ardrone_action_server":**
 
-	```
+	```bash
 	user ~ $ rostopic list
 	...
 	...
@@ -398,7 +401,7 @@ Calling an action server means sending a message to it. In the same way as with 
 
 For example, here is the message structure of an action server:
 
-```
+```bash
 user ~ $ roscd ardrone_as/action; cat Ardrone.action
 #goal for the drone
 int32 nseconds  # the number of seconds the drone will be taking pictures
@@ -442,7 +445,7 @@ Each topic of the action server uses its associated type of message accordingly.
 `rostopic pub /name_of_action_server/goal /type_of_the_message_used_by_the_topic parameters`
 
 ### Client
-```
+```python
 #! /usr/bin/env python
 import rospy
 import time
@@ -521,7 +524,7 @@ The axclient is, basically, a GUI tool provided by the actionlib package, that a
 `rosrun actionlib axclient.py /name_of_action_server`
 
 ### Server
-```
+```python
 #! /usr/bin/env python
 
 import rospy
@@ -571,7 +574,7 @@ if __name__ == '__main__':
 ```
 Once the server is launched you should be able to see the following:
 
-```
+```bash
 rostopic list | grep action_custom_msg_as
     /action_custom_msg_as/cancel
     /action_custom_msg_as/feedback
