@@ -365,8 +365,8 @@ Just add these 3 lines to the package.xml file.
 	```python
 	from package_name.srv import MyCustomServiceMessage, MyCustomServiceRequest/Responce
 	```
-* * *
 
+* * *
 
 ## Actions
 Actions are like asynchronous calls to services, therefore are very similar to services. When you call an action, you are calling a functionality that another node is providing. Just the same as with services. The difference is that when your node calls a service, it must wait until the service finishes. When your node calls an action, it doesn't necessarily have to wait for the action to complete.
