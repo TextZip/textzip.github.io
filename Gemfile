@@ -5,6 +5,7 @@ gem "jekyll-theme-chirpy", "~> 4.0", ">= 4.0.0"
 group :jekyll_plugins do
   # If you have any plugins, put them here!
   # gem "jekyll-xxx", "~> x.y"
+  gem 'jekyll-sitemap'  
 end
 
 group :test do
