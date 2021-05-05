@@ -3,11 +3,8 @@ title: ROS Basics
 date: 2021-05-04 16:17:25 +/-0530
 categories: [Tutorials, ROSCheatSheet]
 tags: [ros]     # TAG names should always be lowercase
+math: true
 ---
-**Contents**:   Packages, Nodes, Launch-Files, Parameter Server, Topics, Messages, Services, Actions
-
-* * *
-
 ## Packages
 ROS uses packages to orgnaize its program, you can think of a package as all the files that a specific ROS program needs to run sucessfully. 
 A few common items inside a package:
@@ -33,7 +30,6 @@ Once a package has been created, it needs to be compiled in order for it to work
 `catkin_make` - Will compile the entire src directory and needs to be issued only in the catkin_ws directory.
 `catkin_make --only-pkg-with-deps <package_name>` - Will only compile the selected package.
 
-* * *
 
 ## Nodes
 Nodes are individual ROS programs that together with other nodes form a working structure.
@@ -47,7 +43,6 @@ Nodes are individual ROS programs that together with other nodes form a working 
 **To get more information about a paticular node:**
 `rosnode info /node_name`
 
-<hr>
 
 ## Launch Files
 All launch files are contained inside the `<launch>` tags. Launch files are used to "launch" nodes/programs in ROS. One of the major advantages of launch files is the fact that you can launch multiple nodes at once.
@@ -59,7 +54,6 @@ All launch files are contained inside the `<launch>` tags. Launch files are used
     </node>
 </launch>
 ```
-* * *
 
 ## Parameter Server
 A parameter server is a dictonary that ROS uses to store parameters. Any ROS program can access these parameters during runtime to customize itself accordingly. The following commands can be used to interact with the parameter server.
@@ -68,7 +62,6 @@ A parameter server is a dictonary that ROS uses to store parameters. Any ROS pro
 `rosparam get <parameter_name>` - Gets the current value of that parameter
 `rosparam set <parameter_name> <value>` - Updates the parameter value
 
-* * * 
 
 ## Topics
 
@@ -121,7 +114,7 @@ rospy.init_node('node_name')
 rospy.Subscriber('/topic_name',String,callback_function)
 rospy.spin()
 ```
-* * *
+
 ## Messages
 As explained before data is sent via messages inside topics. ROS has a rich set of predefined messages that can be used.
 
@@ -152,6 +145,7 @@ In situations where standard messages don't do the job, you can create your own 
 - **Create a `msg` folder in your package directory**
 - **Create a new file named `YourMessage.msg` inside the msg folder.**
 - **`Age.msg` should contain the message structure for example**
+
 	```
 	Float32 Years   
 	Float32 Months
@@ -174,7 +168,7 @@ This is where all the packages required to COMPILE the messages of the topics, s
 	  ) # Dont Forget to UNCOMENT the parenthesis and add_message_files TOO
 	```
 - **Edit the CMakeLists.txt - generate_messages()** Here is where the packages needed for the messages compilation are imported.
-	```python
+	```
 	generate_messages(
 		DEPENDENCIES
 		std_msgs
@@ -213,7 +207,6 @@ Just add these 3 lines to the package.xml file.
 from package_name.msg import Age
 ```
 
-* * *
 
 ## Services
 Messages over topics are not the only way nodes communicate with each other, Services are a synchronous way of commincation where a ROS program calls a service, and waits until it receives a result from the service before continuing.
@@ -366,7 +359,6 @@ Just add these 3 lines to the package.xml file.
 	from package_name.srv import MyCustomServiceMessage, MyCustomServiceRequest/Responce
 	```
 
-* * *
 
 ## Actions
 Actions are like asynchronous calls to services, therefore are very similar to services. When you call an action, you are calling a functionality that another node is providing. Just the same as with services. The difference is that when your node calls a service, it must wait until the service finishes. When your node calls an action, it doesn't necessarily have to wait for the action to complete.
@@ -498,11 +490,11 @@ So, the SimpleActionClient objects have two functions that can be used for knowi
 
 2) **get_state():** This function is much more interesting. When called, it returns an integer that indicates in which state is the action that the SimpleActionClient object is connected to.
 
-0 ==> PENDING
-1 ==> ACTIVE
-2 ==> DONE
-3 ==> WARN
-4 ==> ERROR
+- 0 ==> PENDING
+- 1 ==> ACTIVE
+- 2 ==> DONE
+- 3 ==> WARN
+- 4 ==> ERROR
 
 This allows you to create a while loop that checks if the value returned by get_state() is 2 or higher. If it is not, it means that the action is still in progress, so you can keep doing other things.
 
