@@ -17,6 +17,7 @@ timezone: Asia/Kolkata
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # --------------------------
 title: Jai Krishna                         # the main title
+author: Jai Krishna
 
 tagline: Passionate about Robotics | Electronics | Design
 
@@ -29,7 +30,7 @@ description: >-                        # used by seo meta and the atom feed
 url: 'https://textzip.github.io'
 plugins: 
   - jekyll-sitemap
-
+  - jekyll-feed
 github:
   username: TextZip             # change to your github username
 
