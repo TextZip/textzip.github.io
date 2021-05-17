@@ -86,9 +86,9 @@ avatar: /assets/img/profile.jpg
 # boolean type, the global switch for ToC in posts.
 toc: true
 
-disqus:
-  comments: true  # boolean type, the global switch for posts comments.
-  shortname: 'textzip-github-io'    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+#disqus:
+#  comments: true  # boolean type, the global switch for posts comments.
+#  shortname: 'textzip-github-io'    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 paginate: 10
 
