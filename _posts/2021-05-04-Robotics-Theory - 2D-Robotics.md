@@ -378,7 +378,7 @@ Consider a fixed frame ($O_0-X_0-Y_0$) and a mobile frame ($O_1-X_1-Y_1$), the m
 <!--figure-->
 
 Let $r$ be the radius of the wheels and $2b$ be the distance between the wheels, and $\theta$ be the angle the angle the mobile frame makes with the horizontal of the fixed frame. 
-![Image1](/assets/img/2DRobotics/DiffCar.png){: .shadow}
+![Image1](/assets/img/2DRobotics_new/7_DiffCar.png){: .shadow}
 
 <!--figure-->
 
@@ -388,7 +388,7 @@ The forward kinematics of the differential drive car involves finding ($X_C^0(t)
 The distance traveled by the wheel if it rotates by an angle $\phi$ is given by $r\phi$. The rate of change of distance travelled by the wheel is therefore given by $r\dot{\phi}$. Assuming the right wheel is denoted by the subscript r, similar assumptions and derivations can be made for the left wheel.
 
 <!--figure-->
-![Image1](/assets/img/2DRobotics/DiffWheel.png){: .shadow}
+![Image1](/assets/img/2DRobotics_new/8_DiffWheel.png){: .shadow}
 
 
 Case 1: $\dot{\phi_l}=0, \dot{\phi_r}\neq0$
@@ -399,7 +399,7 @@ $$
 \dot{X_{wr}^1} =r\dot{\phi_r}
 $$
 
-![Image1](/assets/img/2DRobotics/DiffRVel.png){: .shadow}
+![Image1](/assets/img/2DRobotics_new/9_DiffRVel.png){: .shadow}
 
 <!--figure-->
 
@@ -656,7 +656,7 @@ Upon successful execution of the above program you should be able to see a figur
 Inverse Kinematics is defined as finding the values of $v,\omega$ given ($X_P^0,Y_p^0$) as a function of time, where $P$ is a point fixed on the robot as shown in the figure.
 
 <!--figure-->
-![Image1](/assets/img/2DRobotics/DiffP.png){: .shadow}
+![Image1](/assets/img/2DRobotics_new/10_DiffP.png){: .shadow}
 
 
 From previous sections, we have the following relations
