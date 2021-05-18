@@ -7,7 +7,6 @@ group :jekyll_plugins do
   # gem "jekyll-xxx", "~> x.y"
   gem 'jekyll-sitemap'
   gem 'jekyll-feed'  
-  gem 'graphql-client'
 end
 
 group :test do

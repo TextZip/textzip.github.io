@@ -34,9 +34,6 @@ github:
   username: TextZip             # change to your github username
 
 
-github_cards:
-    github_access_token: "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"
-
 
 #twitter:
 #  username: twitter_username            # change to your twitter username

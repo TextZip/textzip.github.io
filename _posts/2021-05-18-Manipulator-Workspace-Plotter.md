@@ -1,5 +1,5 @@
 ---
-title: Manipulator - Workspace Plotter
+title: Manipulator Workspace Plotter
 date: 2021-05-18 23:42:20 +/-0530
 categories: [Projects,Manipulators]
 tags: [matlab]     # TAG names should always be lowercase
@@ -10,7 +10,7 @@ math: true
 This was a intresting application that I wanted to work on to visualize and understand how joint limits effect manipulator workspace. While there are many ways of generating the workspace of a manipulator this paticular sketch uses forward kinematics to do so.
 The full code for the project can be found in the following repo
 
-{% ghcards DHPnP %}
+[![textzip/DHPnP - GitHub](https://gh-card.dev/repos/textzip/DHPnP.svg?fullname=)](https://github.com/textzip/DHPnP)
 
 ## Method
 The idea of plotting workspace from forward kinematics can be broken down into the following smaller tasks
