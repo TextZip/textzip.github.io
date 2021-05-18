@@ -1,11 +1,10 @@
 ---
 title: Manipulator - Workspace Plotter
-date: 2021-05-04 23:47:20 +/-0530
+date: 2021-05-18 23:42:20 +/-0530
 categories: [Projects,Manipulators]
 tags: [matlab]     # TAG names should always be lowercase
 math: true
 ---
-
 
 ## Introduction
 This was a intresting application that I wanted to work on to visualize and understand how joint limits effect manipulator workspace. While there are many ways of generating the workspace of a manipulator this paticular sketch uses forward kinematics to do so.
@@ -99,6 +98,7 @@ We will now be taking in user inputs for joint limits and create a dataset with 
 - **N=67312** is the number of random combinations that will be generated, this number can be increased or decresed based on the needs, remember that the higher the number the more dense the workspace plot will turn out, but it will also increase the computation time.
 
 > Dataset = lower limit + (upper limit - lower limit)*random number between 0 and 1
+
 ```matlab
 ch2=input('Press 1 if you want to plot the 3D workspace');
     if ch2 == 1 
