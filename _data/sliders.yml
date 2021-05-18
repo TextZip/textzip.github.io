@@ -1,0 +1,33 @@
+# example slider
+- selector: workspace
+  captions: true
+  images:
+    - src: /assets/img/DHPnP/Rhino-XR3-With-Monte-Carlo.png
+      alt: Rhino XR3 With Monte Carlo
+    - src: /assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png
+      alt: Rhino XR3 Without Monte Carlo
+    - src: /assets/img/DHPnP/WAM-7DoF-without-Monte-Carlo.png
+      alt: WAM 7DoF without Monte Carlo
+    - src: /assets/img/DHPnP/WAM-7DoF-with-Monte-Carlo.png
+      alt: WAM 7DoF with Monte Carlo
+  settings:
+    height: 600
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
+
+- selector: timers
+  captions: true
+  images:
+    - src: /assets/img/Timers/graph4.png
+      alt: 0 Phase Difference
+    - src: /assets/img/Timers/graph3.png
+      alt: 180 Phase Difference
+    - src: /assets/img/Timers/graph2.png
+      alt: 90 Phase Difference
+  settings:
+    height: '500'
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
+

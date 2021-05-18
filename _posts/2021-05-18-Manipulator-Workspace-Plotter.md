@@ -4,6 +4,8 @@ date: 2021-05-18 23:42:20 +/-0530
 categories: [Projects,Manipulators]
 tags: [matlab,forward kinematics,workspace,transformation matirx,monte carlo]     # TAG names should always be lowercase
 math: true
+image_sliders:
+  - workspace
 ---
 
 ## Introduction
@@ -19,6 +21,7 @@ The idea of plotting workspace from forward kinematics can be broken down into t
 3. Take in user inputs for joint limits.
 4. Create a dataset of sorts that contains random possible combinations from the possible joint limits.
 5. Plug these random points into the Transformation Matrix and plot the outputs.
+
 
 **A few other points:**
 - There is no need to create a dataset with "all" possible combinations for the joint angles, this method will be computationally expensive. We will instead be using monte carlo distribution to generate random points. 
@@ -185,11 +188,5 @@ This version of the documentation is based on the DHPnP_v1.m which is based on t
 ## Results
 A few images from both the versions which clearly shows the difference in the resulting workspace plots.
 
-![Image1](/assets/img/DHPnP/Rhino-XR3-With-Monte-Carlo.png){: .shadow}
-*Rhino XR3 With Monte Carlo*
-![Image1](/assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png){: .shadow}
-*Rhino XR3 Without Monte Carlo*
-![Image1](/assets/img/DHPnP/WAM-7DoF-without-Monte-Carlo.png){: .shadow}
-*WAM 7DoF without Monte Carlo*
-![Image1](/assets/img/DHPnP/WAM-7DoF-with-Monte-Carlo.png){: .shadow}
-*WAM 7DoF with Monte Carlo*
+{% include slider.html selector="workspace" %}
+
