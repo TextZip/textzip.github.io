@@ -10,7 +10,7 @@ math: true
 This was a intresting application that I wanted to work on to visualize and understand how joint limits effect manipulator workspace. While there are many ways of generating the workspace of a manipulator this paticular sketch uses forward kinematics to do so.
 The full code for the project can be found in the following repo
 
-{% include repo_card.html reponame="DHPnP" %}
+{% ghcards DHPnP %}
 
 ## Method
 The idea of plotting workspace from forward kinematics can be broken down into the following smaller tasks
