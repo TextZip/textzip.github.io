@@ -180,7 +180,7 @@ While the plot is 3D we will plot a few standard views as moving the plot around
 This version of the documentation is based on the DHPnP_v1.m which is based on the monte carlo method for random point sampling. The older version of the same project is based on a different approach and is significantly slower and more computational expenseive and memory intensive. 
 
 ## Results
-A few images from both the versions which clearly shows the difference in the resulting plots.
+A few images from both the versions which clearly shows the difference in the resulting workspace plots.
 
 ![Image1](/assets/img/DHPnP/Rhino-XR3-With-Monte-Carlo.png){: .shadow}
 *Rhino XR3 With Monte Carlo*
