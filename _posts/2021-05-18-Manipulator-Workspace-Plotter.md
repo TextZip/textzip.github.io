@@ -2,7 +2,7 @@
 title: Manipulator Workspace Plotter
 date: 2021-05-18 23:42:20 +/-0530
 categories: [Projects,Manipulators]
-tags: [matlab]     # TAG names should always be lowercase
+tags: [matlab,forward kinematics,workspace,transformation matirx,monte carlo]     # TAG names should always be lowercase
 math: true
 ---
 
