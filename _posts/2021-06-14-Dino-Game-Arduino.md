@@ -12,6 +12,11 @@ math: true
 I always had a thing for wearable electronics, a few months ago I got a cheap TFT display to play around with and the ultimate goal was to get familiar with all the electronics so that I can try to scale everything down and make a (hopefully portable) smartwatch.
 
 I stumbled upon the flappy bird game for arduino by [mrt-prodz](https://www.mrt-prodz.com/blog/view/2015/03/flappy-bird-clone-on-the-atmega328-arduino-uno) while looking for some good projects with the TFT display, after playing the game for a couple of times, I decided to build my own version of the classic "Dino Game" from chromium.
+
+All the code files and assets for the project can be found in the following repo:
+
+[![TextZip/Dino-Game-Arduino-Edition - GitHub](https://gh-card.dev/repos/TextZip/Dino-Game-Arduino-Edition.svg)](https://github.com/TextZip/Dino-Game-Arduino-Edition)
+
 ## Hardware & Schematics 
 ### Components 
 1. Arduino Uno
