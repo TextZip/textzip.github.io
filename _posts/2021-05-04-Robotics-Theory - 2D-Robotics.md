@@ -177,8 +177,7 @@ $$
 	P^0 &= \begin{bmatrix}
 		X_p^0\\
 		Y_p^0\\
-	\end{bmatrix}
-=
+	\end{bmatrix}=
 \begin{bmatrix}
 	l_1\cos{\theta_1}\\
 	l_1\sin{\theta_1}
