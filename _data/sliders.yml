@@ -31,3 +31,23 @@
     keyboardNav: true
     interval: 4000
 
+- selector: gamingConsole
+  captions: true
+  images:
+    - src: /assets/img/GamingConsole/CardboardBig.jpeg
+      alt: Cardboard Wheel Prototype
+    - src: /assets/img/GamingConsole/core.jpg
+      alt: PVC housing for electronics
+    - src: /assets/img/GamingConsole/coreTest.jpg
+      alt: Testing Electronics 
+    - src: /assets/img/GamingConsole/front.jpg
+      alt: Final Build
+    - src: /assets/img/GamingConsole/sideLaptop.jpg
+  settings:
+    # height: '800'
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
+
+
+
