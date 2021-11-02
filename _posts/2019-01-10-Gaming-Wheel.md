@@ -9,7 +9,7 @@ image_sliders:
 ![Image1](/assets/img/GamingConsole/frontLaptop.jpg){: .shadow}
 
 A cheap and affordable gaming console based on the Atmega-328p,
-MPU6050, and capacitive touch sensors for an immersive gaming
+MPU6050 and capacitive touch sensors for an immersive gaming
 experience.
 
 ## Hardware
@@ -28,14 +28,14 @@ experience.
 ![Image1](/assets/img/GamingConsole/flowchart.png){: .shadow}
 
 
-As the process descriptiuon chart above states, the entire game plan is to take user input and mimic keyboard and/or mouse activity. 
+As the process description chart above states, the entire game plan takes user input and mimics keyboard or mouse activity. 
 
-Keyboard, mouse and other input devices are usually refered to as HID Devices. While some microcontrollers like the Arduino Lenardo can be used as HID Devices, I decided to use an Arduino Uno to make things a bit more challenging. 
+Keyboard, mouse, and other input devices are called HID Devices. While some microcontrollers like the Arduino Leonardo can be used as HID Devices, I decided to use an Arduino Uno to make things more challenging. 
 
-I ended up using an 3-axis accloremeter and some make-shift capacitive touch sensors for taking user input. The Arduino Uno processes data from the sensors and sends commands via Serial Communcation to Processing IDE which convinently has the ability to pull keyboard and mouse hooks which help us interact with softwares/games running on the system.   
+I ended up using a 3-axis accelerometer and some make-shift capacitive touch sensors for taking user input. The Arduino Uno processes data from the sensors and sends commands via Serial Communication to Processing IDE, which conveniently can pull keyboard and mouse hooks, which help us interact with Softwares/games running on the system.   
 ## Build
 ### Prototype 
-An early prototype to test the idea and feasability was made using some spare cardboard that I had lying around. 
+An early prototype to test the idea and feasibility was made using some spare cardboard lying around. 
 <!-- Insert walk test video here -->
 <iframe width="640" height="385" src="https://youtube.com/embed/OxRKLMEx7ZY" frameborder="0" allowfullscreen></iframe>
 
