@@ -1,8 +1,8 @@
 ---
-title: Gaming Console
+title: Gaming Wheel
 date: 2019-01-10 19:13:20 +/-0530
-categories: [Tutorials, AVR Dairies]
-tags: [atmega328p,port,pin,register,bit math]     # TAG names should always be lowercase
+categories: [Projects, DIY]
+tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
 image_sliders:
   - gamingConsole
 ---
