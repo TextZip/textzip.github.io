@@ -6,19 +6,21 @@ tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
 image_sliders:
   - StairClimbing
   - StairClimbing2
+mermaid: true
 ---
 ![Image1](/assets/img/StairClimbing/topcover.png){: .shadow}
 
 The aim of this project is to “Design, Develop and Implement an Autonomous Stair Climbing Robot which can climb stairs, turn at the quarter-landings and deliver packages autonomously”.
 
 # Team
-|Members|
-|----|
-|Bandi Jai Krishna|
-|Utkarsh Jain|
-|Abijith Y.L.|
-|Sriram Kodey|
-|T. Vamsi Krishna|
+
+|Members|Sub-System|
+|----|--|
+|Bandi Jai Krishna|CAD, Simulation|
+|Utkarsh Jain|Simulation, Electronics|
+|Abijith Y.L.|CAD, Simulation|
+|Sriram Kodey|CAD, Image Processing|
+|T. Vamsi Krishna|Image Processing|
 
 
 # Introduction
