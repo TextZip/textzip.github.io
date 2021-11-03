@@ -8,17 +8,15 @@ image_sliders:
 ---
 ![Image1](/assets/img/GamingConsole/frontLaptop.jpg){: .shadow}
 
-A project on achieving realtime-orthomosaic SLAM for aerial
-navigation using a single downwards facing camera in outdoor GPS
-denied environments.
+A project on achieving realtime-orthomosaic SLAM for aerial navigation using a single downwards facing camera in outdoor GPS denied environments.
 
 # Introduction
+To carry out drone-based aerial surveying for generating orthomosaic maps on the fly, this project explores the image processing stack required to achieve the same using the most economical hardware and software footprint. The project explores corner and blob-based feature extraction techniques followed by brute force and KNN based feature matching methods which are later used to generate a homography matrix for stitching images that are passed through a cascaded image mixer to generate orthomosaic maps of a given dataset.
+
 
 # Feature Detection & Extraction
 
 While there is no universally accepted definition of “Feature” for a given image, it is often regarded as the information that is unique for the given image and thus helps us mathematically associate the image with its unique data properties. 
-
-
 
 Image Features are small patches of unique raw data that can be potentially used to differentiate the given image from any other image, therefore, helping in tracking the similarity between given images. Image Features can be broken down into two major components:
 
@@ -76,7 +74,7 @@ OpenCV has implemented a function cv2.goodFeaturesToTrack() the parameters for t
 ### Scale Invariant Feature Transform (SIFT)
 
 Example: Using SIFT to detect keypoints
-<!-- pic here -->
+<!-- pic   -->
 SIFT, which stands for Scale-Invariant Feature Transform, was introduced in 2004 by D.Lowe of the University of British Columbia. This algorithm is robust against image scale variations and rotation invariances.
 
 The Pseudocode for SIFT:
@@ -87,14 +85,6 @@ The Pseudocode for SIFT:
 5. Keypoint Matching
 
 The Python Implementation for SIFT:
-
-
-
-
-
-
-
-
 
 Parameters for SIFT:
 - **nfeatures** - The number of best features to retain. The features are ranked by their scores (measured in SIFT algorithm as the local contrast)
@@ -212,3 +202,4 @@ Improve performance of the keypoints and descriptors using a mask-based cascaded
 Add support for live video feed-based mosaic generation.
 Add location tracking and path planning using frame centroid transformations.
  Investigate FLANN and other alternatives for Feature matching.
+
