@@ -66,6 +66,7 @@ The Pseudocode for Shi-Tomasi Corner Detector:
 3, Apply a threshold to select and retrieve important corner points.
 
 Python Implementation of Shi-Tomasi Corner Detector: 
+![Image1](/assets/img/OrthomosaicSLAM/code2.png){: .shadow}
 
 
 
@@ -92,6 +93,7 @@ The Pseudocode for SIFT:
 5. Keypoint Matching
 
 The Python Implementation for SIFT:
+![Image1](/assets/img/OrthomosaicSLAM/code1.png){: .shadow}
 
 Parameters for SIFT:
 - **nfeatures** - The number of best features to retain. The features are ranked by their scores (measured in SIFT algorithm as the local contrast)
@@ -110,7 +112,10 @@ The Pseducode for SURF:
     2. Descriptor Components
 
 <!-- pic here -->
+![Image1](/assets/img/OrthomosaicSLAM/math.png){: .shadow}
+
 The python implementation of SURF:
+![Image1](/assets/img/OrthomosaicSLAM/code4.png){: .shadow}
 
 
 
@@ -126,7 +131,7 @@ Parameters for SURF:
 
 ### Oriented FAST and Rotated BRIEF (ORB)
 <!-- pic here -->
-![Image1](/assets/img/OrthomosaicSLAM/campus3.png){: .shadow}
+![Image1](/assets/img/OrthomosaicSLAM/code3.png){: .shadow}
 
 Example: Using ORB to detect keypoints
 
@@ -168,12 +173,14 @@ This matrix may be applied to any spot in the picture. For example, in the first
 <!-- math matrix shit here -->
 
 The python implementation of finding homography matrix:
+![Image1](/assets/img/OrthomosaicSLAM/code5.png){: .shadow}
 
 
 It is important to realize that feature matching does not always provide perfect matches. As a result, the Random Sample Consensus (RANSAC) process is used as a parameter in the cv2.findHomography() method, making the algorithm robust to outliers. We can get reliable results using this strategy even if we have a large percentage of bad matches.
 
 ### Python Implementation of RANSAC:
 
+![Image1](/assets/img/OrthomosaicSLAM/code6.png){: .shadow}
 
 # Image Processing Pipeline
 <!-- image here -->
@@ -186,14 +193,12 @@ It is important to realize that feature matching does not always provide perfect
 This dataset of the Thammasat University campus in Bangkok, Thailand was collected by a senseFly eBee X drone carrying a senseFly Aeria X photogrammetry camera.
 
 Technical Details
-Ground resolution
-6 cm (3.36 in)/px
-Coverage
-2.1 sq. km (0.77 sq. mi)
-Flight height
-285 m (935 ft)
-Number of images
-443
+|Feature|Value|
+|--|--|
+Ground resolution|6 cm (3.36 in)/px
+Coverage|2.1 sq. km (0.77 sq. mi)
+Flight height|285 m (935 ft)
+Number of images|443
 
 
 ### Forest Area
