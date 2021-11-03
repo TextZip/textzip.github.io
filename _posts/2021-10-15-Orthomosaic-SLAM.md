@@ -6,7 +6,7 @@ tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
 image_sliders:
   - gamingConsole
 ---
-![Image1](/assets/img/GamingConsole/frontLaptop.jpg){: .shadow}
+![Image1](/assets/img/OrthomosaicSLAM/campus_data.png){: .shadow}
 
 A project on achieving realtime-orthomosaic SLAM for aerial navigation using a single downwards facing camera in outdoor GPS denied environments.
 
