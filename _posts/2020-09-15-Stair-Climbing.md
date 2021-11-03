@@ -12,9 +12,13 @@ image_sliders:
 The aim of this project is to “Design, Develop and Implement an Autonomous Stair Climbing Robot which can climb stairs, turn at the quarter-landings and deliver packages autonomously”.
 
 # Team
-|Student Name|ID Number|
-
-|Bandi Jai Krishna|2018B5A20744H|
+|Members|
+|----|
+|Bandi Jai Krishna|
+|Utkarsh Jain|
+|Abijith Y.L.|
+|Sriram Kodey|
+|T. Vamsi Krishna|
 
 
 # Introduction
