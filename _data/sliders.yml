@@ -50,4 +50,36 @@
     interval: 4000
 
 
+- selector: StairClimbing
+  captions: true
+  images:
+    - src: /assets/img/StairClimbing/final4.png
+      alt: Front View
+    - src: /assets/img/StairClimbing/final5.png
+      alt: Back View
+    - src: /assets/img/StairClimbing/final3.png
+      alt: Cross Section View 
+    - src: /assets/img/StairClimbing/final2.png
+      alt: Exploded View
+  settings:
+    # height: '800'
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
+
+
+- selector: StairClimbing2
+  captions: true
+  images:
+    - src: /assets/img/StairClimbing/image1.jpg
+      alt: View 1
+    - src: /assets/img/StairClimbing/image2.jpg
+      alt: View 2
+    - src: /assets/img/StairClimbing/image3.jpg
+      alt: View 3 
+  settings:
+    # height: '800'
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
 
