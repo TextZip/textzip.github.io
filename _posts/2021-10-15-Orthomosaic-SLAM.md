@@ -18,6 +18,8 @@ To carry out drone-based aerial surveying for generating orthomosaic maps on the
 
 While there is no universally accepted definition of “Feature” for a given image, it is often regarded as the information that is unique for the given image and thus helps us mathematically associate the image with its unique data properties. 
 
+![Image1](/assets/img/OrthomosaicSLAM/features.png){: .shadow}
+
 Image Features are small patches of unique raw data that can be potentially used to differentiate the given image from any other image, therefore, helping in tracking the similarity between given images. Image Features can be broken down into two major components:
 
 1) Keypoints
@@ -28,8 +30,9 @@ They are explained in the subsequent sections.
 ## Keypoints
 Keypoints contain 2D patch data like position, scale, convergence area, and other properties of the local patch. Which we define as a distinctive point in an input image that is invariant to rotation, scale, and distortion. In practice, the key points are not perfectly invariant but they are a good approximation. [1]
 
-<!-- pic here -->
-Example: Keypoints of a human hand.
+![Image1](/assets/img/OrthomosaicSLAM/hand.png){: .shadow}
+_Example: Keypoints of a human hand._
+
 ## Descriptors & Detectors
 A feature detector is an algorithm that takes an image and produces the positions (pixel coordinates) of important regions in the picture. A corner detector is an illustration of this, since it outputs the positions of corners in your picture but does not provide any other information about the features discovered.
 
@@ -47,6 +50,8 @@ The scale should be considered in the descriptions. If the "prominent" component
 
 ## Available Methods
 ### Shi-Tomasi Corner Detector
+
+![Image1](/assets/img/OrthomosaicSLAM/campus1.png){: .shadow}
 
 <!-- pic here -->
 Example: Using Good Features to Track to detect keypoints
@@ -73,8 +78,10 @@ OpenCV has implemented a function cv2.goodFeaturesToTrack() the parameters for t
 
 ### Scale Invariant Feature Transform (SIFT)
 
-Example: Using SIFT to detect keypoints
-<!-- pic   -->
+![Image1](/assets/img/OrthomosaicSLAM/campus2.png){: .shadow}
+_Example: Using SIFT to detect keypoints_
+
+<!-- pic here -->
 SIFT, which stands for Scale-Invariant Feature Transform, was introduced in 2004 by D.Lowe of the University of British Columbia. This algorithm is robust against image scale variations and rotation invariances.
 
 The Pseudocode for SIFT:
@@ -119,6 +126,8 @@ Parameters for SURF:
 
 ### Oriented FAST and Rotated BRIEF (ORB)
 <!-- pic here -->
+![Image1](/assets/img/OrthomosaicSLAM/campus3.png){: .shadow}
+
 Example: Using ORB to detect keypoints
 
 ORB is a combination of the FAST keypoint detector and the BRIEF descriptor, with some additional characteristics to boost performance. FAST stands for Features from Accelerated Segment Test, and it is used to find features in a picture. It also employs a pyramid to generate multiscale features.[2] It no longer computes the orientation and descriptors for the features, which is where BRIEF is used.
@@ -141,14 +150,15 @@ The Python implementation of ORB:
 # Feature Matching
 ## Available Methods
 ### Brute Force Matcher
-<!-- pic here -->
+![Image1](/assets/img/OrthomosaicSLAM/compare1.png){: .shadow}
+
 The Brute Force Matcher is used to compare the characteristics of the first image to those of another image.
 
 It takes one of the first picture's descriptors and matches it to all of the second image's descriptors, then moves on to the second descriptor of the first image and matches it to all of the second image's descriptors, and so on.
 
 # Homography & Transformation
+![Image1](/assets/img/OrthomosaicSLAM/homography.png){: .shadow}
 
-<!-- pic here -->
 A homography connects any two photographs of the same scene. It is a transformation that transfers the points in one picture to the points in the other. The two pictures can be captured by rotating the camera along its optical axis or by laying them on the same surface in space.
 
 The essence of the homography is the simple 3×3 matrix called the homography matrix.
@@ -167,8 +177,11 @@ It is important to realize that feature matching does not always provide perfect
 
 # Image Processing Pipeline
 <!-- image here -->
+![Image1](/assets/img/OrthomosaicSLAM/code7.png){: .shadow}
+
 ## Dataset
 ### Urban Area
+![Image1](/assets/img/OrthomosaicSLAM/campus_data.png){: .shadow}
 
 This dataset of the Thammasat University campus in Bangkok, Thailand was collected by a senseFly eBee X drone carrying a senseFly Aeria X photogrammetry camera.
 
@@ -184,18 +197,16 @@ Number of images
 
 
 ### Forest Area
+![Image1](/assets/img/OrthomosaicSLAM/forest_data.png){: .shadow}
 
 DroneMapper flew Greg 1 and 2 reservoirs on September 16th, 2019 using their Phantom 3 Advanced drone to collect imagery for precision digital elevation model (DEM) and orthomosaic generation of the site. GCP was surveyed with a Trimble 5800 and used during the image processing. Approximately 189 images were collected and processed via photogrammetry to yield the DEM, orthomosaic, and capacity report.[8]
 
-
-Ground resolution
-6 cm (3.36 in)/px
-Coverage
-2.1 sq. km (0.77 sq. mi)
-Flight height
-285 m (935 ft)
-Number of images
-189
+|Feature| Value|
+|---|--|
+|Ground resolution|6 cm (3.36 in)/px|
+|Coverage|2.1 sq. km (0.77 sq. mi)|
+|Flight height|285 m (935 ft)|
+|Number of images|189|
 
 # Future Work 
 Improve performance of the keypoints and descriptors using a mask-based cascaded mixer. 
