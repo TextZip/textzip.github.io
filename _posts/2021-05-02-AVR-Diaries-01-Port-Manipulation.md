@@ -1,5 +1,5 @@
 ---
-title: AVR Diaries 01 - Port Manipulation
+title: Hands On with AVR - 01 Port Manipulation
 date: 2021-05-04 19:13:20 +/-0530
 categories: [Tutorials, AVR Dairies]
 tags: [atmega328p,port,pin,register,bit math]     # TAG names should always be lowercase

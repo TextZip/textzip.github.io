@@ -1,5 +1,5 @@
 ---
-title: AVR Diaries 02 - Interrupts
+title: Hands On with AVR - 02 Interrupts
 date: 2021-05-13 16:23:20 +/-0530
 categories: [Tutorials, AVR Dairies]
 tags: [atmega328p,external interrupts,pin change interrupts,ISR]     # TAG names should always be lowercase

@@ -3,8 +3,8 @@ title: Aerial Navigation in GPS Denied Environments
 date: 2021-10-18 19:13:20 +/-0530
 categories: [Projects, DIY]
 tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
-image_sliders:
-  - gamingConsole
+# image_sliders:
+#   - gamingConsole
 ---
 ![Image1](/assets/img/OrthomosaicSLAM/campus_data.png){: .shadow}
 
