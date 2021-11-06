@@ -83,3 +83,33 @@
     keyboardNav: true
     interval: 4000
 
+
+- selector: QDD1
+  captions: true
+  images:
+    - src: /assets/img/QDD/sketch1.png
+      alt: View 1
+    - src: /assets/img/QDD/sketch2.png
+      alt: View 2
+    - src: /assets/img/QDD/sketch3.png
+      alt: View 3 
+  settings:
+    height: auto
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
+
+- selector: QDD2
+  captions: true
+  images:
+    - src: /assets/img/QDD/side_annoted_2.png
+      alt: View 1
+    - src: /assets/img/QDD/cross.png
+      alt: View 2
+    - src: /assets/img/QDD/exploded.png
+      alt: View 3 
+  settings:
+    height: auto
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
