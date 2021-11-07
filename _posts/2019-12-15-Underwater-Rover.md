@@ -38,6 +38,7 @@ This is the model that was used for all the final testing. The arms and frame ar
 
 **Limitations**
 - Since the arms were also made of stainless steel, they were heavy and could interfere with the readings. This was taken into account in the calibration phase of the load cell.
+
 **Advantages** 
 - The bigger tank ensured that there was no turbulence due to water hitting the walls of the vessel.
 - Since the arm was made of stainless steel, it was much more durable, and could be tested with all possible combinations of motors and propellers.
