@@ -5,6 +5,7 @@ categories: [Tutorials, AVR Dairies]
 tags: [atmega328p,timer,fastPWM,normal mode,CTC mode]     # TAG names should always be lowercase
 image_sliders:
   - timers
+image: /assets/img/PortManipulation/arduino_label.png
 ---
 The ATmega328p has two 8 bit timers and one 16 bit timer, each timer has multiple modes of working. We will be covering all the timers together in the tutorial, one mode at a time.
 

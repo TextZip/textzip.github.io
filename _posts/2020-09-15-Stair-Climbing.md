@@ -7,6 +7,7 @@ image_sliders:
   - StairClimbing
   - StairClimbing2
 mermaid: true
+image: /assets/img/StairClimbing/topcover.png
 ---
 ![Image1](/assets/img/StairClimbing/topcover.png){: .shadow}
 

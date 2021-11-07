@@ -5,6 +5,7 @@ categories: [Projects, DIY]
 tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
 # image_sliders:
 #   - gamingConsole
+image: /assets/img/CoaxialBicopter/nano.png
 ---
 ![Image1](/assets/img/CoaxialBicopter/nano.png){: .shadow}
 

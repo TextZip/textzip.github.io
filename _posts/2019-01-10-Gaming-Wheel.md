@@ -5,10 +5,11 @@ categories: [Projects, DIY]
 tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
 image_sliders:
   - gamingConsole
+image: /assets/img/GamingConsole/frontLaptop.jpg
 ---
 ![Image1](/assets/img/GamingConsole/frontLaptop.jpg){: .shadow}
 
-A cheap and affordable gaming console based on the Atmega-328p,
+A cheap and affordable gaming wheel based on the Atmega-328p,
 MPU6050 and capacitive touch sensors for an immersive gaming
 experience.
 

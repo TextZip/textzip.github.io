@@ -6,6 +6,7 @@ tags: [matlab,forward kinematics,workspace,transformation matirx,monte carlo]   
 math: true
 image_sliders:
   - workspace
+image: /assets/img/Spherical/cad.jpeg
 ---
 
 ## Introduction

@@ -3,6 +3,7 @@ title: Spherical Robot
 date: 2019-04-25 19:13:20 +/-0530
 categories: [Projects, DIY]
 tags: [atmega328p,game,imu,touch]     # TAG names should always be 
+image: /assets/img/Spherical/cad.jpeg
 ---
 <!-- ![Image1](/assets/img/QDD/iso_section.png){: .shadow} -->
 
