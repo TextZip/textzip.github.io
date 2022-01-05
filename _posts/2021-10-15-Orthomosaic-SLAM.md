@@ -18,6 +18,7 @@ A project on achieving realtime-orthomosaic SLAM for aerial navigation using a s
 # Introduction
 To carry out drone-based aerial surveying for generating orthomosaic maps on the fly, this project explores the image processing stack required to achieve the same using the most economical hardware and software footprint. The project explores corner and blob-based feature extraction techniques followed by brute force and KNN based feature matching methods which are later used to generate a homography matrix for stitching images that are passed through a cascaded image mixer to generate orthomosaic maps of a given dataset.
 
+[![TextZip/OrthomosaicSLAM - GitHub](https://gh-card.dev/repos/TextZip/OrthomosaicSLAM.svg)](https://github.com/TextZip/OrthomosaicSLAM)
 
 # Feature Detection & Extraction
 
@@ -313,8 +314,5 @@ DroneMapper flew Greg 1 and 2 reservoirs on September 16th, 2019 using their Pha
 
 
 # Future Work 
-Improve performance of the keypoints and descriptors using a mask-based cascaded mixer. 
-Add support for live video feed-based mosaic generation.
-Add location tracking and path planning using frame centroid transformations.
- Investigate FLANN and other alternatives for Feature matching.
+Use it for realtime localization in Gazebo. 
 
