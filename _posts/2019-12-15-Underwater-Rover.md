@@ -52,7 +52,7 @@ This is the model that was used for all the final testing. The arms and frame ar
 - The bigger tank ensured that there was no turbulence due to water hitting the walls of the vessel.
 - Since the arm was made of stainless steel, it was much more durable, and could be tested with all possible combinations of motors and propellers.
 
-![Image1](/assets/img/UnderwaterRover/test3.jpg){: .shadow}
+<!-- ![Image1](/assets/img/UnderwaterRover/test3.jpg){: .shadow} -->
 ![Image1](/assets/img/UnderwaterRover/test_stand_water.jpg){: .shadow}
 
 
