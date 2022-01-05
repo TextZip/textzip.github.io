@@ -113,3 +113,32 @@
     effect: "'slide'"
     keyboardNav: true
     interval: 4000
+
+- selector: underwater_rover_1
+  captions: true
+  images:
+    - src: /assets/img/UnderwaterRover/CAD.png
+      alt: Early CAD model
+    - src: /assets/img/UnderwaterRover/CAD2.png
+      alt: CAD model with shrouds
+    - src: /assets/img/UnderwaterRover/rover_1.jpg
+      alt: Aligning parts
+    - src: /assets/img/UnderwaterRover/rover_2.jpg
+      alt: welding thruster cylinder 
+    - src: /assets/img/UnderwaterRover/rover_3.jpg
+      alt: shrouds 
+    - src: /assets/img/UnderwaterRover/rover_4.jpg
+      alt: backplate with wires
+    - src: /assets/img/UnderwaterRover/fab3.png
+      alt: PVC seal for backplate
+    - src: /assets/img/UnderwaterRover/black1.png
+      alt: fully painted rover
+    - src: /assets/img/UnderwaterRover/rover_7.jpg
+      alt: electronics setup
+    - src: /assets/img/UnderwaterRover/rover_8.jpg
+      alt: assembled rover 
+  settings:
+    height: '500'
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
