@@ -3,14 +3,17 @@ title: Aerial Navigation in GPS Denied Environments
 date: 2021-10-18 19:13:20 +/-0530
 categories: [Projects, DIY]
 tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
-# image_sliders:
-#   - gamingConsole
+image_sliders:
+  - orthoslam
 image: /assets/img/OrthomosaicSLAM/campus_data.png
 ---
 ![Image1](/assets/img/OrthomosaicSLAM/campus_data.png){: .shadow}
 
 
 A project on achieving realtime-orthomosaic SLAM for aerial navigation using a single downwards facing camera in outdoor GPS denied environments.     
+
+# Results
+{% include slider.html selector="orthoslam" %}
 
 # Introduction
 To carry out drone-based aerial surveying for generating orthomosaic maps on the fly, this project explores the image processing stack required to achieve the same using the most economical hardware and software footprint. The project explores corner and blob-based feature extraction techniques followed by brute force and KNN based feature matching methods which are later used to generate a homography matrix for stitching images that are passed through a cascaded image mixer to generate orthomosaic maps of a given dataset.
@@ -68,7 +71,22 @@ The Pseudocode for Shi-Tomasi Corner Detector:
 3, Apply a threshold to select and retrieve important corner points.
 
 Python Implementation of Shi-Tomasi Corner Detector: 
-![Image1](/assets/img/OrthomosaicSLAM/code2.png){: .shadow}
+```python
+import cv2
+import numpy as np
+img_1 = cv2.imread('images/admin_block.jpg')
+gray = cv2.cvtColor(img_1, cv2.COLOR_BGR2GRAY)
+cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+corners = cv2.goodFeaturesToTrack(gray, 1000, 0.01, 1)
+corners = np.int0(corners)
+for i in corners:
+x, y = i.ravel()
+cv2.circle(img_1, (x, y), 3, (255, 0, 255), -1)
+cv2.imshow("output", img_1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+<!-- ![Image1](/assets/img/OrthomosaicSLAM/code2.png){: .shadow} -->
 
 
 
@@ -95,7 +113,20 @@ The Pseudocode for SIFT:
 5. Keypoint Matching
 
 The Python Implementation for SIFT:
-![Image1](/assets/img/OrthomosaicSLAM/code1.png){: .shadow}
+<!-- ![Image1](/assets/img/OrthomosaicSLAM/code1.png){: .shadow} -->
+
+```python
+import cv2
+import numpy as np
+img = cv2.imread'(images/admin_block.jpg')
+img_gray = cv2.cvtColor(img, cv2.COLOR_BRG2GRAY)
+cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+sift = cv2.SIFT_create()
+kypoints = sift.detect(img_gray, None)
+cv2.imshow("output", cv2.drawKeypoints(img, keypoints, None, (255, 0, 255)))
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
 
 Parameters for SIFT:
 - **nfeatures** - The number of best features to retain. The features are ranked by their scores (measured in SIFT algorithm as the local contrast)
@@ -117,8 +148,19 @@ The Pseducode for SURF:
 ![Image1](/assets/img/OrthomosaicSLAM/math.png){: .shadow}
 
 The python implementation of SURF:
-![Image1](/assets/img/OrthomosaicSLAM/code4.png){: .shadow}
-
+<!-- ![Image1](/assets/img/OrthomosaicSLAM/code4.png){: .shadow} -->
+```python 
+import cv2
+import numpy as np
+img = cv2.imread'(images/admin_block.jpg')
+img_gray = cv2.cvtColor(img, cv2.COLOR_BRG2GRAY)
+cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+surf = cv2.xfeatures2d.SURF_create()
+kypoints = surf.detect(img_gray, None)
+cv2.imshow("output", cv2.drawKeypoints(img, keypoints, None, (255, 0, 255)))
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
 
 
 public static SURF create​(double hessianThreshold, int nOctaves, int nOctaveLayers, boolean extended, boolean upright)
@@ -133,7 +175,7 @@ Parameters for SURF:
 
 ### Oriented FAST and Rotated BRIEF (ORB)
 <!-- pic here -->
-![Image1](/assets/img/OrthomosaicSLAM/code3.png){: .shadow}
+![Image1](/assets/img/OrthomosaicSLAM/campus3.png){: .shadow}
 
 Example: Using ORB to detect keypoints
 
@@ -149,7 +191,18 @@ The Pseudocode for ORB:[7]
 5. Show the matched images.
 
 The Python implementation of ORB:
-
+```python
+import cv2
+import numpy as np
+img = cv2.imread'(images/admin_block.jpg')
+img_gray = cv2.cvtColor(img, cv2.COLOR_BRG2GRAY)
+cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+orb = cv2.ORB_create(nfeatures = 1000)
+kypoints_orb, descriptors = orb.detectAndCompute(img_1, None)
+cv2.imshow("output", cv2.drawKeypoints(img_1, keypoints_orb, None, (255, 0, 255)))
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
 ## Conclusion
 - One of the notable drawbacks of the Shi-Tomasi Corner Detector is the fact that it is not scale-invariant. 
 - ORB is a more efficient feature extraction approach than SIFT or SURF in terms of computing cost, matching performance, and, most importantly, patents. 
@@ -175,15 +228,57 @@ This matrix may be applied to any spot in the picture. For example, in the first
 <!-- math matrix shit here -->
 
 The python implementation of finding homography matrix:
-![Image1](/assets/img/OrthomosaicSLAM/code5.png){: .shadow}
-
+```python
+def wrap_images(self, image1, image2, H):
+    rows1, cols1 = image1.shape[:2]
+    rows2, cols2 = image2.shape[:2]
+    H = H
+    list_of_points_1 = np.float32(
+        [[0, 0], [0, rows1], [cols1, rows1], [cols1, 0]]).reshape(-1, 1, 2)
+    temp_points = np.float32(
+        [[0, 0], [0, rows2], [cols2, rows2], [cols2, 0]]).reshape(-1, 1, 2)
+    # When we have established a homography we need to warp perspective
+    # Change field of view
+    list_of_points_2 = cv2.perspectiveTransform(temp_points, H)
+    list_of_points = np.concatenate(
+        (list_of_points_1, list_of_points_2), axis=0)
+    [x_min, y_min] = np.int32(list_of_points.min(axis=0).ravel() - 0.5)
+    [x_max, y_max] = np.int32(list_of_points.max(axis=0).ravel() + 0.5)
+    translation_dist = [-x_min, -y_min]
+    H_translation = np.array([[1, 0, translation_dist[0]], [
+        0, 1, translation_dist[1]], [0, 0, 1]])
+    output_img = cv2.warpPerspective(
+        image2, H_translation.dot(H), (x_max-x_min, y_max-y_min))
+    output_img[translation_dist[1]:rows1+translation_dist[1],
+        translation_dist[0]:cols1+translation_dist[0]] = image1
+    return output_img
+```
 
 It is important to realize that feature matching does not always provide perfect matches. As a result, the Random Sample Consensus (RANSAC) process is used as a parameter in the cv2.findHomography() method, making the algorithm robust to outliers. We can get reliable results using this strategy even if we have a large percentage of bad matches.
 
 ### Python Implementation of RANSAC:
 
-![Image1](/assets/img/OrthomosaicSLAM/code6.png){: .shadow}
+```python
+# Set minimum match condition
+MIN_MATCH_COUNT = 2
+if len(good) > MIN_MATCH_COUNT:
+    # Convert keypoints to an argument for findHomography
+    src_pts = np.float32(
+    [keypoints1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
+    dst_pts = np.float32(
+    [keypoints2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
+    # Establish a homography
+    M, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+    result = self.wrap_images(image2, image1, M)
+    # cv2.imwrite('test4.jpg',result)
+    # cv2.imshow("output_image",result)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+    return result
+else:
+    print("Error")
 
+```
 # Image Processing Pipeline
 <!-- image here -->
 ![Image1](/assets/img/OrthomosaicSLAM/code7.png){: .shadow}
@@ -214,6 +309,8 @@ DroneMapper flew Greg 1 and 2 reservoirs on September 16th, 2019 using their Pha
 |Coverage|2.1 sq. km (0.77 sq. mi)|
 |Flight height|285 m (935 ft)|
 |Number of images|189|
+
+
 
 # Future Work 
 Improve performance of the keypoints and descriptors using a mask-based cascaded mixer. 

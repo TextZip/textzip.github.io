@@ -142,3 +142,24 @@
     effect: "'slide'"
     keyboardNav: true
     interval: 4000
+
+- selector: orthoslam
+  captions: true
+  images:
+    - src: /assets/img/OrthomosaicSLAM/city_input.jpg
+      alt: City Input
+    - src: /assets/img/OrthomosaicSLAM/city_output.png
+      alt: City Output
+    - src: /assets/img/OrthomosaicSLAM/lake_nornal_input.jpg
+      alt: Forest 1 Input
+    - src: /assets/img/OrthomosaicSLAM/lake_normal_output.png
+      alt: Forest 1 Output 
+    - src: /assets/img/OrthomosaicSLAM/extended_lake_input.jpg
+      alt: Forest 2 Input
+    - src: /assets/img/OrthomosaicSLAM/lake_extended_output.png
+      alt: Forest 2 Output
+  settings:
+    height: '600'
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
