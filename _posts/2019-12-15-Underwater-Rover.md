@@ -7,7 +7,7 @@ tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
 #   - gamingConsole
 image_sliders:
   - underwater_rover_1
-image: /assets/img/CoaxialBicopter/nano.png
+image: /assets/img/UnderwaterRover/rover_4.jpg
 ---
 ![Image1](/assets/img/UnderwaterRover/rover_9.jpg){: .shadow}
 

@@ -6,7 +6,7 @@ tags: [TFT,Dino,Arduino,game]     # TAG names should always be lowercase
 math: true
 #image_sliders:
 #  - workspace
-image: /assets/img/Spherical/cad.jpeg
+image: /assets/img/DinoGame/Home.gif
 ---
  
 ## Introduction
