@@ -14,6 +14,8 @@ A persistance of vision lightsaber heavly inspired by [bitluni](https://www.elec
 
 # Introduction
 A LED Lightsaber equipped with an onboard IMU and ESP32 to detect the current angle of the lightsaber and accordinly light up the LED's to display images in the air as the saber is swung around.
+
+[![TextZip/POV-lightsaber - GitHub](https://gh-card.dev/repos/TextZip/POV-lightsaber.svg)](https://github.com/TextZip/POV-lightsaber)
 # Hardware
 - ESP32
 - 1 Meter WS2812B Strip (144 LEDS per meter density)
