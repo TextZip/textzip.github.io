@@ -2,7 +2,7 @@
 title: POV - Lightsaber
 date: 2021-12-10 19:13:20 +/-0530
 categories: [Projects, DIY]
-tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
+tags: [ws2812b,POV,imu]     # TAG names should always be lowercase
 # image_sliders:
 #   - gamingConsole
 image: /assets/img/POV-lightsaber/arc.jpg
