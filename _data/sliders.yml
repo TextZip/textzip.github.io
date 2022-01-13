@@ -163,3 +163,22 @@
     effect: "'slide'"
     keyboardNav: true
     interval: 4000
+
+- selector: litebar
+  captions: true
+  images:
+    - src: /assets/img/LiteBar/bench_1.jpg
+      alt: Tubelight and LED Strip seperated
+    - src: /assets/img/LiteBar/bench_2.jpg
+      alt: Tubelight and LED Strip seperated
+    - src: /assets/img/LiteBar/bench_smps.jpg
+      alt: Modified Tubelight
+    - src: /assets/img/LiteBar/test.jpg
+      alt: Testing
+    - src: /assets/img/LiteBar/display.jpg
+      alt: Testing
+  settings:
+    height: '600'
+    effect: "'slide'"
+    keyboardNav: true
+    interval: 4000
