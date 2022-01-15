@@ -8,3 +8,5 @@ image_sliders:
 image: /assets/img/LiteBar/thumbnail.jpg
 ---
 ![Image1](/assets/img/LiteBar/closeup.jpg){: .shadow}
+
+The URDF file format is a way to represent robots and their components in ROS. It uses a modified verion of the XML syntax.
