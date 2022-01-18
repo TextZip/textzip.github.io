@@ -1,0 +1,1637 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://textzip.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://textzip.github.io/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-01-18T22:21:09+05:30</updated><id>https://textzip.github.io/feed.xml</id><title type="html">Jai Krishna</title><subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle><author><name>Jai Krishna</name></author><entry><title type="html">Autonomus Ground Vehicle</title><link href="https://textzip.github.io/posts/AGV/" rel="alternate" type="text/html" title="Autonomus Ground Vehicle" /><published>2022-01-05T19:13:20+05:30</published><updated>2022-01-05T19:13:20+05:30</updated><id>https://textzip.github.io/posts/AGV</id><content type="html" xml:base="https://textzip.github.io/posts/AGV/"><![CDATA[<p><img src="/assets/img/AGV/proto_02.jpg" alt="Image1" class="shadow" /></p>
+
+<p>An Autonomous Ground Vechile for exploring concepts like localization, path planning, control in ROS.</p>
+
+<h1 id="hardware">Hardware</h1>
+<ul>
+  <li>NVIDIA Jetson Nano</li>
+  <li>Arduino Mega</li>
+  <li>Buck Converter</li>
+  <li>RPLIDAR A8</li>
+  <li>L298N Motor Driver Module x2</li>
+  <li>100 RPM Geared Motors + Encoders x4</li>
+  <li>2200 mAh 3S 35C Lipo x1</li>
+</ul>
+
+<h2 id="layout">Layout</h2>
+<p><img src="/assets/img/AGV/chart_white.png" alt="Image1" class="shadow" /></p>
+<ul>
+  <li>Solid bi-directional green lines represent lines that transfer both power and data.</li>
+  <li>Dark red lines represent 12V power transfer lines</li>
+  <li>Light red lines represent 5V power transfer lines</li>
+  <li>dashed blue lines represent data transfer lines</li>
+  <li>Red squares represnt power supply/distribution components</li>
+  <li>Blue squares represent inputs/sensors</li>
+  <li>Yellow squares represent computational units</li>
+  <li>Purple squares represent output units/actuators.</li>
+</ul>
+
+<h1 id="results">Results</h1>
+<p>Preliminary scan data
+<img src="/assets/img/AGV/rviz_1.png" alt="Image1" class="shadow" />
+<img src="/assets/img/AGV/proto_01.jpg" alt="Image1" class="shadow" /></p>
+
+<p>This is an ongoing project, documentation will be updated soon.</p>
+
+<h1 id="ros-node-tree">ROS Node Tree</h1>
+<h1 id="slam">SLAM</h1>
+<h1 id="path-planning">Path Planning</h1>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="Autonomous Robots" /><category term="ws2812b" /><category term="esp32" /><category term="mic" /><category term="bluetooth" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/AGV/proto_02.jpg" /><media:content medium="image" url="https://textzip.github.io/assets/img/AGV/proto_02.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">URDF</title><link href="https://textzip.github.io/posts/ROS-URDF/" rel="alternate" type="text/html" title="URDF" /><published>2022-01-02T19:13:20+05:30</published><updated>2022-01-18T16:36:00+05:30</updated><id>https://textzip.github.io/posts/ROS-URDF</id><content type="html" xml:base="https://textzip.github.io/posts/ROS-URDF/"><![CDATA[<!-- ![Image1](/assets/img/LiteBar/closeup.jpg){: .shadow} -->
+
+<p>The URDF file format is a way to represent robots and their components in ROS. It uses a modified verion of the XML syntax.</p>
+
+<h1 id="structure-of-urdf">Structure of URDF</h1>
+
+<p><img src="/assets/img/URDF/URDF_chart.png" alt="Image1" class="shadow" /></p>
+
+<!-- Insert the huge ass flowchart here -->
+
+<h2 id="geometry-types">geometry types</h2>
+
+<h3 id="box">box</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;box</span> <span class="na">size=</span><span class="s">"0.6 0.1 0.2"</span><span class="nt">/&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<ul>
+  <li>size attribute contains the three side lengths of the box. The origin of the box is in its center.
+    <h3 id="cylinder">cylinder</h3>
+  </li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;cylinder</span> <span class="na">length=</span><span class="s">"0.6"</span> <span class="na">radius=</span><span class="s">"0.2"</span><span class="nt">/&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<ul>
+  <li>Specify the radius and length. The origin of the cylinder is in its center.
+    <h3 id="sphere">sphere</h3>
+  </li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;sphere</span> <span class="na">radius=</span><span class="s">"3.0"</span><span class="nt">/&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>Specify the radius. The origin of the sphere is in its center.
+    <h3 id="mesh">mesh</h3>
+  </li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">"package://robot_description/meshes/base_link_simple.DAE"</span><span class="nt">/&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>A trimesh element specified by a filename, and an optional scale that scales the mesh’s axis-aligned-bounding-box. Any geometry format is acceptable but specific application compatibility is dependent on implementation.</li>
+  <li>The recommended format for best texture and color support is Collada .dae files. The mesh file is not transferred between machines referencing the same model. It must be a local file. Prefix the filename with package://<packagename>/<path> to make the path to the mesh file relative to the package <packagename>.
+</packagename></path></packagename>    <h2 id="joint-types">joint types</h2>
+    <h3 id="fixed">fixed</h3>
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"base_to_right_leg"</span> <span class="na">type=</span><span class="s">"fixed"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">"base_link"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">"right_leg"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0 -0.22 0.25"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="continuous">continuous</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"head_swivel"</span> <span class="na">type=</span><span class="s">"continuous"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">"base_link"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">"head"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">"0 0 1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0 0 0.3"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The connection between the body and the head is a continuous joint, meaning that it can take on any angle from negative infinity to positive infinity. The wheels are also modeled like this, so that they can roll in both directions forever.</p>
+
+<p>The only additional information we have to add is the axis of rotation, here specified by an xyz triplet, which specifies a vector around which the head will rotate. Since we want it to go around the z axis, we specify the vector “0 0 1”.</p>
+
+<h3 id="revolute">revolute</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"left_gripper_joint"</span> <span class="na">type=</span><span class="s">"revolute"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">"0 0 1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">"1000.0"</span> <span class="na">lower=</span><span class="s">"0.0"</span> <span class="na">upper=</span><span class="s">"0.548"</span> <span class="na">velocity=</span><span class="s">"0.5"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;origin</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span> <span class="na">xyz=</span><span class="s">"0.2 0.01 0"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">"gripper_pole"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">"left_gripper"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>Both the right and the left gripper joints are modeled as revolute joints. This means that they rotate in the same way that the continuous joints do, but they have strict limits. Hence, we must include the limit tag specifying the upper and lower limits of the joint (in radians). We also must specify a maximum velocity and effort for this joint but the actual values don’t matter for our purposes here.</p>
+
+<h3 id="prismatic">prismatic</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"gripper_extension"</span> <span class="na">type=</span><span class="s">"prismatic"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">"base_link"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">"gripper_pole"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">"1000.0"</span> <span class="na">lower=</span><span class="s">"-0.38"</span> <span class="na">upper=</span><span class="s">"0"</span> <span class="na">velocity=</span><span class="s">"0.5"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;origin</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span> <span class="na">xyz=</span><span class="s">"0.19 0 0.2"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The gripper arm is a different kind of joint, namely a prismatic joint. This means that it moves along an axis, not around it. This translational movement is what allows our robot model to extend and retract its gripper arm.</p>
+
+<p>The limits of the prismatic arm are specified in the same way as a revolute joint, except that the units are meters, not radians.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">"multipleshapes"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">"dummy"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;/link&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">"base_link"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;visual&gt;</span>
+      <span class="nt">&lt;geometry&gt;</span>
+        <span class="nt">&lt;cylinder</span> <span class="na">length=</span><span class="s">"0.6"</span> <span class="na">radius=</span><span class="s">"0.2"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/geometry&gt;</span>
+      <span class="nt">&lt;material</span> <span class="na">name=</span><span class="s">"blue"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;color</span> <span class="na">rgba=</span><span class="s">"0 0 .8 1"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/material&gt;</span>
+    <span class="nt">&lt;/visual&gt;</span>
+    <span class="nt">&lt;collision&gt;</span>
+      <span class="nt">&lt;geometry&gt;</span>
+        <span class="nt">&lt;cylinder</span> <span class="na">length=</span><span class="s">"0.6"</span> <span class="na">radius=</span><span class="s">"0.2"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/geometry&gt;</span>
+    <span class="nt">&lt;/collision&gt;</span>
+    <span class="nt">&lt;inertial&gt;</span>
+      <span class="nt">&lt;mass</span> <span class="na">value=</span><span class="s">"10"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;inertia</span> <span class="na">ixx=</span><span class="s">"0.4"</span> <span class="na">ixy=</span><span class="s">"0.0"</span> <span class="na">ixz=</span><span class="s">"0.0"</span> <span class="na">iyy=</span><span class="s">"0.4"</span> <span class="na">iyz=</span><span class="s">"0.0"</span> <span class="na">izz=</span><span class="s">"0.2"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/inertial&gt;</span>
+  <span class="nt">&lt;/link&gt;</span>
+
+  <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">"right_leg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;visual&gt;</span>
+      <span class="nt">&lt;geometry&gt;</span>
+        <span class="nt">&lt;box</span> <span class="na">size=</span><span class="s">"0.6 0.1 0.2"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/geometry&gt;</span>
+      <span class="nt">&lt;origin</span> <span class="na">rpy=</span><span class="s">"0 1.57075 0"</span> <span class="na">xyz=</span><span class="s">"0 0 -0.3"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/visual&gt;</span>
+  <span class="nt">&lt;/link&gt;</span>
+
+  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"base_to_right_leg"</span> <span class="na">type=</span><span class="s">"fixed"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">"base_link"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">"right_leg"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0 -0.22 0.25"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+  
+  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"dummy_joint"</span> <span class="na">type=</span><span class="s">"fixed"</span><span class="nt">&gt;</span>
+	 <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">"dummy"</span><span class="nt">/&gt;</span>
+	 <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">"base_link"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+
+<span class="nt">&lt;/robot&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The above code is a modified example from <code class="language-plaintext highlighter-rouge">urdf_tutorial</code> package, instructions on how to download the tutorials can be found in the ros urdf wiki.</p>
+
+<p>The output of the above code is as follows:</p>
+
+<p><img src="/assets/img/URDF/urdf_1.png" alt="Image1" class="shadow" /></p>
+
+<h4 id="summary-of-the-above-code">Summary of the above code</h4>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">fixed frame</code> is the transform frame where the center of the grid is located. Here, it’s a frame defined by our one link, <code class="language-plaintext highlighter-rouge">base_link</code>.</li>
+  <li>The visual element (the <code class="language-plaintext highlighter-rouge">cylinder</code>) has its <code class="language-plaintext highlighter-rouge">origin</code> at the center of its geometry as a default. Hence, half the cylinder is below the grid.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">joint</code> is defined in terms of a <code class="language-plaintext highlighter-rouge">parent</code> and a <code class="language-plaintext highlighter-rouge">child</code>. URDF is ultimately a tree structure with one root link. This means that the leg’s position is dependent on the <code class="language-plaintext highlighter-rouge">base_link</code>’s position.</li>
+  <li>Let’s start by examining the joint’s <code class="language-plaintext highlighter-rouge">origin</code>. It is defined in terms of the parent’s reference frame. So we are <code class="language-plaintext highlighter-rouge">-0.22</code> meters in the y direction (to our left, but to the right relative to the axes) and <code class="language-plaintext highlighter-rouge">0.25</code> meters in the z direction (up). This means that the <code class="language-plaintext highlighter-rouge">origin</code> for the child link will be up and to the right, regardless of the child link’s visual <code class="language-plaintext highlighter-rouge">origin</code> tag. Since we didn’t specify a <code class="language-plaintext highlighter-rouge">rpy</code> (roll pitch yaw) attribute, the child frame will be default have the same orientation as the parent frame.</li>
+  <li>Now, looking at the leg’s visual <code class="language-plaintext highlighter-rouge">origin</code>, it has both a <code class="language-plaintext highlighter-rouge">xyz</code> and <code class="language-plaintext highlighter-rouge">rpy</code> offset. This defines where the center of the visual element should be, relative to its <code class="language-plaintext highlighter-rouge">origin</code>. Since we want the leg to attach at the top, we offset the <code class="language-plaintext highlighter-rouge">origin</code> down by setting the z offset to be <code class="language-plaintext highlighter-rouge">-0.3</code> meters. And since we want the long part of the leg to be parallel to the z axis, we rotate the visual part PI/2 around the Y axis.</li>
+  <li>The collision element is a direct subelement of the link object, at the same level as the visual tag.</li>
+  <li>The collision element defines its shape the same way the visual element does, with a geometry tag. The format for the geometry tag is exactly the same here as with the visual.</li>
+  <li>You can also specify an origin in the same way as a subelement of the collision tag (as with the visual).</li>
+  <li>The <code class="language-plaintext highlighter-rouge">dummy</code> link and joint are added to avoid the following warning given by KDL
+    <blockquote>
+      <p>The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia. As a workaround, you can add an extra dummy link to your URDF.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>The meshes can be imported in a number of different formats. STL is fairly common, but the engine also supports DAE, which can have its own color data, meaning you don’t have to specify the color/material. Often these are in separate files. These meshes reference the .tif files also in the meshes folder.</p>
+
+<h1 id="xacro--urdf">Xacro + URDF</h1>
+<p>The Xacro package can be used to simplify URDF, in paticular it can be used to deal with the following
+you can use the xacro package to make your life simpler. It does three things that are very helpful.</p>
+
+<ul>
+  <li>Constants</li>
+  <li>Simple Math</li>
+  <li>Macros</li>
+</ul>
+
+<h2 id="using-xacro">Using Xacro</h2>
+<h3 id="via-xacro">via .xacro</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">"http://www.ros.org/wiki/xacro"</span> <span class="na">name=</span><span class="s">"firefighter"</span><span class="nt">&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<ul>
+  <li>At the top of the URDF file, you must specify a namespace in order for the file to parse properly. For example, these are the first two lines of a valid xacro file:</li>
+</ul>
+
+<h3 id="via-launch-files">via launch files</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"robot_description"</span>
+  <span class="na">command=</span><span class="s">"xacro --inorder '$(find pr2_description)/robots/pr2.urdf.xacro'"</span> <span class="nt">/&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<ul>
+  <li>You can also automatically generate the urdf in a launch file.</li>
+</ul>
+
+<h2 id="constants">Constants</h2>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;xacro:property</span> <span class="na">name=</span><span class="s">"width"</span> <span class="na">value=</span><span class="s">"0.2"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;xacro:property</span> <span class="na">name=</span><span class="s">"bodylen"</span> <span class="na">value=</span><span class="s">"0.6"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">"base_link"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;visual&gt;</span>
+        <span class="nt">&lt;geometry&gt;</span>
+            <span class="nt">&lt;cylinder</span> <span class="na">radius=</span><span class="s">"${width}"</span> <span class="na">length=</span><span class="s">"${bodylen}"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/geometry&gt;</span>
+        <span class="nt">&lt;material</span> <span class="na">name=</span><span class="s">"blue"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/visual&gt;</span>
+    <span class="nt">&lt;collision&gt;</span>
+        <span class="nt">&lt;geometry&gt;</span>
+            <span class="nt">&lt;cylinder</span> <span class="na">radius=</span><span class="s">"${width}"</span> <span class="na">length=</span><span class="s">"${bodylen}"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/geometry&gt;</span>
+    <span class="nt">&lt;/collision&gt;</span>
+<span class="nt">&lt;/link&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<ul>
+  <li>
+    <p>The two values are specified in the first two lines. They can be defined just about anywhere (assuming valid XML), at any level, before or after they are used. Usually they go at the top.</p>
+  </li>
+  <li>
+    <p>Instead of specifying the actual radius in the geometry element, we use a dollar sign and curly brackets to signify the value.</p>
+  </li>
+</ul>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;xacro:property</span> <span class="na">name=</span><span class="s">”robotname”</span> <span class="na">value=</span><span class="s">”marvin”</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">”${robotname}s_leg”</span> <span class="nt">/&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>will be read as  <code class="language-plaintext highlighter-rouge">&lt;link name=”marvins_leg” /&gt;</code></p>
+
+<h2 id="maths">Maths</h2>
+<p>You can build up arbitrarily complex expressions in the ${} construct using the four basic operations (+,-,*,/), the unary minus, and parenthesis.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;cylinder</span> <span class="na">radius=</span><span class="s">"${wheeldiam/2}"</span> <span class="na">length=</span><span class="s">"0.1"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"${reflect*(width+.02)} 0 0.25"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;box</span> <span class="na">size=</span><span class="s">"${cos(pi/6)}$"</span><span class="nt">&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h2 id="macros">Macros</h2>
+<h3 id="simple-macro">Simple Macro</h3>
+<p>The steup</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">"default_origin"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0 0 0"</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/xacro:macro&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The usage:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;xacro:default_origin</span> <span class="nt">/&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The output:
+<code class="language-plaintext highlighter-rouge">&lt;origin rpy="0 0 0" xyz="0 0 0"/&gt;</code></p>
+
+<ul>
+  <li>Every instance of the &lt;xacro:$NAME /&gt; is replaced with the contents of the xacro:macro tag.</li>
+  <li>Note that even though its not exactly the same (the two attributes have switched order), the generated XML is equivalent.</li>
+  <li>If the xacro with a specified name is not found, it will not be expanded and will NOT generate an error.</li>
+</ul>
+
+<h3 id="macro-with-paramters">Macro with Paramters</h3>
+
+<p>The setup:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">"blue_shape"</span> <span class="na">params=</span><span class="s">"name *shape"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">"${name}"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;visual&gt;</span>
+            <span class="nt">&lt;geometry&gt;</span>
+                <span class="nt">&lt;xacro:insert_block</span> <span class="na">name=</span><span class="s">"shape"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/geometry&gt;</span>
+            <span class="nt">&lt;material</span> <span class="na">name=</span><span class="s">"blue"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/visual&gt;</span>
+        <span class="nt">&lt;collision&gt;</span>
+            <span class="nt">&lt;geometry&gt;</span>
+                <span class="nt">&lt;xacro:insert_block</span> <span class="na">name=</span><span class="s">"shape"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/geometry&gt;</span>
+        <span class="nt">&lt;/collision&gt;</span>
+    <span class="nt">&lt;/link&gt;</span>
+<span class="nt">&lt;/xacro:macro&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The usage:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;xacro:blue_shape</span> <span class="na">name=</span><span class="s">"base_link"</span><span class="nt">&gt;</span>songs
+    <span class="nt">&lt;cylinder</span> <span class="na">radius=</span><span class="s">".42"</span> <span class="na">length=</span><span class="s">".01"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/xacro:blue_shape&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The result:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>    <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">"base_link"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;visual&gt;</span>
+            <span class="nt">&lt;geometry&gt;</span>
+                <span class="nt">&lt;cylinder</span> <span class="na">radius=</span><span class="s">".42"</span> <span class="na">length=</span><span class="s">".01"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/geometry&gt;</span>
+            <span class="nt">&lt;material</span> <span class="na">name=</span><span class="s">"blue"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/visual&gt;</span>
+        <span class="nt">&lt;collision&gt;</span>
+            <span class="nt">&lt;geometry&gt;</span>
+                <span class="nt">&lt;cylinder</span> <span class="na">radius=</span><span class="s">".42"</span> <span class="na">length=</span><span class="s">".01"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;/geometry&gt;</span>
+        <span class="nt">&lt;/collision&gt;</span>
+    <span class="nt">&lt;/link&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<ul>
+  <li>To specify a block parameter, include an asterisk before its parameter name.</li>
+  <li>A block can be inserted using the insert_block command</li>
+</ul>
+
+<p>The setup:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">"pr2_caster"</span> <span class="na">params=</span><span class="s">"suffix *origin **content **anothercontent"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"caster_${suffix}_joint"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">"0 0 1"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">"caster_${suffix}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xacro:insert_block</span> <span class="na">name=</span><span class="s">"origin"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;xacro:insert_block</span> <span class="na">name=</span><span class="s">"content"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;xacro:insert_block</span> <span class="na">name=</span><span class="s">"anothercontent"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/link&gt;</span>
+<span class="nt">&lt;/xacro:macro&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The usage:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;xacro:pr2_caster</span> <span class="na">suffix=</span><span class="s">"front_left"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;pose</span> <span class="na">xyz=</span><span class="s">"0 1 0"</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;container&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"yellow"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;mass&gt;</span>0.1<span class="nt">&lt;/mass&gt;</span>
+  <span class="nt">&lt;/container&gt;</span>
+  <span class="nt">&lt;another&gt;</span>
+    <span class="nt">&lt;inertial&gt;</span>
+      <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0 0 0.5"</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;mass</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;inertia</span> <span class="na">ixx=</span><span class="s">"100"</span>  <span class="na">ixy=</span><span class="s">"0"</span>  <span class="na">ixz=</span><span class="s">"0"</span> <span class="na">iyy=</span><span class="s">"100"</span> <span class="na">iyz=</span><span class="s">"0"</span> <span class="na">izz=</span><span class="s">"100"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/inertial&gt;</span>
+  <span class="nt">&lt;/another&gt;</span>
+<span class="nt">&lt;/xacro:pr2_caster&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The result:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"caster_front_left_joint"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">"0 0 1"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">"caster_front_left"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;pose</span> <span class="na">xyz=</span><span class="s">"0 1 0"</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"yellow"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;mass&gt;</span>0.1<span class="nt">&lt;/mass&gt;</span>
+  <span class="nt">&lt;inertial&gt;</span>
+    <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0 0 0.5"</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;mass</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;inertia</span> <span class="na">ixx=</span><span class="s">"100"</span>  <span class="na">ixy=</span><span class="s">"0"</span>  <span class="na">ixz=</span><span class="s">"0"</span> <span class="na">iyy=</span><span class="s">"100"</span> <span class="na">iyz=</span><span class="s">"0"</span> <span class="na">izz=</span><span class="s">"100"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/inertial&gt;</span>
+<span class="nt">&lt;/link&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="ros-control">ROS Control</h1>
+<p>Coming soon…</p>]]></content><author><name>Jai Krishna</name></author><category term="Resources" /><category term="Robotics Theory" /><category term="ws2812b" /><category term="esp32" /><category term="mic" /><category term="bluetooth" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/Ros_logo.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/Ros_logo.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Lite Bar</title><link href="https://textzip.github.io/posts/LiteBar/" rel="alternate" type="text/html" title="Lite Bar" /><published>2021-12-15T19:13:20+05:30</published><updated>2022-01-13T19:05:02+05:30</updated><id>https://textzip.github.io/posts/LiteBar</id><content type="html" xml:base="https://textzip.github.io/posts/LiteBar/"><![CDATA[<p><img src="/assets/img/LiteBar/closeup.jpg" alt="Image1" class="shadow" /></p>
+
+<h1 id="introduction">Introduction</h1>
+<p>A multipurpose indivudially addressable LED Strip based tubelight, that can be used to visualize music, time, smartphone notifications.</p>
+
+<p><a href="https://github.com/TextZip/LiteBar"><img src="https://gh-card.dev/repos/TextZip/LiteBar.svg" alt="TextZip/LiteBar - GitHub" /></a></p>
+
+<h1 id="hardware">Hardware</h1>
+<ul>
+  <li>ESP32</li>
+  <li>1 Meter WS2812B Strip (144 LEDS per meter density)</li>
+  <li>Microphone Module</li>
+  <li>SMPS</li>
+  <li>RTC Module</li>
+  <li>LED Tubelight + holder</li>
+  <li>Basic power tools</li>
+</ul>
+
+<h1 id="overview">Overview</h1>
+
+<p><img src="/assets/img/LiteBar/flowchart.png" alt="Image1" class="shadow" /></p>
+
+<!-- Jekyll Ideal Image Slider Include -->
+<!-- https://github.com/jekylltools/jekyll-ideal-image-slider-include -->
+<!-- v1.8 -->
+<div id="litebar">
+  <img data-src="" data-src-2x="" src="/assets/img/LiteBar/bench_1.jpg" title="" alt="Tubelight and LED Strip seperated" />
+  <img data-src="" data-src-2x="" src="/assets/img/LiteBar/bench_2.jpg" title="" alt="Tubelight and LED Strip seperated" />
+  <img data-src="" data-src-2x="" src="/assets/img/LiteBar/bench_smps.jpg" title="" alt="Modified Tubelight" />
+  <img data-src="" data-src-2x="" src="/assets/img/LiteBar/test.jpg" title="" alt="Testing" />
+  <img data-src="" data-src-2x="" src="/assets/img/LiteBar/display.jpg" title="" alt="Testing" />
+  </div>
+
+<p>Build details and an overview of the programming will be updated soon.</p>
+
+<h1 id="results">Results</h1>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/vQ962GT1HcI" frameborder="0" allowfullscreen=""></iframe>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="DIY" /><category term="ws2812b" /><category term="esp32" /><category term="mic" /><category term="bluetooth" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/LiteBar/thumbnail.jpg" /><media:content medium="image" url="https://textzip.github.io/assets/img/LiteBar/thumbnail.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">POV - Lightsaber</title><link href="https://textzip.github.io/posts/POV-lightsaber/" rel="alternate" type="text/html" title="POV - Lightsaber" /><published>2021-12-10T19:13:20+05:30</published><updated>2022-01-18T16:36:00+05:30</updated><id>https://textzip.github.io/posts/POV-lightsaber</id><content type="html" xml:base="https://textzip.github.io/posts/POV-lightsaber/"><![CDATA[<p><img src="/assets/img/POV-lightsaber/propic.jpg" alt="Image1" class="shadow" /></p>
+
+<p>A persistance of vision lightsaber heavly inspired by <a href="https://www.electromaker.io/project/view/pov-light-saber">bitluni</a>(original build).</p>
+
+<h1 id="introduction">Introduction</h1>
+<p>A LED Lightsaber equipped with an onboard IMU and ESP32 to detect the current angle of the lightsaber and accordingly light up the LED’s to display images in the air as the saber is swung around.</p>
+
+<p><a href="https://github.com/TextZip/POV-lightsaber"><img src="https://gh-card.dev/repos/TextZip/POV-lightsaber.svg" alt="TextZip/POV-lightsaber - GitHub" /></a></p>
+<h1 id="hardware">Hardware</h1>
+<ul>
+  <li>ESP32</li>
+  <li>1 Meter WS2812B Strip (144 LEDS per meter density)</li>
+  <li>Buck Converter</li>
+  <li>3S 35C 2200mAh Lipo</li>
+  <li>MPU6050</li>
+  <li>PVC Pipe</li>
+  <li>Wooden strip</li>
+  <li>Basic power tools
+    <h1 id="software">Software</h1>
+    <p>Given that the lightsaber had 144LEDs and each LED is supposed to represent the color of 1 pixel, we needed to scale images to 128x128 pixels before they could be used in the lightsaber</p>
+  </li>
+</ul>
+
+<p>Since the pivot point of the lightsaber will be at the bottom center of the image, the side length of the image, given its diagonal size is fixed at 144, turns out to be 128, as shown in the figure below.</p>
+
+<p><img src="/assets/img/POV-lightsaber/image_size.png" alt="Image1" class="shadow" /></p>
+
+<p>The current angle of the lightsaber is calculated using the MPU6050. The LED colors’ corresponding values are picked by overlaying a straight line over the image array and extracting the pixels that coincide with the above-mentioned imaginary line.</p>
+
+<p><img src="/assets/img/POV-lightsaber/image_overlay.png" alt="Image1" class="shadow" /></p>
+
+<h1 id="results">Results</h1>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/wkdZ0ptcQeU" frameborder="0" allowfullscreen=""></iframe>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/_GdPxGN2Kls" frameborder="0" allowfullscreen=""></iframe>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="DIY" /><category term="ws2812b" /><category term="POV" /><category term="imu" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/POV-lightsaber/arc.jpg" /><media:content medium="image" url="https://textzip.github.io/assets/img/POV-lightsaber/arc.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Co-Axial Bi-Copter</title><link href="https://textzip.github.io/posts/CoAxial-Bicopter/" rel="alternate" type="text/html" title="Co-Axial Bi-Copter" /><published>2021-10-18T19:13:20+05:30</published><updated>2021-11-07T13:09:49+05:30</updated><id>https://textzip.github.io/posts/CoAxial-Bicopter</id><content type="html" xml:base="https://textzip.github.io/posts/CoAxial-Bicopter/"><![CDATA[<p><img src="/assets/img/CoaxialBicopter/nano.png" alt="Image1" class="shadow" /></p>
+
+<p>A project to explore control strategies for thrust vector control of an
+co-axial propeller with four control surfaces.</p>
+
+<p><strong>Note: The project is in progress, further details/sections will be added as soon as the project is completed.</strong></p>
+<h1 id="hardware">Hardware</h1>
+<ul>
+  <li>Arduino Nano 33 BLE Sense</li>
+  <li>2300kv BLDC</li>
+  <li>8 inch props</li>
+  <li>2500 mAh Lipo</li>
+  <li>45A ESC</li>
+  <li>CT6B</li>
+  <li>MG90 Mini Servo
+    <h1 id="design">Design</h1>
+    <h2 id="initial-prototype">Initial Prototype</h2>
+    <!-- pic here -->
+    <p><img src="/assets/img/CoaxialBicopter/iso_old.png" alt="Image1" class="shadow" /></p>
+  </li>
+</ul>
+
+<p>The initial prototype was made using 1000kv BLDC motors along with 13inch props, as these were the cheapest materials that were available during the pandemic. But the length and width of the support frame was very large which increases the complexity of getting the frame 3D printed.</p>
+
+<h2 id="final-prototype">Final Prototype</h2>
+<!-- pic here -->
+<p><img src="/assets/img/CoaxialBicopter/iso_final.png" alt="Image1" class="shadow" /></p>
+
+<p>The final prototype had half the width of the initial prototype and each of the support frame elements were designed so that they can be finished in a single 3d print so that there are no strucutral issues during flight.</p>
+
+<div class="sketchfab-embed-wrapper"> <iframe title="Monocopter V2" frameborder="0" allowfullscreen="" mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking="" execution-while-out-of-viewport="" execution-while-not-rendered="" web-share="" width="640" height="480" src="https://sketchfab.com/models/1a9efab045b24908a0da97baad3660d0/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/monocopter-v2-1a9efab045b24908a0da97baad3660d0?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=1a9efab045b24908a0da97baad3660d0" target="_blank" style="font-weight: bold; color: #1CAAD9;"> Monocopter V2 </a> by <a href="https://sketchfab.com/textzip?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=1a9efab045b24908a0da97baad3660d0" target="_blank" style="font-weight: bold; color: #1CAAD9;"> textzip </a> on <a href="https://sketchfab.com?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=1a9efab045b24908a0da97baad3660d0" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+
+<h1 id="current-work">Current Work</h1>
+<ul>
+  <li>Simulation in Gazebo/Webots</li>
+  <li>Writing code for the flight controller</li>
+  <li>Implementing MPC and other control algorithms</li>
+</ul>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="DIY" /><category term="atmega328p" /><category term="game" /><category term="imu" /><category term="touch" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/CoaxialBicopter/nano.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/CoaxialBicopter/nano.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Aerial Navigation in GPS Denied Environments</title><link href="https://textzip.github.io/posts/Orthomosaic-SLAM/" rel="alternate" type="text/html" title="Aerial Navigation in GPS Denied Environments" /><published>2021-10-18T19:13:20+05:30</published><updated>2022-01-18T16:36:00+05:30</updated><id>https://textzip.github.io/posts/Orthomosaic-SLAM</id><content type="html" xml:base="https://textzip.github.io/posts/Orthomosaic-SLAM/"><![CDATA[<p><img src="/assets/img/OrthomosaicSLAM/campus_data.png" alt="Image1" class="shadow" /></p>
+
+<p>A project on achieving realtime-orthomosaic SLAM for aerial navigation using a single downwards facing camera in outdoor GPS denied environments.</p>
+
+<h1 id="results">Results</h1>
+<!-- Jekyll Ideal Image Slider Include -->
+<!-- https://github.com/jekylltools/jekyll-ideal-image-slider-include -->
+<!-- v1.8 -->
+<div id="orthoslam">
+  <img data-src="" data-src-2x="" src="/assets/img/OrthomosaicSLAM/city_input.jpg" title="" alt="City Input" />
+  <img data-src="" data-src-2x="" src="/assets/img/OrthomosaicSLAM/city_output.png" title="" alt="City Output" />
+  <img data-src="" data-src-2x="" src="/assets/img/OrthomosaicSLAM/lake_nornal_input.jpg" title="" alt="Forest 1 Input" />
+  <img data-src="" data-src-2x="" src="/assets/img/OrthomosaicSLAM/lake_normal_output.png" title="" alt="Forest 1 Output" />
+  <img data-src="" data-src-2x="" src="/assets/img/OrthomosaicSLAM/extended_lake_input.jpg" title="" alt="Forest 2 Input" />
+  <img data-src="" data-src-2x="" src="/assets/img/OrthomosaicSLAM/lake_extended_output.png" title="" alt="Forest 2 Output" />
+  </div>
+
+<h1 id="introduction">Introduction</h1>
+<p>To carry out drone-based aerial surveying for generating orthomosaic maps on the fly, this project explores the image processing stack required to achieve the same using the most economical hardware and software footprint. The project explores corner and blob-based feature extraction techniques followed by brute force and KNN based feature matching methods which are later used to generate a homography matrix for stitching images passed through a cascaded image mixer to generate orthomosaic maps of a given dataset.</p>
+
+<p><a href="https://github.com/TextZip/OrthomosaicSLAM"><img src="https://gh-card.dev/repos/TextZip/OrthomosaicSLAM.svg" alt="TextZip/OrthomosaicSLAM - GitHub" /></a></p>
+
+<h1 id="feature-detection--extraction">Feature Detection &amp; Extraction</h1>
+
+<p>While there is no universally accepted definition of “Feature” for a given image, it is often regarded as the information that is unique for the given image and thus helps us mathematically associate the image with its unique data properties.</p>
+
+<p><img src="/assets/img/OrthomosaicSLAM/features.png" alt="Image1" class="shadow" /></p>
+
+<p>Image Features are small patches of unique raw data that can be potentially used to differentiate the given image from any other image, therefore, helping in tracking the similarity between given images. Image Features can be broken down into two major components:</p>
+
+<p>1) Keypoints
+2) Descriptor</p>
+
+<p>They are explained in the subsequent sections.</p>
+
+<h2 id="keypoints">Keypoints</h2>
+<p>Keypoints contain 2D patch data like position, scale, convergence area, and other properties of the local patch. Which we define as a distinctive point in an input image that is invariant to rotation, scale, and distortion. In practice, the key points are not perfectly invariant but they are a good approximation. [1]</p>
+
+<p><img src="/assets/img/OrthomosaicSLAM/hand.png" alt="Image1" class="shadow" />
+<em>Example: Keypoints of a human hand.</em></p>
+
+<h2 id="descriptors--detectors">Descriptors &amp; Detectors</h2>
+<p>A feature detector is an algorithm that takes an image and produces the positions (pixel coordinates) of important regions in the picture. A corner detector is an illustration of this, since it outputs the positions of corners in your picture but does not provide any other information about the features discovered.</p>
+
+<p>A feature descriptor is an algorithm that takes an image and generates feature descriptors/feature vectors from it.[2] Feature descriptors encapsulate important information into a sequence of numbers and serve as a numerical “fingerprint” that may be used to distinguish one feature from another. They highlight various keypoint properties in vector format (constant length). It might be their intensity in the direction of their most pronounced orientation, for example. It is giving a numerical description of the area of the image to which the keypoint is referenced.</p>
+
+<p>Important properties of descriptors</p>
+
+<ul>
+  <li>
+    <p>they should be independent of keypoint position
+If the same keypoint is extracted at different positions (e.g. because of translation) the descriptor should be the same. [3]</p>
+  </li>
+  <li>they should be robust against image transformations
+Variations in contrast (for example, a photograph of the same location on a bright and overcast day) and changes in perspective are two examples (image of a building from center-right and center-left, we would still like to recognize it as the same building). Of all, no description is absolutely impervious to all modifications (nor against any single one if it is strong, e.g. big change in perspective). Different descriptors are meant to be resistant against various transformations, which are sometimes incompatible with the speed at which they are calculated. [3]</li>
+  <li>they should be scale independent
+The scale should be considered in the descriptions. If the “prominent” component of one key point is a vertical line of 10px (within a circular area with a radius of 8px), and the prominent part of another is a vertical line of 5px (inside a circular area with a radius of 4px), the descriptions for both key points should be identical. [3]</li>
+</ul>
+
+<h2 id="available-methods">Available Methods</h2>
+<h3 id="shi-tomasi-corner-detector">Shi-Tomasi Corner Detector</h3>
+
+<p><img src="/assets/img/OrthomosaicSLAM/campus1.png" alt="Image1" class="shadow" /></p>
+
+<!-- pic here -->
+<p>Example: Using Good Features to Track to detect keypoints</p>
+
+<p>The Shi-Tomasi Corner Detector is a modified version of the Harris Corner Detector with the primary change being in the way in which the score “R” is calculated making it more efficient than the standard Harris Corner Detector.</p>
+
+<p>Corners are considered as areas in photographs where a little alteration in position, results in a significant change in intensity in both the horizontal (X) and vertical (Y) axes.</p>
+
+<p>The Pseudocode for Shi-Tomasi Corner Detector:</p>
+<ol>
+  <li>Determine windows of small image patches that produce very large variations in intensity when moved in both X and Y directions (i.e. gradients).[4]</li>
+  <li>Compute score R for each such window.
+3, Apply a threshold to select and retrieve important corner points.</li>
+</ol>
+
+<p>Python Implementation of Shi-Tomasi Corner Detector:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img_1</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="s">'images/admin_block.jpg'</span><span class="p">)</span>
+<span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img_1</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span>
+<span class="n">corners</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">goodFeaturesToTrack</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">corners</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">int0</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">corners</span><span class="p">:</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img_1</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">img_1</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<!-- ![Image1](/assets/img/OrthomosaicSLAM/code2.png){: .shadow} -->
+
+<p>OpenCV has implemented a function cv2.goodFeaturesToTrack() the parameters for this function are:</p>
+
+<ul>
+  <li><strong>image</strong> - Input 8-bit or floating-point 32-bit, single-channel image</li>
+  <li><strong>maxCorners</strong> - Maximum number of corners to detect. If the number of corners on an image is higher than the number of maxCorners the most pronounced corners are selected.</li>
+  <li><strong>qualityLevel</strong> - Parameter characterizing the minimal accepted quality of image corners. All corners below the quality level are rejected. The parameter value is multiplied by the best corner quality measure, which is the minimal eigenvalue of the Harris function response.[5]</li>
+  <li><strong>minDistance</strong> - minimal Euclidean distance between corners</li>
+</ul>
+
+<h3 id="scale-invariant-feature-transform-sift">Scale Invariant Feature Transform (SIFT)</h3>
+
+<p><img src="/assets/img/OrthomosaicSLAM/campus2.png" alt="Image1" class="shadow" />
+<em>Example: Using SIFT to detect keypoints</em></p>
+
+<!-- pic here -->
+<p>SIFT, which stands for Scale-Invariant Feature Transform, was introduced in 2004 by D.Lowe of the University of British Columbia. This algorithm is robust against image scale variations and rotation invariances.</p>
+
+<p>The Pseudocode for SIFT:</p>
+<ol>
+  <li>Scale-space peak selection: Potential location for finding features.</li>
+  <li>Keypoint Localization: Accurately locating the feature keypoints.</li>
+  <li>Orientation Assignment: Assigning orientation to keypoints.</li>
+  <li>Keypoint descriptor: Describing the keypoints as a high dimensional vector.</li>
+  <li>Keypoint Matching</li>
+</ol>
+
+<p>The Python Implementation for SIFT:
+<!-- ![Image1](/assets/img/OrthomosaicSLAM/code1.png){: .shadow} --></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="s">'(images/admin_block.jpg'</span><span class="p">)</span>
+<span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BRG2GRAY</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span>
+<span class="n">sift</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">SIFT_create</span><span class="p">()</span>
+<span class="n">kypoints</span> <span class="o">=</span> <span class="n">sift</span><span class="p">.</span><span class="n">detect</span><span class="p">(</span><span class="n">img_gray</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">drawKeypoints</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">keypoints</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Parameters for SIFT:</p>
+<ul>
+  <li><strong>nfeatures</strong> - The number of best features to retain. The features are ranked by their scores (measured in SIFT algorithm as the local contrast)</li>
+  <li><strong>nOctaveLayers</strong> - The number of layers in each octave. 3 is the value used in D. Lowe’s paper. The number of octaves is computed automatically from the image resolution.</li>
+  <li><strong>contrastThreshold</strong> - The contrast threshold is used to filter out weak features in semi-uniform (low-contrast) regions. The larger the threshold, the fewer features are produced by the detector.</li>
+</ul>
+
+<h3 id="speeded-up-robust-features-surf">Speeded Up Robust Features (SURF)</h3>
+<p>The SURF (Speeded Up Robust Features) technique is a quick and robust approach for local, similarity invariant picture representation and comparison. The SURF approach’s prominent feature is its quick computing of operators using box filters, which enables real-time applications such as tracking and object identification.</p>
+
+<p>The Pseducode for SURF:</p>
+<ol>
+  <li>Feature Extraction
+    <ol>
+      <li>Hessian matrix-based interest points</li>
+      <li>Scale-space representation</li>
+    </ol>
+  </li>
+  <li>Feature Description
+    <ol>
+      <li>Orientation Assignment</li>
+      <li>Descriptor Components</li>
+    </ol>
+  </li>
+</ol>
+
+<!-- pic here -->
+<p><img src="/assets/img/OrthomosaicSLAM/math.png" alt="Image1" class="shadow" /></p>
+
+<p>The python implementation of SURF:
+<!-- ![Image1](/assets/img/OrthomosaicSLAM/code4.png){: .shadow} --></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="s">'(images/admin_block.jpg'</span><span class="p">)</span>
+<span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BRG2GRAY</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">xfeatures2d</span><span class="p">.</span><span class="n">SURF_create</span><span class="p">()</span>
+<span class="n">kypoints</span> <span class="o">=</span> <span class="n">surf</span><span class="p">.</span><span class="n">detect</span><span class="p">(</span><span class="n">img_gray</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">drawKeypoints</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">keypoints</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>public static SURF create​(double hessianThreshold, int nOctaves, int nOctaveLayers, boolean extended, boolean upright)</p>
+
+<p>Parameters for SURF:</p>
+
+<ul>
+  <li><strong>hessianThreshold</strong> - Threshold for hessian keypoint detector used in SURF.</li>
+  <li><strong>nOctaves</strong> - Number of pyramid octaves the keypoint detector will use.</li>
+  <li><strong>nOctaveLayers</strong> - Number of octave layers within each octave.</li>
+  <li><strong>extended</strong> - Extended descriptor flag (true - use extended 128-element descriptors; false - use 64-element descriptors).</li>
+  <li><strong>upright</strong> - Up-right or rotated features flag (true - do not compute the orientation of features; false - compute orientation).</li>
+</ul>
+
+<h3 id="oriented-fast-and-rotated-brief-orb">Oriented FAST and Rotated BRIEF (ORB)</h3>
+<!-- pic here -->
+<p><img src="/assets/img/OrthomosaicSLAM/campus3.png" alt="Image1" class="shadow" /></p>
+
+<p>Example: Using ORB to detect keypoints</p>
+
+<p>ORB is a combination of the FAST keypoint detector and the BRIEF descriptor, with some additional characteristics to boost performance. FAST stands for Features from Accelerated Segment Test, and it is used to find features in a picture. It also employs a pyramid to generate multiscale features.[2] It no longer computes the orientation and descriptors for the features, which is where BRIEF is used.</p>
+
+<p>ORB employs BRIEF descriptors, although the BRIEF performs badly when rotated. So what ORB does is rotate the BRIEF according to the keypoint orientation. The rotation matrix of the patch is calculated using the patch’s orientation, and the BRIEF is rotated to obtain the rotated version.</p>
+
+<p>The Pseudocode for ORB:[7]</p>
+<ol>
+  <li>Take the query image and convert it to grayscale.</li>
+  <li>Now Initialize the ORB detector and detect the keypoints in query image and scene.</li>
+  <li>Compute the descriptors belonging to both images.</li>
+  <li>Match the keypoints using Brute Force Matcher.</li>
+  <li>Show the matched images.</li>
+</ol>
+
+<p>The Python implementation of ORB:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="s">'(images/admin_block.jpg'</span><span class="p">)</span>
+<span class="n">img_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BRG2GRAY</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span>
+<span class="n">orb</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">ORB_create</span><span class="p">(</span><span class="n">nfeatures</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">kypoints_orb</span><span class="p">,</span> <span class="n">descriptors</span> <span class="o">=</span> <span class="n">orb</span><span class="p">.</span><span class="n">detectAndCompute</span><span class="p">(</span><span class="n">img_1</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">drawKeypoints</span><span class="p">(</span><span class="n">img_1</span><span class="p">,</span> <span class="n">keypoints_orb</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)))</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+  <li>One of the notable drawbacks of the Shi-Tomasi Corner Detector is the fact that it is not scale-invariant.</li>
+  <li>ORB is a more efficient feature extraction approach than SIFT or SURF in terms of computing cost, matching performance, and, most importantly, patents.</li>
+  <li>SIFT and SURF are patented, and you are required to pay for their use. However, ORB is not patented.
+    <h1 id="feature-matching">Feature Matching</h1>
+    <h2 id="available-methods-1">Available Methods</h2>
+    <h3 id="brute-force-matcher">Brute Force Matcher</h3>
+    <p><img src="/assets/img/OrthomosaicSLAM/compare1.png" alt="Image1" class="shadow" /></p>
+  </li>
+</ul>
+
+<p>The Brute Force Matcher is used to compare the characteristics of the first image to those of another image.</p>
+
+<p>It takes one of the first picture’s descriptors and matches it to all of the second image’s descriptors, then moves on to the second descriptor of the first image and matches it to all of the second image’s descriptors, and so on.</p>
+
+<h1 id="homography--transformation">Homography &amp; Transformation</h1>
+<p><img src="/assets/img/OrthomosaicSLAM/homography.png" alt="Image1" class="shadow" /></p>
+
+<p>A homography connects any two photographs of the same scene. It is a transformation that transfers the points in one picture to the points in the other. The two pictures can be captured by rotating the camera along its optical axis or by laying them on the same surface in space.</p>
+
+<p>The essence of the homography is the simple 3×3 matrix called the homography matrix.</p>
+
+<!-- math matrix shit here -->
+<p>This matrix may be applied to any spot in the picture. For example, in the first image, if we choose a position A(x1,y1), we may use a homography matrix to translate this point A to the matching point B(x2,y2) in the second image.
+<!-- math matrix shit here --></p>
+
+<p>The python implementation of finding homography matrix:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">wrap_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image1</span><span class="p">,</span> <span class="n">image2</span><span class="p">,</span> <span class="n">H</span><span class="p">):</span>
+    <span class="n">rows1</span><span class="p">,</span> <span class="n">cols1</span> <span class="o">=</span> <span class="n">image1</span><span class="p">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">rows2</span><span class="p">,</span> <span class="n">cols2</span> <span class="o">=</span> <span class="n">image2</span><span class="p">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">H</span>
+    <span class="n">list_of_points_1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">(</span>
+        <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">rows1</span><span class="p">],</span> <span class="p">[</span><span class="n">cols1</span><span class="p">,</span> <span class="n">rows1</span><span class="p">],</span> <span class="p">[</span><span class="n">cols1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]).</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">temp_points</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">(</span>
+        <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">rows2</span><span class="p">],</span> <span class="p">[</span><span class="n">cols2</span><span class="p">,</span> <span class="n">rows2</span><span class="p">],</span> <span class="p">[</span><span class="n">cols2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]).</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># When we have established a homography we need to warp perspective
+</span>    <span class="c1"># Change field of view
+</span>    <span class="n">list_of_points_2</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">perspectiveTransform</span><span class="p">(</span><span class="n">temp_points</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
+    <span class="n">list_of_points</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">list_of_points_1</span><span class="p">,</span> <span class="n">list_of_points_2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">[</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">int32</span><span class="p">(</span><span class="n">list_of_points</span><span class="p">.</span><span class="nb">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="n">ravel</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="p">[</span><span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">int32</span><span class="p">(</span><span class="n">list_of_points</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="n">ravel</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">translation_dist</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">x_min</span><span class="p">,</span> <span class="o">-</span><span class="n">y_min</span><span class="p">]</span>
+    <span class="n">H_translation</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">translation_dist</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span>
+        <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">translation_dist</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+    <span class="n">output_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">warpPerspective</span><span class="p">(</span>
+        <span class="n">image2</span><span class="p">,</span> <span class="n">H_translation</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">H</span><span class="p">),</span> <span class="p">(</span><span class="n">x_max</span><span class="o">-</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_max</span><span class="o">-</span><span class="n">y_min</span><span class="p">))</span>
+    <span class="n">output_img</span><span class="p">[</span><span class="n">translation_dist</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">rows1</span><span class="o">+</span><span class="n">translation_dist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">translation_dist</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">cols1</span><span class="o">+</span><span class="n">translation_dist</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">image1</span>
+    <span class="k">return</span> <span class="n">output_img</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>It is important to realize that feature matching does not always provide perfect matches. As a result, the Random Sample Consensus (RANSAC) process is used as a parameter in the cv2.findHomography() method, making the algorithm robust to outliers. We can get reliable results using this strategy even if we have a large percentage of bad matches.</p>
+
+<h3 id="python-implementation-of-ransac">Python Implementation of RANSAC:</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="c1"># Set minimum match condition
+</span><span class="n">MIN_MATCH_COUNT</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">good</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MIN_MATCH_COUNT</span><span class="p">:</span>
+    <span class="c1"># Convert keypoints to an argument for findHomography
+</span>    <span class="n">src_pts</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">keypoints1</span><span class="p">[</span><span class="n">m</span><span class="p">.</span><span class="n">queryIdx</span><span class="p">].</span><span class="n">pt</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">good</span><span class="p">]).</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">dst_pts</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">keypoints2</span><span class="p">[</span><span class="n">m</span><span class="p">.</span><span class="n">trainIdx</span><span class="p">].</span><span class="n">pt</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">good</span><span class="p">]).</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Establish a homography
+</span>    <span class="n">M</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">findHomography</span><span class="p">(</span><span class="n">src_pts</span><span class="p">,</span> <span class="n">dst_pts</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">RANSAC</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">wrap_images</span><span class="p">(</span><span class="n">image2</span><span class="p">,</span> <span class="n">image1</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+    <span class="c1"># cv2.imwrite('test4.jpg',result)
+</span>    <span class="c1"># cv2.imshow("output_image",result)
+</span>    <span class="c1"># cv2.waitKey(0)
+</span>    <span class="c1"># cv2.destroyAllWindows()
+</span>    <span class="k">return</span> <span class="n">result</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Error"</span><span class="p">)</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h1 id="image-processing-pipeline">Image Processing Pipeline</h1>
+<!-- image here -->
+<p><img src="/assets/img/OrthomosaicSLAM/code7.png" alt="Image1" class="shadow" /></p>
+
+<h2 id="dataset">Dataset</h2>
+<h3 id="urban-area">Urban Area</h3>
+<p><img src="/assets/img/OrthomosaicSLAM/campus_data.png" alt="Image1" class="shadow" /></p>
+
+<p>This dataset of the Thammasat University campus in Bangkok, Thailand was collected by a senseFly eBee X drone carrying a senseFly Aeria X photogrammetry camera.</p>
+
+<p>Technical Details
+|Feature|Value|
+|–|–|
+Ground resolution|6 cm (3.36 in)/px
+Coverage|2.1 sq. km (0.77 sq. mi)
+Flight height|285 m (935 ft)
+Number of images|443</p>
+
+<h3 id="forest-area">Forest Area</h3>
+<p><img src="/assets/img/OrthomosaicSLAM/forest_data.png" alt="Image1" class="shadow" /></p>
+
+<p>DroneMapper flew Greg 1 and 2 reservoirs on September 16th, 2019 using their Phantom 3 Advanced drone to collect imagery for precision digital elevation model (DEM) and orthomosaic generation of the site. GCP was surveyed with a Trimble 5800 and used during the image processing. Approximately 189 images were collected and processed via photogrammetry to yield the DEM, orthomosaic, and capacity report.[8]</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ground resolution</td>
+      <td>6 cm (3.36 in)/px</td>
+    </tr>
+    <tr>
+      <td>Coverage</td>
+      <td>2.1 sq. km (0.77 sq. mi)</td>
+    </tr>
+    <tr>
+      <td>Flight height</td>
+      <td>285 m (935 ft)</td>
+    </tr>
+    <tr>
+      <td>Number of images</td>
+      <td>189</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="future-work">Future Work</h1>
+<p>Use it for realtime localization in Gazebo.</p>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="DIY" /><category term="atmega328p" /><category term="game" /><category term="imu" /><category term="touch" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/OrthomosaicSLAM/campus_data.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/OrthomosaicSLAM/campus_data.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Quasi Direct Drive Actuator</title><link href="https://textzip.github.io/posts/QDD/" rel="alternate" type="text/html" title="Quasi Direct Drive Actuator" /><published>2021-10-16T19:13:20+05:30</published><updated>2021-11-07T13:09:49+05:30</updated><id>https://textzip.github.io/posts/QDD</id><content type="html" xml:base="https://textzip.github.io/posts/QDD/"><![CDATA[<p><img src="/assets/img/QDD/iso_section.png" alt="Image1" class="shadow" /></p>
+
+<p>An open-source Quasi Direct Drive Actuator for use in locomotion centric projects.</p>
+
+<p><strong>Note: The project is ongoing, the blog post will be updated as the project progresses.</strong></p>
+
+<h1 id="hardware">Hardware</h1>
+<ul>
+  <li>400kv BLDC</li>
+  <li>GEABN0.5-20-8-K-6</li>
+  <li>SI0.5-100</li>
+  <li>HK0408</li>
+  <li>SSG0.5-40B</li>
+  <li>SB6700ZZ</li>
+</ul>
+
+<h1 id="design">Design</h1>
+
+<h2 id="early-sketches">Early Sketches</h2>
+<!-- 2d sketch montag -->
+<!-- ![Image1](/assets/img/QDD/sketch1.png){: .shadow} -->
+<p><img src="/assets/img/QDD/sketch3.png" alt="Image1" class="shadow" /></p>
+
+<h2 id="3d-designs">3D Designs</h2>
+<!-- 3d sketch montag -->
+<p><img src="/assets/img/QDD/cross.png" alt="Image1" class="shadow" />
+<em>In Figure: Cross-section view of the actuator</em>
+<img src="/assets/img/QDD/exploded.png" alt="Image1" class="shadow" />
+<em>In Figure: Exploded view of the actuator</em>
+<img src="/assets/img/QDD/side_annoted_2.png" alt="Image1" class="shadow" />
+<em>In Figure: Sketch of the outer casing for the actuator</em>
+<img src="/assets/img/QDD/full_iso.png" alt="Image1" class="shadow" />
+<em>In Figure: Final actuator design</em></p>
+
+<!-- video -->
+<h2 id="motion-study">Motion Study</h2>
+<iframe width="640" height="385" src="https://youtube.com/embed/Lyg0Sk_eJe4" frameborder="0" allowfullscreen=""></iframe>
+
+<h1 id="current-work">Current Work</h1>
+<ul>
+  <li>Physical Fabrication</li>
+  <li>Programming and Control</li>
+</ul>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="DIY" /><category term="atmega328p" /><category term="game" /><category term="imu" /><category term="touch" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/QDD/iso_section_crop.jpg" /><media:content medium="image" url="https://textzip.github.io/assets/img/QDD/iso_section_crop.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Plug-and-Play Oxygen Auto-flow Regulator for Low Flow Oxygen Therapy</title><link href="https://textzip.github.io/posts/COVID19/" rel="alternate" type="text/html" title="Plug-and-Play Oxygen Auto-flow Regulator for Low Flow Oxygen Therapy" /><published>2021-07-14T13:13:20+05:30</published><updated>2022-01-06T13:08:22+05:30</updated><id>https://textzip.github.io/posts/COVID19</id><content type="html" xml:base="https://textzip.github.io/posts/COVID19/"><![CDATA[<p><img src="/assets/img/Covid19/demo.jpg" alt="Image1" class="shadow" /></p>
+
+<!-- some intro from cv -->
+<p>A portable, easy to interface device that intelligently controls the oxygen flow rate based on oxygen saturation and other vitals.</p>
+
+<h1 id="problem-statement">Problem Statement</h1>
+<p><img src="/assets/img/Covid19/problem_statement.png" alt="Image1" class="shadow" /></p>
+
+<h1 id="existing-solutions">Existing Solutions</h1>
+<p><img src="/assets/img/Covid19/exist_soln.png" alt="Image1" class="shadow" /></p>
+
+<h1 id="design">Design</h1>
+<p><img src="/assets/img/Covid19/flowchart.png" alt="Image1" class="shadow" /></p>
+
+<h1 id="schematic">Schematic</h1>
+<p><img src="/assets/img/Covid19/schematic.png" alt="Image1" class="shadow" /></p>
+
+<p><img src="/assets/img/Covid19/pcb.jpg" alt="Image1" class="shadow" /></p>
+
+<h1 id="hardware">Hardware</h1>
+<p><img src="/assets/img/Covid19/hardware_flowchart.png" alt="Image1" class="shadow" /></p>
+
+<h1 id="software">Software</h1>
+<p><img src="/assets/img/Covid19/Software_Flowcontroller.jpeg" alt="Image1" class="shadow" /></p>
+<h1 id="features">Features</h1>
+<p><img src="/assets/img/Covid19/features.png" alt="Image1" class="shadow" /></p>
+
+<h1 id="methodology">Methodology</h1>
+<p>The device automatically regulates the oxygen flow rate supplied to the patient based on the current and past trends of the patient’s vitals(oxygen saturation levels). These vitals are sampled periodically through a discrete-time control algorithm that has been explained in the next section.</p>
+
+<p>The discrete-time control algorithm consists of two parts, a state machine that determines the minimum and maximum oxygen flow rate provided to the patient based only on their current oxygen saturation levels, and an Integral-Derivative control loop that calculates the exact flow rate within the range prescribed by the state machine taking into account the past trends of the oxygen saturation levels.</p>
+
+<p>The state machine divides the interval of flow rates from 2 LPM to 15 LPM (both inclusive) into four stages. Based on the current SpO2 reading of the patient, the state machine determines which stage to use to set the boundaries. The base flow rates for each stage are as tabulated below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Base No.</th>
+      <th>Min. $SPO_2$ %</th>
+      <th>Max. $SPO_2$ %</th>
+      <th>$Base_{LPM}$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>87</td>
+      <td>99</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>80</td>
+      <td>87</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>70</td>
+      <td>80</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0</td>
+      <td>70</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The exact SpO2 readings are then processed using the formula given below:</p>
+
+\[Tot_{LPM} = min[(Base_{n}+I_{LPM}+D_{LPM}),Base_{n+1}]\]
+
+<p>There are three parts to this formula:</p>
+
+<p>Base $_{n}$ : The base flow rate of the $n$th base obtained from the state machine.</p>
+
+<p>D $_{LPM}$ : A derivative term, which increases its value when a negative trend is observed in SpO2 readings.</p>
+
+<p>I $_{LPM}$ : An integral term, which increases its value when a stationary trend is observed while the SpO2 readings are less than 90%.</p>
+
+\[\begin{equation}
+    D_{LPM}=\left(\frac{|\Delta SpO_{2}(t)|}{|\Delta SpO_{2}(t)|+SpO_{2_{width}}(t)}\right)\times Base_{width}
+\end{equation}\\\]
+
+<h1>—</h1>
+<p>\(\begin{align}
+    &amp;\Delta SpO_{2}(m) = SpO_{2}(m) - SpO_{2} (m-1)\\
+    &amp;Base_{width}(t)= B_{n}(m)-B_{n-1}(m)\\
+    &amp;SpO_{2_{width}}(m)=(SpO_{2}(m)-\textrm{Min. $SpO_{2}$ of $B_{n}$})
+\end{align}\)</p>
+
+<p><strong>Derivative Term:</strong></p>
+
+<p>When \(SPO_2(t-1) &gt;SPO_2(t)\)</p>
+
+\[Base_{width} =CurrentBase_{LPM} - (Current-1)Base_{LPM}\]
+
+\[width = |\Delta SPO_2| + (SPO_2(t)-Min. SPO_2\ of\ Current Base)\]
+
+\[Derivative_{LPM}=\dfrac {|\Delta SPO2|} {width} Base_{width}\]
+
+<p>When the SOP2 value is stationary for a considerable amount of time, a counter is initialized that is used by the $Intergral_{LPM}$ to update its value.</p>
+
+<p><strong>Integral Term:</strong></p>
+
+<p>When \(SPO_2(t-1) =SPO_2(t)\)</p>
+
+\[stationary_{counter} += 1\]
+
+\[Base_{width}=Current Base_{LPM} - (Current-1) Base_{LPM}\]
+
+\[Integral_{LPM}=Base_{width}  (stationary_{counter}-1)/10\]
+
+<p>These three terms are summed up, and a saturation operation is performed, capping the flow rate at the base flow rate of the next higher stage.</p>
+
+<p>In this method, our device automatically adjusts the flow rate as required without any human supervision, thus helping avoid the wastage of precious O2 reserves. We have also provided a manual mode, using which the attendants or nurses can set the flow rate to a constant value and an option to vary the control algorithm parameters.</p>
+
+<p><img src="/assets/img/Covid19/Transitions.png" alt="Image1" class="shadow" /></p>
+
+<h1 id="cad-model">CAD Model</h1>
+<p><img src="/assets/img/Covid19/CAD_COVID_19.png" alt="Image1" class="shadow" /></p>
+
+<h1 id="clinical-testing">Clinical Testing</h1>
+<p><img src="/assets/img/Covid19/Clinical_Test_edited.jpeg" alt="Image1" class="shadow" /></p>
+
+<h1 id="results-and-future-work">Results and Future Work</h1>
+<p>The project is ongoing and further details will be updated here after they have been published.</p>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="DIY" /><category term="atmega328p" /><category term="game" /><category term="imu" /><category term="touch" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/Covid19/demo.jpg" /><media:content medium="image" url="https://textzip.github.io/assets/img/Covid19/demo.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dino Game Arduino Edition</title><link href="https://textzip.github.io/posts/Dino-Game-Arduino/" rel="alternate" type="text/html" title="Dino Game Arduino Edition" /><published>2021-06-14T01:10:20+05:30</published><updated>2022-01-06T13:23:52+05:30</updated><id>https://textzip.github.io/posts/Dino-Game-Arduino</id><content type="html" xml:base="https://textzip.github.io/posts/Dino-Game-Arduino/"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>I always had a thing for wearable electronics, a few months ago I got a cheap TFT display to play around with and the ultimate goal was to get familiar with all the electronics so that I can try to scale everything down and make a (hopefully portable) smartwatch.</p>
+
+<p>I stumbled upon the flappy bird game for arduino by <a href="https://www.mrt-prodz.com/blog/view/2015/03/flappy-bird-clone-on-the-atmega328-arduino-uno">mrt-prodz</a> while looking for some good projects with the TFT display, after playing the game for a couple of times, I decided to build my own version of the classic “Dino Game” from chromium.</p>
+
+<p>All the code files and assets for the project can be found in the following repo:</p>
+
+<p><a href="https://github.com/TextZip/Dino-Game-Arduino-Edition"><img src="https://gh-card.dev/repos/TextZip/Dino-Game-Arduino-Edition.svg" alt="TextZip/Dino-Game-Arduino-Edition - GitHub" /></a></p>
+
+<h2 id="hardware--schematics">Hardware &amp; Schematics</h2>
+<h3 id="components">Components</h3>
+<ol>
+  <li>Arduino Uno</li>
+  <li>Push Button</li>
+  <li>TFT Display 1.8 Inches (128x160)</li>
+  <li>Buzzer</li>
+  <li>A few jumpers</li>
+</ol>
+
+<h3 id="schematic">Schematic</h3>
+<p>The TFT display I got is based on the ST7735 Driver IC while it also had an SD card slot I ended up saving all the required data in flash as I didn’t have an SD card at hand. The wiring for the TFT was a bit of a pain but thanks to help from <a href="https://www.tweaking4all.com/hardware/arduino/sainsmart-arduino-color-display/">Tweaking4all</a> I finally got it running.</p>
+
+<p>The other connections for the buzzer and the push button are quite easy and require no explanation.
+I did notice that the flappy bird game didn’t actually use an interrupt based trigger but rather had a normal digitalRead function. I decided to use the internal pull and the external interrupt triggered ISR for servicing the user input via the digital pin 2.</p>
+
+<p>The Display uses SPI communication, so I ended up using the SPI hardware pins of the ardunio uno for communicating with the display. Tinkercad doesn’t have a model for the TFT display, so I just labeled the connections and dropped them onto a breadboard.
+<img src="/assets/img/DinoGame/schematic_tinkercad.png" alt="image1" class="shadow" /></p>
+
+<p>My final setup with everything jam-packed into a tiny breadboard, as I didn’t have anything bigger than this with me.
+<img src="/assets/img/DinoGame/schematic_real.png" alt="image1" class="shadow" /></p>
+
+<p>Another view of my TFT display for anyone’s reference
+<img src="/assets/img/DinoGame/TFTDisplay_side.png" alt="image1" class="shadow" /></p>
+
+<h2 id="software">Software</h2>
+<p>The software stack can be broken down into the following sub-tasks</p>
+<h3 id="make-a-box-that-jumps">Make a box that jumps</h3>
+<p>This step was supposed to be fairly easy and people actually use the euler’s integration method to give an object some force (acceleration) and then compute the velocity and displacement numerically using a very small dt.</p>
+
+\[acceleration = force / mass\]
+
+\[Delta_{position} = velocity * dt\]
+
+\[Delta_{velocity} = acceleration * dt\]
+
+<p>I for some reason ended up using the equation of motion of a projectile under constant acceleration.</p>
+
+\[y = ut + \dfrac{1}{2}at^2\]
+
+<p>Everytime the button was pushed the box ended up with an initial velocity of $30 m/s$, I played around with the value of acceleration due to gravity and the initial velocity to get the right jump response.</p>
+
+<p><img src="/assets/img/DinoGame/jumping_box.gif" alt="Image1" class="center" />
+<em>Things ended up looking like this (PS: don’t mind the moving cactus in the background)</em></p>
+<h3 id="draw-cactus-and-make-it-move-around">Draw cactus and make it move around</h3>
+<p>I used some basic shapes (rounded rectangles) to make a cactus like object and gave it a constant velocity in the -ve x direction to make it look like the dino is moving forward.</p>
+
+<p>I used the brush method that was discussed in the <a href="https://www.mrt-prodz.com/blog/view/2015/03/flappy-bird-clone-on-the-atmega328-arduino-uno">mrt-prodz</a> post for animations, which basically meant I erased the old pixels by drawing the background color over them and then drew the required colors over the new pixels, therefore I had to change a few selected pixels in each frame rather than the whole 128x160 of them.</p>
+
+<h3 id="replace-box-with-a-dino">Replace box with a dino</h3>
+<p>I next tried replacing the box with a dino(bitmap), it looked like the dino was skating over the floor, and was quite artificial.</p>
+
+<p><img src="/assets/img/DinoGame/dinoSkating.gif" alt="Image1" class="shadow" /></p>
+
+<p>I decided to make the dino walk as the original game does that as well, after snipping the two walking frames from the sprite sheet, I tried a simple code where I switched between the frames to make it look like the dino is walking.</p>
+
+<h3 id="walking-vs-skating-dino">Walking vs Skating Dino</h3>
+<p>The above method was a partial success as the entire dino image was now having a weird flicker due to the update speed and I realised that I was updating the whole dino bitmap but most of the body was stationary and only the legs were supposed to move.</p>
+
+<p><img src="/assets/img/DinoGame/dinoFlicker.gif" alt="image1" class="shadow" /></p>
+
+<p>I ended up fixing this by breaking the 2 dino frames into 2 parts each (4 in total), where the top part of each frame was the body and the bottom part was the leg, luckily the animation was setup in such a way that the body of the dino never actually changed between the two frames and only the leg positions were changed, so I fixed the body and only updated the leg parts of the dino, this eliminated most or if not all the flicker and I ended up with a very smooth looking animation.</p>
+
+<p><img src="/assets/img/DinoGame/dinoWalking.gif" alt="image1" class="shadow" /></p>
+
+<h3 id="adding-clouds-sounds-score-and-other-minor-details">Adding Clouds, Sounds, Score and other minor details</h3>
+<p>I now added other small details like sounds, intro and game over frames. I also added the score display and other features. I wanted to give a cloudy background for the game as the original has as it not only helps in the aesthetics but also in showing that the dino is moving relative to the background all the time.</p>
+
+<p><img src="/assets/img/DinoGame/Home.gif" alt="image1" class="shadow" /></p>
+
+<p>I tired using clouds from bitmaps but there was a bit too much of a flicker in the clouds and there were soo small that I their features hardly mattered, so I ended up replacing the bitmaps with regular rounded rectangles which improved the game performance a lot.</p>
+
+<h2 id="results">Results</h2>
+<p>After fixing a few more bugs I finally had a working dino game</p>
+
+<iframe width="640" height="385" src="https://www.youtube.com/embed/1rK0tkbr8Z8" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="future-upgrades">Future Upgrades</h2>
+<p>While I don’t have immediate plans for improvements, I do have a few features in mind that I wana implement.</p>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Add Lives</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Dino has powers (Fire breathing)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />New obstacles (Birds?)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Remove the flicker due to jumps</li>
+</ul>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="DIY" /><category term="TFT" /><category term="Dino" /><category term="Arduino" /><category term="game" /><summary type="html"><![CDATA[Introduction I always had a thing for wearable electronics, a few months ago I got a cheap TFT display to play around with and the ultimate goal was to get familiar with all the electronics so that I can try to scale everything down and make a (hopefully portable) smartwatch. I stumbled upon the flappy bird game for arduino by mrt-prodz while looking for some good projects with the TFT display, after playing the game for a couple of times, I decided to build my own version of the classic “Dino Game” from chromium. All the code files and assets for the project can be found in the following repo: Hardware &amp; Schematics Components Arduino Uno Push Button TFT Display 1.8 Inches (128x160) Buzzer A few jumpers Schematic The TFT display I got is based on the ST7735 Driver IC while it also had an SD card slot I ended up saving all the required data in flash as I didn’t have an SD card at hand. The wiring for the TFT was a bit of a pain but thanks to help from Tweaking4all I finally got it running. The other connections for the buzzer and the push button are quite easy and require no explanation. I did notice that the flappy bird game didn’t actually use an interrupt based trigger but rather had a normal digitalRead function. I decided to use the internal pull and the external interrupt triggered ISR for servicing the user input via the digital pin 2. The Display uses SPI communication, so I ended up using the SPI hardware pins of the ardunio uno for communicating with the display. Tinkercad doesn’t have a model for the TFT display, so I just labeled the connections and dropped them onto a breadboard. My final setup with everything jam-packed into a tiny breadboard, as I didn’t have anything bigger than this with me. Another view of my TFT display for anyone’s reference Software The software stack can be broken down into the following sub-tasks Make a box that jumps This step was supposed to be fairly easy and people actually use the euler’s integration method to give an object some force (acceleration) and then compute the velocity and displacement numerically using a very small dt. \[acceleration = force / mass\] \[Delta_{position} = velocity * dt\] \[Delta_{velocity} = acceleration * dt\] I for some reason ended up using the equation of motion of a projectile under constant acceleration. \[y = ut + \dfrac{1}{2}at^2\] Everytime the button was pushed the box ended up with an initial velocity of $30 m/s$, I played around with the value of acceleration due to gravity and the initial velocity to get the right jump response. Things ended up looking like this (PS: don’t mind the moving cactus in the background) Draw cactus and make it move around I used some basic shapes (rounded rectangles) to make a cactus like object and gave it a constant velocity in the -ve x direction to make it look like the dino is moving forward. I used the brush method that was discussed in the mrt-prodz post for animations, which basically meant I erased the old pixels by drawing the background color over them and then drew the required colors over the new pixels, therefore I had to change a few selected pixels in each frame rather than the whole 128x160 of them. Replace box with a dino I next tried replacing the box with a dino(bitmap), it looked like the dino was skating over the floor, and was quite artificial. I decided to make the dino walk as the original game does that as well, after snipping the two walking frames from the sprite sheet, I tried a simple code where I switched between the frames to make it look like the dino is walking. Walking vs Skating Dino The above method was a partial success as the entire dino image was now having a weird flicker due to the update speed and I realised that I was updating the whole dino bitmap but most of the body was stationary and only the legs were supposed to move. I ended up fixing this by breaking the 2 dino frames into 2 parts each (4 in total), where the top part of each frame was the body and the bottom part was the leg, luckily the animation was setup in such a way that the body of the dino never actually changed between the two frames and only the leg positions were changed, so I fixed the body and only updated the leg parts of the dino, this eliminated most or if not all the flicker and I ended up with a very smooth looking animation. Adding Clouds, Sounds, Score and other minor details I now added other small details like sounds, intro and game over frames. I also added the score display and other features. I wanted to give a cloudy background for the game as the original has as it not only helps in the aesthetics but also in showing that the dino is moving relative to the background all the time. I tired using clouds from bitmaps but there was a bit too much of a flicker in the clouds and there were soo small that I their features hardly mattered, so I ended up replacing the bitmaps with regular rounded rectangles which improved the game performance a lot. Results After fixing a few more bugs I finally had a working dino game Future Upgrades While I don’t have immediate plans for improvements, I do have a few features in mind that I wana implement. Add Lives Dino has powers (Fire breathing) New obstacles (Birds?) Remove the flicker due to jumps]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/DinoGame/Home.gif" /><media:content medium="image" url="https://textzip.github.io/assets/img/DinoGame/Home.gif" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Manipulator Workspace Plotter</title><link href="https://textzip.github.io/posts/Manipulator-Workspace-Plotter/" rel="alternate" type="text/html" title="Manipulator Workspace Plotter" /><published>2021-05-18T23:42:20+05:30</published><updated>2022-01-18T16:36:00+05:30</updated><id>https://textzip.github.io/posts/Manipulator-Workspace-Plotter</id><content type="html" xml:base="https://textzip.github.io/posts/Manipulator-Workspace-Plotter/"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>I wrote this small script to tinker with DH Parameters and wanted to visualize and understand how joint limits affect the manipulator workspace. While there are many ways of generating the workspace of a manipulator, this particular sketch uses forward kinematics to do so.
+The full code for the project can be found in the following repo</p>
+
+<p><a href="https://github.com/textzip/DHPnP"><img src="https://gh-card.dev/repos/textzip/DHPnP.svg?fullname=" alt="textzip/DHPnP - GitHub" /></a></p>
+
+<h2 id="method">Method</h2>
+<p>The idea of plotting workspace from forward kinematics can be broken down into the following smaller tasks</p>
+<ol>
+  <li>Capture the DH Table from the user</li>
+  <li>Create a Homogenous Transformation Matrix ideally(Base to Tool).</li>
+  <li>Take in user inputs for joint limits.</li>
+  <li>Create a dataset of sorts that contains random possible combinations from the possible joint limits.</li>
+  <li>Plug these random points into the Transformation Matrix and plot the outputs.</li>
+</ol>
+
+<p><strong>A few other points:</strong></p>
+<ul>
+  <li>There is no need to create a dataset with “all” possible combinations for the joint angles, this method will be computationally expensive. We will instead be using monte carlo distribution to generate random points.</li>
+  <li>Angle limits for roll joint at the end of the tool tip need not be considered as change in roll values doesn’t change the tool tip position.</li>
+</ul>
+
+<h2 id="the-code-explanined">The Code Explanined</h2>
+<h3 id="capture-the-dh-table-from-the-user">Capture the DH Table from the user</h3>
+<p>The first step would be to capture the DH-Parameters for a given manipulators, this can be represented using a “M x 4 matrix” where M is the number of axis for the manipulator.</p>
+
+<p>We will be creating a matrix using symbolic variables as it would make it easier later for us to solve the matrix multiplications using variables that can later be substituted for.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="c1">%% Homogeneous Matrix Builder</span>
+<span class="n">noParams</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">'Enter the number of axis: '</span><span class="p">);</span>
+<span class="n">T</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="n">flg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sym</span><span class="p">(</span><span class="s1">'A%d%d'</span><span class="p">,[</span><span class="n">noParams</span><span class="p">,</span><span class="mi">4</span><span class="p">]);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>noParams</strong> here is used to decide the number of rows for the DH parameter table.
+<strong>A</strong> is the DH-Table Matrix</p>
+
+<p>On its own for an input of “5” to <strong>noParams</strong>, the <strong>A</strong> matrix would look like this:</p>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="o">&gt;&gt;</span> <span class="n">A</span>
+ 
+<span class="n">A</span> <span class="o">=</span>
+ 
+<span class="p">[</span><span class="n">A11</span><span class="p">,</span> <span class="n">A12</span><span class="p">,</span> <span class="n">A13</span><span class="p">,</span> <span class="n">A14</span><span class="p">]</span>
+<span class="p">[</span><span class="n">A21</span><span class="p">,</span> <span class="n">A22</span><span class="p">,</span> <span class="n">A23</span><span class="p">,</span> <span class="n">A24</span><span class="p">]</span>
+<span class="p">[</span><span class="n">A31</span><span class="p">,</span> <span class="n">A32</span><span class="p">,</span> <span class="n">A33</span><span class="p">,</span> <span class="n">A34</span><span class="p">]</span>
+<span class="p">[</span><span class="n">A41</span><span class="p">,</span> <span class="n">A42</span><span class="p">,</span> <span class="n">A43</span><span class="p">,</span> <span class="n">A44</span><span class="p">]</span>
+<span class="p">[</span><span class="n">A51</span><span class="p">,</span> <span class="n">A52</span><span class="p">,</span> <span class="n">A53</span><span class="p">,</span> <span class="n">A54</span><span class="p">]</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The names of the column and row elements are due to the <strong>“A%d%d”</strong> in the <code class="language-plaintext highlighter-rouge">A = sym('A%d%d',[noParams,4]);</code></p>
+
+<h3 id="create-a-homogenous-transformation-matrix-ideallybase-to-tool">Create a Homogenous Transformation Matrix ideally(Base to Tool).</h3>
+<p>We will now be creating a Homogenous symbolic transformation matrix with the above generated blank DH paramter matrix.</p>
+
+<ul>
+  <li>Rotation of $L_{k-1}$ about $Z_{k-1}$ is denoted by $\theta_k$.</li>
+  <li>Translation of $L_{k-1}$ about $Z_{k-1}$ is denoted by $d_k$.</li>
+  <li>Translation of $L_{k-1}$ about $X_{k-1}$ is denoted by $a_k$.</li>
+  <li>Rotation of $L_{k-1}$ about $X_{k-1}$ is denoted by $\alpha_k$. 
+Therefore, any homogenous Transformation matrix T can be expressed as the following:
+\(T_{k-1}^k(\theta_k,d_k,a_k,\alpha_k) = R(\theta_k,z)T(d_k,z)T(a_k,x)R(\alpha_k,x)\)
+\(T_{base}^{tool} = T_{base}^1T_1^2T_2^3...T_{n-1}^{tool}\)
+    <div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="n">noParams</span>
+  <span class="n">Rz</span> <span class="o">=</span> <span class="p">[</span><span class="nb">cos</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="nb">sin</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="nb">cos</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+  <span class="n">Tz</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+  <span class="n">Tx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+  <span class="n">Rx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="nb">cos</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span><span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="nb">sin</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span><span class="nb">cos</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="n">Rz</span><span class="o">*</span><span class="n">Tz</span><span class="o">*</span><span class="n">Tx</span><span class="o">*</span><span class="n">Rx</span><span class="p">);</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+    <p>The next step after generating the DH table would be to fill the empty Transformation Matrix with the acutal values for the manipulator, this is done via user input.</p>
+  </li>
+</ul>
+
+<p>This part of the code isn’t that straightforward, we will be taking one DH parameter at a time and the user needs to enter the row and column number of the DH paramter they are about to enter. The syntax for user input is <strong>[position,value,1/0]</strong>. Where a 1 would mean its the end of the inputs series and there are no more DH paramters to input, on the other hand 0 can be used to let the program know that there are more DH paramters that need to be entered.</p>
+
+<p><strong>NOTE:</strong></p>
+<ul>
+  <li>Users only need to enter DH-Paramters that are constant like “link length” and other values that cannot change.</li>
+</ul>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">while</span> <span class="n">flg</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">flg</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s1">'Enter data as [position,value,1/0]: '</span><span class="p">);</span> <span class="c1">%constants filler</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">vpa</span><span class="p">(</span><span class="n">subs</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">A</span><span class="p">(</span><span class="n">flg</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">flg</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="n">flg</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span><span class="mi">4</span><span class="p">);</span>
+    <span class="k">end</span>
+	<span class="nb">disp</span><span class="p">(</span><span class="s1">'Tool to Base Transformation Matrix created'</span><span class="p">);</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>After the Homogenous Transformation matrix is created, we can extract the tool-tip cordinate equations and convert them into a function so that we can substitue numerical values into the variables to get the tool tip postion.</p>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="n">Tpos</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">T</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">T</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)];</span>
+<span class="n">Tpost</span> <span class="o">=</span> <span class="n">matlabFunction</span><span class="p">(</span><span class="n">Tpos</span><span class="p">);</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>matlabFunction</strong> is used to convert symbolic expressions into matlab function handles.</p>
+
+<h3 id="take-in-user-inputs-for-joint-limits">Take in user inputs for joint limits</h3>
+<p>We will now be taking in user inputs for joint limits and create a dataset with random combinations of joint angles using monte carlo.</p>
+<ul>
+  <li><strong>lim</strong> contains all the random datasets generated.</li>
+  <li><strong>N=67312</strong> is the number of random combinations that will be generated, this number can be increased or decresed based on the needs, remember that the higher the number the more dense the workspace plot will turn out, but it will also increase the computation time.</li>
+</ul>
+
+<blockquote>
+  <p>Dataset = lower limit + (upper limit - lower limit)*random number between 0 and 1</p>
+</blockquote>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="n">ch2</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s1">'Press 1 if you want to plot the 3D workspace'</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">ch2</span> <span class="o">==</span> <span class="mi">1</span> 
+        <span class="n">N</span> <span class="o">=</span> <span class="mi">67312</span><span class="p">;</span>
+        <span class="n">range</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s1">'Enter upper and lower limits of each joint. EXCLUDE ROLL JOINTS'</span><span class="p">);</span>
+        <span class="n">lim</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">lim</span><span class="p">(:,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="nb">rand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="creating-a-dataset-of-points">Creating a dataset of points</h3>
+<p>There is nothing much to explain here, we are just iterating through all the possible combinations of numbers that we generated and are storing them in <strong>f</strong></p>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre><span class="c1">%% Plot Points Collector</span>
+    <span class="n">f</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">7</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">9</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="plotting-points">Plotting Points</h3>
+<p>While the plot is 3D we will plot a few standard views as moving the plot around when it is extremly dense is a computationally heavy task.</p>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre><span class="c1">%% Workspace Plotter</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Starting Workspace Plotter'</span><span class="p">);</span>
+    <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span>
+        <span class="nb">plot3</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="s1">'.'</span><span class="p">)</span>
+        <span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+    <span class="k">end</span>
+    <span class="nb">view</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="nb">title</span><span class="p">(</span><span class="s1">'Isometric view'</span><span class="p">);</span>
+    <span class="nb">xlabel</span><span class="p">(</span><span class="s1">'x (m)'</span><span class="p">);</span>
+    <span class="nb">ylabel</span><span class="p">(</span><span class="s1">'y (m)'</span><span class="p">);</span>
+    <span class="nb">zlabel</span><span class="p">(</span><span class="s1">'z (m) '</span><span class="p">);</span>
+    <span class="nb">view</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">% top view</span>
+    <span class="nb">title</span><span class="p">(</span><span class="s1">' Top view'</span><span class="p">);</span>
+    <span class="nb">xlabel</span><span class="p">(</span><span class="s1">'x (m)'</span><span class="p">);</span>
+    <span class="nb">ylabel</span><span class="p">(</span><span class="s1">'y (m)'</span><span class="p">);</span>
+    <span class="nb">view</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]);</span> <span class="c1">% y-z plane</span>
+    <span class="nb">title</span><span class="p">(</span><span class="s1">'Side view, Y-Z'</span><span class="p">);</span>
+    <span class="nb">ylabel</span><span class="p">(</span><span class="s1">'y (m)'</span><span class="p">);</span>
+    <span class="nb">zlabel</span><span class="p">(</span><span class="s1">'z (m)'</span><span class="p">);</span>
+
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Plotting Complete'</span><span class="p">);</span>
+    
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="note">NOTE</h2>
+<p>This version of the documentation is based on the DHPnP_v1.m which is based on the monte carlo method for random point sampling. The older version of the same project is based on a different approach and is significantly slower and more computational expenseive and memory intensive.</p>
+
+<h2 id="results">Results</h2>
+<p>A few images from both the versions which clearly shows the difference in the resulting workspace plots.</p>
+
+<!-- Jekyll Ideal Image Slider Include -->
+<!-- https://github.com/jekylltools/jekyll-ideal-image-slider-include -->
+<!-- v1.8 -->
+<div id="workspace">
+  <img data-src="" data-src-2x="" src="/assets/img/DHPnP/Rhino-XR3-With-Monte-Carlo.png" title="" alt="Rhino XR3 With Monte Carlo" />
+  <img data-src="" data-src-2x="" src="/assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png" title="" alt="Rhino XR3 Without Monte Carlo" />
+  <img data-src="" data-src-2x="" src="/assets/img/DHPnP/WAM-7DoF-without-Monte-Carlo.png" title="" alt="WAM 7DoF without Monte Carlo" />
+  <img data-src="" data-src-2x="" src="/assets/img/DHPnP/WAM-7DoF-with-Monte-Carlo.png" title="" alt="WAM 7DoF with Monte Carlo" />
+  </div>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="Manipulators" /><category term="matlab" /><category term="forward kinematics" /><category term="workspace" /><category term="transformation matirx" /><category term="monte carlo" /><summary type="html"><![CDATA[Introduction I wrote this small script to tinker with DH Parameters and wanted to visualize and understand how joint limits affect the manipulator workspace. While there are many ways of generating the workspace of a manipulator, this particular sketch uses forward kinematics to do so. The full code for the project can be found in the following repo]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
