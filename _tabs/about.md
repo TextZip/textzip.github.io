@@ -9,7 +9,7 @@ Hi, I'm **Jai**, a *pre-final year undergrad* at *BITS Pilani*. I find myself co
 
 I am currently looking for oppturnities to pursue my **undergraduate thesis in robotics** from August 2022 - May 2023. Please drop me mail if you know of any such opportunities.
 
-**CV**: [Google Drive Link](https://drive.google.com/file/d/18z7gsBfY0kIo2pNf9EIw7thNaVICZHz8/view?usp=sharing) 
+**CV**: [Google Drive Link](https://drive.google.com/file/d/1LYTDRyFuUPKfe1H1_sCX-ffLA0Csu08k/view?usp=sharing) 
 
 
 Extended CV (Web Version):  
