@@ -1,7 +1,7 @@
 ---
 title: Robotics Theory - 2D Robotics
 date: 2020-05-04 23:47:20 +/-0530
-categories: [Tutorials, Robotics Theory]
+categories: [Resources, Robotics Theory]
 tags: [matlab,manipulator,differential drive,projectile motion]     # TAG names should always be lowercase
 math: true
 image: /assets/img/2DRobotics/ProjNoD.png

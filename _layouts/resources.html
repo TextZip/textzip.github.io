@@ -12,7 +12,7 @@ layout: page
 <div id="post-list">
 
     {% for post in site.posts %}
-        {%if post.categories contains 'Tutorials' %}
+        {%if post.categories contains 'Resources' %}
             <div class="post-preview">
                 <h1>
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>

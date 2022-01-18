@@ -1,7 +1,7 @@
 ---
 title: Hands On with AVR - 03 Timers
 date: 2020-05-04 20:48:20 +/-0530
-categories: [Tutorials, AVR Dairies]
+categories: [Resources, AVR Dairies]
 tags: [atmega328p,timer,fastPWM,normal mode,CTC mode]     # TAG names should always be lowercase
 image_sliders:
   - timers
