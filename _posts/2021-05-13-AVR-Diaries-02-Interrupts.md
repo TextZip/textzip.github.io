@@ -11,7 +11,7 @@ Most processors have interrupts. Interrupts let you respond to "external/interna
 This article uses concepts that have been covered in the previous post "AVR Diaries 01 - Port Manipulation", if your not familiar with port manipulation, it is highly recommended that you go through the earlier parts before continuing any further.
 
 ## Understanding the need for interrupts
-Before we dive head first into interrupts and all the superpowers they grant to us, lets take a step back and see why we need interrupts. Lets take a simple sketch where an LED on pin 13 is turned on everytime we press a button connected to pin 9, the LED turns off right after we release the button. 
+Before we dive headfirst into interrupts and all the superpowers they grant to us, let's take a step back and see why we need interrupts. Let's take a simple sketch where an LED on pin 13 is turned on every time we press a button connected to pin 9. The LED turns off right after we release the button. 
 ```c++
 int prev_state = LOW;
 int LED_state;
@@ -61,7 +61,7 @@ void loop() {
   delay(5000);
 }
 ```
-You can immediately notice that the push button is no longer very responsive and some of the inputs are not registered and processed. This is due to the fact that the arduino is busy doing some other heavy math task for 5 seconds every loop cycle. Therefore the arduino will not be able to register any inputs during these 5 seconds. 
+You can immediately notice that the push button is no longer responsive, and some of the inputs are not registered and processed. The Arduino is busy doing some other heavy math tasks for 5 seconds every loop cycle. Therefore the Arduino will not record any inputs during these 5 seconds. 
 
 When we start writing bigger and more complex projects in arduino, reaction time to events is very crucial and interrupts are the arduinos way of dealing with time critical events.
 

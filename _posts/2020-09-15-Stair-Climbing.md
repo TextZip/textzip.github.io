@@ -2,7 +2,7 @@
 title: Autonomous Stair Climbing Robot
 date: 2020-09-15 21:5:20 +/-0530
 categories: [Projects, Autonomous Robots]
-tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
+tags: [atmega328p,ros,imu,touch,opencv]     # TAG names should always be lowercase
 image_sliders:
   - StairClimbing
   - StairClimbing2

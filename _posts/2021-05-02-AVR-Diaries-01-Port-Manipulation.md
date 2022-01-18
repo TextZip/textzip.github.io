@@ -1,13 +1,13 @@
 ---
 title: Hands On with AVR - 01 Port Manipulation
 date: 2021-05-04 19:13:20 +/-0530
-categories: [Tutorials, AVR Dairies]
+categories: [Resources, AVR Dairies]
 tags: [atmega328p,port,pin,register,bit math]     # TAG names should always be lowercase
 image: /assets/img/PortManipulation/arduino_label.png
 ---
-Port Manipulation refers to the technique of directly working with the underlying registers of the ATmega chip(in this context) instead of relying on predefined arduino functions. This is primarily done to reduce the memory footprint of your code and also to make it run faster.
+Port Manipulation refers to the technique of directly working with the underlying registers of the ATmega chip(in this context) instead of relying on predefined Arduino functions. This is primarily done to reduce your code's memory footprint and make it run faster.
 
-To understand how the memory and speed get effected by using the arduino functions lets take an example,
+To understand how the memory and speed get affected by using the Arduino functions, lets take an example,
 
 Here is the code for the arduino **pinMode()** function:
 
@@ -45,13 +45,12 @@ void pinMode(uint8_t pin, uint8_t mode)
 }
 ```
 
-As you can see although we tend to treat it as a single line of code, internally it contains many lines of code and multiple function calls as well to get its job done. In this article we will learn how to directly write into registers and further understand that pinMode and other stock functions internally do the same.
+As you can see, although we tend to treat it as a single line of code, internally, it contains many lines of code, and multiple function calls to get its job done. This article will learn how to write into registers directly and further understand that pinMode and other stock functions internally do the same.
 
-Before we get started with port manipulation you need to get yourself familiar with bit math and bit manipulation, here is a quick intro to it.
-
+Before starting port manipulation, you need to get yourself familiar with bit math and bit manipulation; here is a quick intro to it.
 ## Bit Manipulation
 
-Manipulating the internal registers of the ATmega chip involves flipping bits in 8-bit (usually) arrays, as the ATmega328p is 8-bit in nature, so our primary learning objective would be to learn how to flip, read, write to bit/bits without effecting or disturbing the other bits in a given array.
+Manipulating the internal registers of the ATmega chip involves flipping bits in 8-bit (usually) arrays, as the ATmega328p is 8-bit in nature, so our primary learning objective would be to learn how to flip, read, write to bit/bits without affecting or disturbing the other bits in a given array.
 
 ### Setting a bit HIGH
 Let us learn how to set a bit HIGH/1 in a given array. For this example let us consider the following.
@@ -62,7 +61,7 @@ Create an array :: **0000 1000** (can be done using **1<<3**)
 Perform OR operation on both the arrays.
 Resulting array :: **xxxx 1xxx**
 
-As we can see irrespective of the initial state of the 4th bit, it is now set to 1 for sure. Also notice how the other 7 bits remain unaffected by this operation no matter what their initial state is.
+As we can see, irrespective of the initial state of the 4th bit, it is now set to 1 for sure. Also, notice how the other 7 bits remain unaffected by this operation regardless of their initial state.
 
 To put this up as a syntax, assuming the given array is called **EXP**. The above logic can be written as
 
@@ -71,7 +70,7 @@ EXP = EXP | (1<<3); //One way to write it
 EXP |= (1<<3); //A more compact way of writing the same expression.
 ```
 ### Setting a bit LOW
-Setting a bit LOW/0 is pretty much similar to setting a bit HIGH/1 in terms of our approach. Let us consider an example to understand better. You are given an 8-bit array and the initial states of all the pins are unknown, we have to set the 4th bit in the given array to 0. (irrespective of its current state)
+Setting a bit LOW/0 is pretty much similar to setting a bit HIGH/1 in terms of our approach. Let us consider an example to understand better. You are given an 8-bit array, and the initial states of all the pins are unknown. We have to set the 4th bit in the given array to 0. (irrespective of its current state)
 
 Given array :: **xxxx yxxx**
 Create an array :: **0000 1000** (can be done using **1<<3**)
@@ -79,13 +78,13 @@ Invert the array :: **1111 0111** (can be done using **~(1<<3)** )
 Perform AND operation on the inverted array and the given array.
 Resulting array :: **xxxx 0xxx**
 
-Just like we saw in the previous example of setting a bit HIGH, only the 4th bit is set to 0 and all the other pins are left unaffected irrespective of their initial states. To put this in syntax, assuming the given array is called **EXP**. The above logic can be written as
+Just like we saw in the previous example of setting a bit HIGH, only the 4th bit is set to 0, and all the other pins are left unaffected irrespective of their initial states. To put this in syntax, assuming the given array is called **EXP**. The above logic can be written as
 ```c++
 EXP = EXP & ~(1<<3); //One way to write it 
 EXP &= ~(1<<3); //A more compact way of writing the same expression.
 ```
 ### Reading the state of a bit
-Just like setting the setting a bit HIGH and LOW, we might at times want to read the current state of the bit. Let us consider the following example. You are given an 8-bit array and the initial states of the bits are unknown, we have to find the current state of the 4th bit in the given array.
+Just like setting the setting a bit HIGH and LOW, we might at times want to read the current state of the bit. Let us consider the following example. You are given an 8-bit array, and the initial states of the bits are unknown. We have to find the current state of the 4th bit in the given array.
 
 Given array :: **xxxx yxxx**
 Left shift the given array :: **000x xxxy** (such that y is at the corner, can be done using **EXP>>3** )
@@ -110,7 +109,7 @@ EXP = EXP ^ (1<<3); //One way to write it
 EXP ^= (1<<3); //A more compact way of writing the same expression
 ```
 ## Port Registers
-Port registers allow for faster manipulation of the I/O pins, the predefined functions for GPIO in arduino while easy to use, conceal a lot of the features and functionality the ATmega can offer.
+Port registers allow for faster manipulation of the I/O pins, the predefined functions for GPIO in Arduino, while easy to use, conceal a lot of the features and functionality the ATmega can offer.
 
 The ATmega 328p has three ports, refer to the yellow tag markers in the below picture for the labels.
 
@@ -123,9 +122,10 @@ Port D – Digital pins 0 to 7
 
 What are ports ?
 
-Ports are collections of Pins sharing a set of common SFR’s. (vaguely speaking a group of pins are called a port)
+Ports are collections of Pins sharing a set of common SFR’s. (vaguely speaking, a group of pins is called a port)
 
-To intuitively understand the need for port registers lets quickly list all the attributes a GPIO pin can have in general.
+To intuitively understand the need for port registers, let's quickly list all the attributes a GPIO pin can have in general.
+
 
 - **INPUT / OUTPUT / INPUT_PULLUP** – PinMode()
 - **HIGH / LOW** – DigitalWrite()
@@ -228,7 +228,7 @@ void loop()
   // put your main code here, to run repeatedly:
 }
 ```
-The schematic for the above code is attached below, while the code might contain a few new topics like interrupts it is well documented and should be understandable, we will dive into the interrupts part in the next tutorial.
+The schematic for the above code is attached below. While the code might contain a few new topics like interrupts, it is well documented and understandable. We will dive into the interrupts part in the following tutorial.
 
 
 

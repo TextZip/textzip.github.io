@@ -10,8 +10,7 @@ image: /assets/img/2DRobotics/ProjNoD.png
 ## Introduction
 
 ## Coordinate Transformation in 2D
-The motion of manipulators and robots is often very complex and mathematically demand-
-ing. A single coordinate frame usually isn’t sufficient and its often convenient to use multiple
+The motion of manipulators and robots is often very complex and mathematically demanding. A single coordinate frame usually isn’t sufficient, and its often convenient to use multiple
 coordinate frames (fixed or moving) to make things easier.
 
 **Terminology**\\

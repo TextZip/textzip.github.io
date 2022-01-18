@@ -1,8 +1,8 @@
 ---
 title: Underwater Rover
 date: 2019-12-15 19:13:20 +/-0530
-categories: [Projects, DIY]
-tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
+categories: [Projects,Autonomous Robots]
+tags: [jetson,underwater,imu,mpu6050,thruster,bldc,ros]     # TAG names should always be lowercase
 # image_sliders:
 #   - gamingConsole
 image_sliders:

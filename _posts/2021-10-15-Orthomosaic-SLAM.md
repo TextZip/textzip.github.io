@@ -16,7 +16,7 @@ A project on achieving realtime-orthomosaic SLAM for aerial navigation using a s
 {% include slider.html selector="orthoslam" %}
 
 # Introduction
-To carry out drone-based aerial surveying for generating orthomosaic maps on the fly, this project explores the image processing stack required to achieve the same using the most economical hardware and software footprint. The project explores corner and blob-based feature extraction techniques followed by brute force and KNN based feature matching methods which are later used to generate a homography matrix for stitching images that are passed through a cascaded image mixer to generate orthomosaic maps of a given dataset.
+To carry out drone-based aerial surveying for generating orthomosaic maps on the fly, this project explores the image processing stack required to achieve the same using the most economical hardware and software footprint. The project explores corner and blob-based feature extraction techniques followed by brute force and KNN based feature matching methods which are later used to generate a homography matrix for stitching images passed through a cascaded image mixer to generate orthomosaic maps of a given dataset.
 
 [![TextZip/OrthomosaicSLAM - GitHub](https://gh-card.dev/repos/TextZip/OrthomosaicSLAM.svg)](https://github.com/TextZip/OrthomosaicSLAM)
 

@@ -7,10 +7,10 @@ image_sliders:
   - timers
 image: /assets/img/PortManipulation/arduino_label.png
 ---
-The ATmega328p has two 8 bit timers and one 16 bit timer, each timer has multiple modes of working. We will be covering all the timers together in the tutorial, one mode at a time.
+The ATmega328p has two 8 bit timers and one 16 bit timer. Each timer has multiple modes of working. We will be covering all the timers together in the tutorial, one mode at a time.
 
 ## Timers & Prescalers
-A timer is a specialized type of clock which is used to measure time intervals, it maintains the timing of an operation in sync with a system clock or an external clock. The purpose of the prescaler is to allow the timer to be clocked at the rate a user desires.
+A timer is a specialized type of clock used to measure time intervals. It maintains the timing of an operation in sync with a system clock or an external clock. The purpose of the Prescaler is to allow the timer to be clocked at the rate a user desires.
 
 ## Normal Mode – Timer 0/2
 The simplest mode to mess around with, the timer starts from **BOTTOM (0x00)** and goes all the way to the **MAX/TOP** **(0xFF)** and overflows back to the **BOTTOM (0x00)**. When the timer overflows it maybe programmed to generate an **Timer Overflow Interrupt**.

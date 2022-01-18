@@ -1,8 +1,8 @@
 ---
 title: Gaming Wheel
-date: 2019-01-10 19:13:20 +/-0530
+date: 2018-12-22 19:13:20 +/-0530
 categories: [Projects, DIY]
-tags: [atmega328p,game,imu,touch]     # TAG names should always be lowercase
+tags: [atmega328p,game,imu,interactive,mpu6050]     # TAG names should always be lowercase
 image_sliders:
   - gamingConsole
 image: /assets/img/GamingConsole/frontLaptop.jpg

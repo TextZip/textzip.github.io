@@ -1,7 +1,7 @@
 ---
 title: ROS Basics
 date: 2021-05-04 16:17:25 +/-0530
-categories: [Tutorials, ROSCheatSheet]
+categories: [Resources, ROSCheatSheet]
 tags: [ros,topics,services,actions,packages,launch]     # TAG names should always be lowercase
 math: true
 image: /assets/img/Ros_logo.png

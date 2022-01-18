@@ -10,7 +10,7 @@ image: /assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png
 ---
 
 ## Introduction
-I wrote this small script to tinker around with DH Parameters and wanted something to visualize and understand how joint limits effect manipulator workspace. While there are many ways of generating the workspace of a manipulator this paticular sketch uses forward kinematics to do so.
+I wrote this small script to tinker with DH Parameters and wanted to visualize and understand how joint limits affect the manipulator workspace. While there are many ways of generating the workspace of a manipulator, this particular sketch uses forward kinematics to do so.
 The full code for the project can be found in the following repo
 
 [![textzip/DHPnP - GitHub](https://gh-card.dev/repos/textzip/DHPnP.svg?fullname=)](https://github.com/textzip/DHPnP)
