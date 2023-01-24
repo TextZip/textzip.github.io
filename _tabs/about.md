@@ -21,8 +21,8 @@ I am looking for a 2-year research intership position in the field of deep reinf
 **Web**: [https://textzip.github.io](https://textzip.github.io) 
 
 # Schedule a Meet
-
+Click [here](https://calendar.app.google/4SSiiENYY4oXaR7aA) to open the meet scheduler in a new page (incase the embedding is broken). 
 <!-- Google Calendar Appointment Scheduling begin -->
-<iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3sREk7j-rqdx_u7-c24TQ2_oYs1RAMNQGy8LkLTyDCxwN5Q6EpWr0AD2cbUQxnAFVmqqnuSnxu?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3sREk7j-rqdx_u7-c24TQ2_oYs1RAMNQGy8LkLTyDCxwN5Q6EpWr0AD2cbUQxnAFVmqqnuSnxu?gv=true" style="border: 0" width="100%" height="900" frameborder="0"></iframe>
 <!-- end Google Calendar Appointment Scheduling -->
 
