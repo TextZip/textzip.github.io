@@ -8,24 +8,14 @@ image: /assets/img/Energy-DRL/go1.png
 ---
 The following work has been done during my time at the [CNRS-AIST JRL (Joint Robotics Laboratory), IRL, Japan](https://unit.aist.go.jp/jrl-22022/index_en.html) for my undergraduate thesis under the supervision of [Dr. Mitsuharu Morisawa](https://unit.aist.go.jp/jrl-22022/en/members/member-morisawa.html) with support from [Rohan Singh](https://unit.aist.go.jp/jrl-22022/en/members/member-singh.html). 
 
-<!-- Video 
-- Introduction Card
-- Walking 
-- Trotting 
-- Gallop
-- Adding Directional Control
-    - Trotting 
-    - Gallop
-- Curriculum Learnig 
-    - Walking with Terrain Training (OD)
-- Unseen Terrain
-    - Triangles & Slopes (Unseen)
-- Bloopers (Dig) -->
+
+<iframe width="640" height="385" src="https://youtube.com/embed/Mq8utqI5-_g" frameborder="0" allowfullscreen></iframe>
+
 
 > **Note:** Detailed results and video clips can be found in the [Results](#results) section below.
 
 ## Objective 
-The primary objective of this work was to create a deep reinforcement learning based policy for quadruped locomotion with emphasis on minimial hand tuning for deployment and easy sim-to-real transfer which was to be used as a baseline policy in our future work.
+The primary objective of this work was to create a deep reinforcement learning based policy for quadruped locomotion with emphasis on minimal hand tuning for deployment and easy sim-to-real transfer which was to be used as a baseline policy in our future work.
 
 This has been accomplished using an energy minimization approach for the reward function along with other training specifics like curriculum learning.
 
