@@ -12,7 +12,9 @@ I'm currently working as an undergraduate reseracher under the supervision of [D
 I am looking for a 2-year research intership position in the field of deep reinforcement learning and quadrupeds/legged robots. I'm available from September 2023. Please drop me mail if you know of any such opportunities.
 
 
-**CV**: [Google Drive Link](https://drive.google.com/file/d/1LYTDRyFuUPKfe1H1_sCX-ffLA0Csu08k/view?usp=sharing) 
+<!-- **CV**: [Google Drive Link](https://drive.google.com/file/d/1LYTDRyFuUPKfe1H1_sCX-ffLA0Csu08k/view?usp=sharing)  -->
+
+**CV**: [Google Drive Link](https://drive.google.com/file/d/1G_3FIA0rCt7_YYm5kt6Rej2kVYASRaxR/view?usp=sharing) 
 
 <!--Extended CV (Web Version):  -->
 
