@@ -4,15 +4,15 @@ icon: fas fa-info
 order: 5
 ---
 
-<!-- ![Image1](/assets/img/POV-lightsaber/propic.jpg){: .shadow} -->
+![Image1](/assets/img/profile_h1.jpeg){: .shadow}
 
-Hi, I'm **Jai**, a _Robotics Researcher_ at [Field AI](https://fieldai.com/) where I develop learning-based policies for loco-manipulation, design large-scale simulation infrastructures for unit testing and data generation, and work on risk-bounded foundational models to enhance robotic autonomy.
+Hi, I’m **Jai**, a Robotics Researcher at [Field AI](https://fieldai.com/). Where, I develop learning-based policies for loco-manipulation, design large-scale simulation infrastructures for unit testing and data generation, and work on risk-bounded foundational models to enhance robotic autonomy.
 
-Previously, I worked as Technical Research Staff at the [CNRS-AIST Joint Robotics Lab, IRL - Japan](https://unit.aist.go.jp/jrl-22022/index_en.html) under the supervision of [Dr.Mitsuharu Morisawa](https://unit.aist.go.jp/jrl-22022/en/members/member-morisawa.html). My work there focused on implementing Deep Reinforcement Learning (RL) policies for quadruped locomotion in unstructured environments and exploring Sim2Real transfer of RL policies in both humanoids and quadrupeds.
+Previously, I worked as a Technical Research Staff at the [CNRS-AIST Joint Robotics Lab, IRL - Japan](https://unit.aist.go.jp/jrl-22022/index_en.html), under the supervision of [Dr.Mitsuharu Morisawa](https://unit.aist.go.jp/jrl-22022/en/members/member-morisawa.html). My work there focused on implementing Deep Reinforcement Learning (RL) policies for quadruped locomotion in unstructured environments and exploring the Sim2Real transfer of RL policies in both humanoids and quadrupeds.
 
-In my free time, I enjoy working on projects that blend electronics, programming, and design. I document most of my tinkering here and also create resources to support and teach others in the robotics community.
+I enjoy working on projects that blend electronics, programming, and design in my free time. I document most of my tinkering here and create resources to support and teach others in the robotics community.
 
-_I am currently looking for labs and schools to join for graduate studies starting in Fall 2025. If you think I’d be a good fit for your lab or research group, particularly those working in the areas of reinforcement learning, legged robots, machine learning, and foundational models, please feel free to reach out via email. Any leads or recommendations are greatly appreciated!_
+_I am looking for labs and schools to join for grad school starting in Fall 2025. If you think I’d be a good fit for a lab or research group, particularly those working in reinforcement learning, legged robots, machine learning, and foundational models, please feel free to reach out via email. Any leads or recommendations are greatly appreciated!_
 
 <!-- **CV**: [Google Drive Link](https://drive.google.com/file/d/1LYTDRyFuUPKfe1H1_sCX-ffLA0Csu08k/view?usp=sharing)  -->
 
