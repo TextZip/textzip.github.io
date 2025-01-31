@@ -4,9 +4,13 @@ icon: fas fa-info
 order: 5
 ---
 
-![Image1](/assets/img/profile_h1.jpeg){: .shadow}
-
-Hi, I’m **Jai**, a Robotics Researcher at [Field AI](https://fieldai.com/). Where, I develop learning-based policies for loco-manipulation, design large-scale simulation infrastructures for unit testing and data generation, and work on risk-bounded foundational models to enhance robotic autonomy.
+<!-- ![Image1](/assets/img/profile_h1.jpeg){: .shadow} -->
+<div style="display: flex; align-items: center;">
+    <img src="/assets/img/profile_h1.jpeg" class="shadow" style="width:300px; height:auto; border-radius:20%; margin-right:15px;">
+    <p>
+        Hi, I’m <b>Jai</b>, a Robotics Research Engineer at <a href="https://fieldai.com/">Field AI</a>. Where, I develop learning-based policies for loco-manipulation, design large-scale simulation infrastructures for unit testing and data generation, and work on risk-bounded foundational models to enhance robotic autonomy.
+    </p>
+</div>
 
 Previously, I worked as a Technical Research Staff at the [CNRS-AIST Joint Robotics Lab, IRL - Japan](https://unit.aist.go.jp/jrl-22022/index_en.html), under the supervision of [Dr.Mitsuharu Morisawa](https://unit.aist.go.jp/jrl-22022/en/members/member-morisawa.html). My work there focused on implementing Deep Reinforcement Learning (RL) policies for quadruped locomotion in unstructured environments and exploring the Sim2Real transfer of RL policies in both humanoids and quadrupeds.
 
