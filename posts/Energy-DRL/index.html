@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en-US" 
+>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds" />
+<meta name="author" content="Jai Krishna" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The following work has been done during my time at the CNRS-AIST JRL (Joint Robotics Laboratory), IRL, Japan for my undergraduate thesis under the supervision of Dr. Mitsuharu Morisawa with support from Rohan Singh." />
+<meta property="og:description" content="The following work has been done during my time at the CNRS-AIST JRL (Joint Robotics Laboratory), IRL, Japan for my undergraduate thesis under the supervision of Dr. Mitsuharu Morisawa with support from Rohan Singh." />
+<link rel="canonical" href="https://textzip.github.io/posts/Energy-DRL/" />
+<meta property="og:url" content="https://textzip.github.io/posts/Energy-DRL/" />
+<meta property="og:site_name" content="Jai Krishna" />
+<meta property="og:image" content="https://textzip.github.io/assets/img/Energy-DRL/go1.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-12-11T13:13:20+05:30" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://textzip.github.io/assets/img/Energy-DRL/go1.png" />
+<meta property="twitter:title" content="Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds" />
+<meta name="twitter:site" content="@twitter_username" />
+<meta name="twitter:creator" content="@Jai Krishna" />
+<meta name="google-site-verification" content="google_meta_tag_verification" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jai Krishna"},"dateModified":"2023-02-22T10:14:52+05:30","datePublished":"2022-12-11T13:13:20+05:30","description":"The following work has been done during my time at the CNRS-AIST JRL (Joint Robotics Laboratory), IRL, Japan for my undergraduate thesis under the supervision of Dr. Mitsuharu Morisawa with support from Rohan Singh.","headline":"Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds","image":"https://textzip.github.io/assets/img/Energy-DRL/go1.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://textzip.github.io/posts/Energy-DRL/"},"url":"https://textzip.github.io/posts/Energy-DRL/"}</script>
+ <title>Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds | Jai Krishna
+ </title>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jai Krishna">
+<meta name="application-name" content="Jai Krishna">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script defer
+    src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+  <script async
+    src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
+  <script>
+  /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+  MathJax = {
+    tex: {
+      inlineMath: [              /* start/end delimiter pairs for in-line math */
+        ['$','$'],
+        ['\\(','\\)']
+      ],
+      displayMath: [             /* start/end delimiter pairs for display math */
+        ['$$', '$$'],
+        ['\\[', '\\]']
+      ]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  <script defer src="/app.js"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-KGYYX7MFB2"
+></script>
+<script>
+  /* global dataLayer */
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-KGYYX7MFB2");
+</script>
+ <body data-spy="scroll" data-target="#toc">
+<div id="sidebar" class="d-flex flex-column align-items-end">
+ <div class="profile-wrapper text-center">
+   <div id="avatar">
+      <a href="/" alt="avatar" class="mx-auto">
+        <img src="/assets/img/profile.jpg" alt="avatar" onerror="this.style.display='none'">
+      </a>
+   </div>
+   <div class="site-title mt-3">
+      <a href="/">Jai Krishna</a>
+   </div>
+   <div class="site-subtitle font-italic">Robotics | Electronics | Design</div>
+ </div>
+ <ul class="w-100">
+   <li class="nav-item">
+      <a href="/" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>HOME</span>
+      </a>
+   <li class="nav-item">
+      <a href="/projects/" class="nav-link">
+        <i class="fa-fw fas fa-microchip ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>PROJECTS</span>
+      </a>
+   <li class="nav-item">
+      <a href="/resources/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>RESOURCES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/categories/" class="nav-link">
+        <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>CATEGORIES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/archives/" class="nav-link">
+        <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ARCHIVES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/about/" class="nav-link">
+        <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ABOUT | CONTACT</span>
+      </a>
+   <li class="nav-item">
+      <a href="/tags/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>TAGS</span>
+      </a>
+ </ul>
+ <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
+      <a href="https://github.com/TextZip" aria-label="github"
+        class="order-3"
+        target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="
+          javascript:location.href = 'mailto:' + ['textzip','gmail.com'].join('@')" aria-label="email"
+        class="order-4"
+        >
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/jai-krishna-bandi" aria-label="linkedin"
+        class="order-5"
+        target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+        <span class="icon-border order-2"></span>
+      <span id="mode-toggle-wrapper" class="order-1">
+<i class="mode-toggle fas fa-adjust"></i>
+<script type="text/javascript">
+  class ModeToggle {
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+      var self = this;
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addListener(function() {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+          self.clearMode();
+        }
+        self.updateMermaid();
+      });
+    } /* constructor() */
+    setDark() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+    setLight() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+    clearMode() {
+      $('html').removeAttr(ModeToggle.MODE_KEY);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+    get hasMode() { return this.mode != null; }
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode
+        || (!this.hasMode && this.isSysDarkPrefer) ) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+    updateMermaid() {
+      if (typeof mermaid !== "undefined") {
+        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
+        let config = { theme: expectedTheme };
+        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $(".mermaid").each(function() {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr("data-processed");
+          $(this).html(svgCode);
+        });
+        mermaid.initialize(config);
+        mermaid.init(undefined, ".mermaid");
+      }
+    }
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+      this.updateMermaid();
+    } /* flipMode() */
+  } /* ModeToggle */
+  let toggle = new ModeToggle();
+  $(".mode-toggle").click(function() {
+    toggle.flipMode();
+  });
+</script>
+      </span>
+ </div>
+</div>
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+ <div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+    <span id="breadcrumb">
+        <span>
+          <a href="/">
+            Posts
+          </a>
+        </span>
+          <span>Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds</span>
+    </span>
+    <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+   <div id="topbar-title">
+      Post
+   </div>
+    <i id="search-trigger" class="fas fa-search fa-fw"></i>
+    <span id="search-wrapper" class="align-items-center">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search"
+        aria-label="search" autocomplete="off" placeholder="Search...">
+      <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+    </span>
+    <span id="search-cancel" >Cancel</span>
+ </div>
+</div>
+   <div id="main-wrapper">
+     <div id="main">
+<div class="row">
+ <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+   <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+     <h1 data-toc-skip>Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds</h1>
+     <div class="post-meta text-muted d-flex flex-column">
+       <div>
+          <span class="semi-bold">
+            Bandi Jai Krishna
+          </span>
+<em class="timeago"
+    data-ts="1670744600"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Sun, Dec 11, 2022,  1:13 PM +0530"
+    >
+  2022-12-11
+</em>
+       </div>
+       <div>
+          <span>
+<em class="timeago lastmod"
+    data-ts="1677041092"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Wed, Feb 22, 2023,  1:44 PM +0900"
+    >
+  2023-02-22
+</em>
+          </span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2714 words">15 min</span>
+       </div>
+     </div>
+     <div class="post-content">
+       <p>The following work has been done during my time at the <a href="https://unit.aist.go.jp/jrl-22022/index_en.html">CNRS-AIST JRL (Joint Robotics Laboratory), IRL, Japan</a> for my undergraduate thesis under the supervision of <a href="https://unit.aist.go.jp/jrl-22022/en/members/member-morisawa.html">Dr. Mitsuharu Morisawa</a> with support from <a href="https://unit.aist.go.jp/jrl-22022/en/members/member-singh.html">Rohan Singh</a>.</p>
+<iframe width="640" height="385" src="https://youtube.com/embed/Mq8utqI5-_g" frameborder="0" allowfullscreen=""></iframe>
+<blockquote>
+ <p><strong>Note:</strong> Detailed results and video clips can be found in the <a href="#results">Results</a> section below.</p>
+</blockquote>
+<h2 id="objective">Objective</h2>
+<p>The primary objective of this work was to create a deep reinforcement learning based policy for quadruped locomotion with emphasis on minimal hand tuning for deployment and easy sim-to-real transfer which was to be used as a baseline policy in our future work.</p>
+<p>This has been accomplished using an energy minimization approach for the reward function along with other training specifics like curriculum learning.</p>
+<h2 id="hardware--software">Hardware &amp; Software</h2>
+<p>With the core belief of working towards a controller that can be deployed in real-world settings, it is extremely crucial that the entire framework of both software and hardware be scale-able and economically viable. We therefore went ahead with a commercially available quadruped
+platform rather than creating our own quadrupedal platform that might make the results more difficult to verify and the solution equally harder to be deployed in a commercial scale. Similar decisions have been taken wherever crucial decisions had to be taken.</p>
+<h3 id="aliengo">AlienGo</h3>
+<p>The AlienGo quadrupedal platform (can be seen in the figure below) by Unitree Robotics first launched in 2018 was our choice for this research study as it strikes the perfect balance between economical cost, features and capabilities. Further, quadruped robots from Unitree Robotics have been one of the most common choice among research labs across the globe. Some select parameters of the robot are listed below:</p>
+<ul>
+ <li><strong>Body size</strong>: 650x310x500mm (when standing)
+ <li><strong>Body weight</strong>: 23kg
+ <li><strong>Driving method</strong>: Servo Motor
+ <li><strong>Degree of Freedom</strong>: 12
+ <li><strong>Structure/placement design</strong>: Unique design (patented)
+ <li><strong>Body IMU</strong>: 1 unit
+ <li><strong>Foot force sensor</strong>: 4 units (1 per foot)
+ <li><strong>Depth sensor</strong>: 2 units
+ <li><strong>Self-position estimation camera</strong>: 1 unit
+</ul>
+<p><img src="/assets/img/Energy-DRL/Aliengo.jpg" alt="image1" class="shadow" /></p>
+<h3 id="mujoco">MuJoCo</h3>
+<p>MuJoCo has been our choice for simulation as it is a free and open source physics engine that is widely used in the industry for research and development in robotics, biomechanics, graphics and animation. Also, we have observed that it is able to simulate contact dynamics more accurately and was also faster in most of our use cases when compared to other available options. We have also used Ray an open-source compute framework for parallelization of our training.</p>
+<h3 id="training-platform">Training Platform</h3>
+<p>Our primary training platform is the GDEP Deep Learning BOX some select system parameters are mentioned below:</p>
+<ul>
+ <li><strong>CPU</strong>: AMD Ryzen Threadripper PRO 5975WX
+ <li><strong>Num. Cores</strong>: 32
+ <li><strong>RAM</strong>: 128GB
+ <li><strong>GPU</strong>: Nvidia RTX A6000 x 2
+</ul>
+<h2 id="rl-framework">RL Framework</h2>
+<h3 id="state-space">State Space</h3>
+<p>As stated in <a href="https://arxiv.org/abs/1804.10332">Jie Tan et al. Sim-to-Real: Learning Agile Locomotion For Quadruped Robots</a> the choice of state space has a direct impact on the sim to real transfer, we note that this can be primarily summarized as the fewer dimensions in the state space the easier it is to do a sim to real transfer as the noise and drift increase with an increase in the number of parameters being included in the state space. Many of the recent papers on quadruped locomotion therefore try to avoid using parameters that are noisy or tend to drift such as yaw from the IMU and force values from the foot sensors. While a few papers use methods like supervised learning and estimation techniques to counter the noise and drift in sensor data we decided to eliminate the use of such parameters all together as it didn’t result in any drastic change in the performance of learning policy. Our final state space has 230(46x5) dimensions and its breakdown is listed below:</p>
+<ul>
+ <li>$[\omega_x,\omega_y,\omega_z]$ - root angular velocity in the local frame
+ <li>$[\theta]$ - joint angles
+ <li>$[\dot{\theta}]$ - joint velocities
+ <li>$[c]$ - binary foot contacts
+ <li>$[v_x^g,v_y^g,\omega_z^g]$ - goal velocity
+ <li>$[a_{t-1}]$ - previous actions
+ <li>$[s_0,s_1,s_2,s_3]$ - history of the previous four states
+</ul>
+<p>The goal velocity consists of three components linear velocity in x and y axis along with angular velocity along the z axis, we have discarded the roll, pitch, yaw and linear velocities that are usually included in the state space for reasons mentioned above. Further, although aliengo has force sensors that can give the magnitude of the force we decided to use a threshold and use binary representation for foot contacts as there is significant noise and drift in the readings.</p>
+<h3 id="action-space">Action Space</h3>
+<p>As stated in <a href="https://doi.org/10.1145%2F3099564.3099567">Michiel van de Panne et al. “Learning locomotion skills using DeepRL: does the choice of action space matter? ”</a>, the choice of action space directly effects the learning speed and hence we went ahead with joint angles as the action space representation, further to strongly center all our gait from the neutral standing pose of the robot. The policy outputs are added around the joint position values of the neutral standing pose joint angles before being fed into a low-gain PD controller that outputs the final joint torque values. The final control scheme can be seen here</p>
+<p><img src="/assets/img/Energy-DRL/control_scheme.png" alt="image1" class="shadow" /></p>
+<h3 id="learning-algorithm">Learning Algorithm</h3>
+<p>Given the continuous nature of the state and action space Approx methods are essential. We went ahead with <a href="https://arxiv.org/pdf/1707.06347.pdf">Proximal Policy Optimization Algorithm</a> that is based on the Actor-Critic Framework as it do not require extensive hyperparamter tuning and are in general is quite stable. We use a Multi Layered Perceptron architecture with 2 hidden layers of size 256 units each and ReLU activation to represent both the actor and critic networks.</p>
+<h4 id="hyperparameters">Hyperparameters</h4>
+<p>The hyperparameters were taken from standard implementations which are typically the same across many of the papers. The values have been listed below:</p>
+<ul>
+ <li><strong>Parallel Instances</strong>: 32
+ <li><strong>Minibatch size</strong>: 512
+ <li><strong>Evaluation freq</strong>: 25
+ <li><strong>Adam learning rate</strong>: 1e-4
+ <li><strong>Adam epsilon</strong>: 1e-5
+ <li><strong>Generalized advantage estimate discount</strong>: 0.95
+ <li><strong>Gamma</strong>: 0.99
+ <li><strong>Anneal rate for standard deviation</strong>: 1.0
+ <li><strong>Clipping parameter for PPO surrogate loss</strong>: 0.2
+ <li><strong>Epochs</strong>: 3
+ <li><strong>Max episode horizon</strong>: 400
+</ul>
+<h3 id="reward-function">Reward Function</h3>
+<p>The goal for any reinforcement learning policy is to maximize the total reward/expected reward collected. While the state and action space definitely effect the learning rate and stability of the policy, the reward function defines the very nature of the learning policy. The wide variety of literature available on locomotion policies for quadrupeds while almost the same with respect to
+the state and action space has diversity mostly due to the choice of the reward function.</p>
+\[\begin{aligned}
+\text{Total Reward} &amp;= \text{Energy Cost} + \text{Survival Reward} + \text{Goal Velocity Cost} \\
+\text{Energy Cost} &amp;= C_1\tau\omega \\
+\text{Survival Reward} &amp;= C_2|v_x^g| + C_3|v_y^g| + C_4|\omega_z^g| \\
+\text{Goal Velocity Cost} &amp;= -C_2|v_x-v_x^g| - C_3|v_y-v_y^g| - C_4|\omega_z - \omega_z^g| \\
+\end{aligned}\]
+<p>Where $C_1,C_2,C_3,C_4$ are constants that have to be picked.</p>
+<p>We believe that the primary reason reinforcement learning based policies generalize poorly is due to the excessive number of artificial costs added to the reward function for achieving locomotion. Inspired by <a href="https://arxiv.org/abs/2111.01674">Zipeng Fu et al. Minimizing Energy Consumption Leads to the Emergence of Gaits in Legged Robots</a>, we base our reward function on the principle of energy minimization. Another added benefit of energy minimization based policy is the fact that different goal velocity commands result in different gaits. As explained in <a href="">Christopher L. Vaughan et al. “Froude and the contribution of naval architecture to our understanding of bipedal locomotion.”</a>, this is consistent with how animals
+behave and is because a particular gait is only energy efficient for a particular range of goal velocities.</p>
+<h3 id="curriculum-learning">Curriculum Learning</h3>
+<p>Curriculum learning is a method of training reinforcement learning (RL) agents in which the difficulty of tasks or environments is gradually increased over time. This approach is based on the idea that starting with simpler tasks and gradually increasing the complexity can help the
+agent learn more efficiently. The agent can focus on mastering basic skills needed to solve the initial tasks before attempting to tackle more complex ones. There are two ways in which curriculum learning is usually implemented. One is to use a pre-defined set of tasks or environments that are ordered by increasing difficulty. The agent is trained on these tasks in a specific order, with the difficulty of the tasks increasing as the agent progresses through the curriculum. Another approach is to use a dynamic curriculum, where the difficulty of the tasks is adjusted based on the agent’s performance. For instance, if the agent struggles with a particular task, the difficulty of that task may be reduced, while the difficulty of easier tasks may be increased to provide more challenge. We use Curriculum learning in a variety of ways to tackle a varity of issues as discussed below.</p>
+<h4 id="cost-curriculum">Cost Curriculum</h4>
+<p>The high energy cost with low reward for smaller values of goal velocity make it extremely difficult for the agent to learn walking at low goal speeds as it settles in a very attractive local minima of standing still and not moving at all to reduce the cost associated with energy rather
+than to learn how to walk. Using a Cost Curriculum, we first let the agent walk at the required low speed with almost zero energy cost and once the agent learns a reasonable gait we slowly increase the cost to its original value so that the gait is fine tuned to be energy efficient.</p>
+<h4 id="terrain-curriculum">Terrain Curriculum</h4>
+<p>For increasing robustness against external perturbation and for better adaptability to real world use cases where the ground is not plane and uniform, it is useful to train the agent in uneven terrain during simulation. But introducing difficult terrain from the beginning of the training might hinder the learning and in some cases the agent might never completely solve the task as the difficulty is too high. Using terrain curriculum enables us to start with a flat plain initially
+and gradually increase the difficult of the terrain to make sure the learning rate is not too difficult that the agent makes no progress at all. We train the agent across two different terrains (Plain
+and Triangle) and test the learnt policy in 2 additional environments (slope and rough).
+<img src="/assets/img/Energy-DRL/terrain_types.png" alt="image1" class="shadow" /></p>
+<h4 id="velocity-curriculum">Velocity Curriculum</h4>
+<p>Training the agent for a single goal velocity while might result in faster training speed, having the ability to smoothly transition between various goal speeds is often crucial and this is especially
+important when we want the policy to adapt to any combination of linear and angular velocity given during evaluation by the user. Therefore, using a velocity curriculum enables us to randomize and cover the whole input velocity domain systematically.</p>
+<h3 id="terminal-conditions">Terminal Conditions</h3>
+<p>Termination conditions enable faster learning as they help the agent only explore states which are useful to the task by stopping the episode as soon as the agent reaches a state from which it cannot recover and any experience gained by the agent from that state onwards does not help
+the agent learn or get better at solving the task at hand. We use two termination conditions to help increase the training speed, both of which are discussed below</p>
+<h4 id="minimum-trunk-height">Minimum Trunk Height</h4>
+<p>This condition ensures that the Center of Mass of the trunk is above 30cm from the ground plane as any kind of walking gait should ensure that the trunk height isn’t too low from the ground. This enable the agent to learn how to stand from a very early stage in the training
+speeding up the overall learning.</p>
+<h4 id="bad-contacts">Bad Contacts</h4>
+<p>This condition ensures that the only points of contact the agent has with the ground plane are through the feet and no other parts of the agent are in contact with the ground plane. This minimizes the probability of the agent learning gaits or behaviours which result in collision between the agents body and the ground plane minimizing damage to agent body and other mechanical parts during deployment.</p>
+<h3 id="sim-to-real">Sim to Real</h3>
+<p>Sim-to-real transfer refers to the problem of transferring a reinforcement learning agent that has been trained in a simulated environment to a real-world environment. This is a challenging
+problem because the simulated environment is typically different from the real-world environment in many ways, such as the dynamics of the system, the sensors and actuators, and the noise and
+uncertainty present in the system.</p>
+<p>We employ a mix of domain randomization and system identification for sim-to-real transfer.</p>
+<h2 id="results">Results</h2>
+<p>The energy minimization based policy is able to adjust its gait to the most optimal gait based on the given goal velocity. Traditional policies that do not use energy minimization are only able to exhibit a
+single gait.</p>
+<p>All the below videos/picture frames are from a single policy with no changes made other than the goal speed.</p>
+<h3 id="gaits">Gaits</h3>
+<h4 id="walk">Walk</h4>
+<iframe width="640" height="385" src="https://youtube.com/embed/55T5ESUYwDY" frameborder="0" allowfullscreen=""></iframe>
+<p>Generating walking gait at low-speed required the use of curriculum learning as the agent found an attractive local minima where It would just stand still without moving to avoid energy costs
+at low speeds. Furthermore, curriculum learning was used as the primary sim to real transfer technique along with domain randomization.</p>
+<p><img src="/assets/img/Energy-DRL/walking_gait.png" alt="image1" class="shadow" />
+Terrain curriculum in particular resulted in better foot-clearance and made the agent robust to external perturbations enabling the robot to walk on extremely difficult terrain.
+<img src="/assets/img/Energy-DRL/curr_example.png" alt="image1" class="shadow" /></p>
+<h4 id="trot">Trot</h4>
+<iframe width="640" height="385" src="https://youtube.com/embed/590fHeeqymI" frameborder="0" allowfullscreen=""></iframe>
+<iframe width="640" height="385" src="https://youtube.com/embed/hgjm5DERYGM" frameborder="0" allowfullscreen=""></iframe>
+<p>This is one of the most commonly generated gait for use in legged locomotion, while other methods are able to generate trotting gait we believe that our method enables us to use less
+energy and torque to reach the same target velocities.
+<img src="/assets/img/Energy-DRL/trotting-gait.png" alt="image1" class="shadow" /></p>
+<h4 id="gallop">Gallop</h4>
+<iframe width="640" height="385" src="https://youtube.com/embed/bCSGomO10ps" frameborder="0" allowfullscreen=""></iframe>
+<p>While we see a Galloping gait emerge at goal speeds greater than 1.65 m/s in simulation, we need to test if the robot hardware can physically achieve this speed and therefore exhibit the
+gallop gait. The other possible alternative is to use a much lower energy cost to make the agent
+exhibit the gallop gait at a lower goal velocity.
+<img src="/assets/img/Energy-DRL/gallop.png" alt="image1" class="shadow" /></p>
+<h3 id="directional-control">Directional Control</h3>
+<iframe width="640" height="385" src="https://youtube.com/embed/M02tf4fWIHI" frameborder="0" allowfullscreen=""></iframe>
+<iframe width="640" height="385" src="https://youtube.com/embed/H85NNuzPzLM" frameborder="0" allowfullscreen=""></iframe>
+<p>Using velocity curriculum described above, the agent is trained using a random goal velocity vector that consists of linear and angular velocity components. This enables the agent
+to learn not only how to walk but also how to bank and turn in the process.
+<img src="/assets/img/Energy-DRL/directional_control.png" alt="image1" class="shadow" /></p>
+<h3 id="emergence-of-asymmetrical-gait">Emergence of Asymmetrical Gait</h3>
+<p>Training in extremely uneven terrain leads to the emergence of asymmetrical gait that maintains
+a low center of gravity and shows almost a crab like walking behaviour which is persistent even
+when the policy is deployed on a smoother terrain. The results of the training are labelled as
+<strong>CP2</strong> and have been described in the latter sections.
+<img src="/assets/img/Energy-DRL/special_gait.png" alt="image1" class="shadow" /></p>
+<h3 id="adaptation-to-unseen-terrain">Adaptation to Unseen Terrain</h3>
+<p>While the agent has been trained in the triangle terrain, the learnt policy is able to successfully
+walk on new terrain that it has not seen during training. The base-policy is referred to as <strong>BP</strong>,
+the base policy is then subjected to two different curriculum resulting in policies <strong>CP1</strong> and <strong>CP2</strong>.
+While both <strong>CP1</strong> and <strong>CP2</strong> are trained in the <strong>Triangle Terrain 1 &amp; 2</strong> the maximum height of the triangular peaks for <strong>CP2</strong> is 0.12m <strong>(Triangle Terrain 2)</strong> while it is 0.10m for <strong>CP1</strong>
+<strong>(Triangle Terrain 1)</strong>.
+All the three curriculum’s have been tested on unseen terrains rough with maximum peak height of 0.12m and slopes with max slope height of 0.8m and slope of 32 degrees. The results are as
+follows:
+<img src="/assets/img/Energy-DRL/RewardVsTimestepforPlainTerrain.svg" alt="image1" class="shadow" /></p>
+<p><img src="/assets/img/Energy-DRL/RewardVsTimestepforRoughTerrain.svg" alt="image1" class="shadow" /></p>
+<p><img src="/assets/img/Energy-DRL/RewardVsTimestepforSlopeTerrain.svg" alt="image1" class="shadow" /></p>
+<p><img src="/assets/img/Energy-DRL/RewardVsTimestepforTriangleTerrain1.svg" alt="image1" class="shadow" /></p>
+<p><img src="/assets/img/Energy-DRL/RewardVsTimestepforTriangleTerrain2.svg" alt="image1" class="shadow" /></p>
+<h3 id="inference">Inference</h3>
+<p>While <strong>CP2</strong> has a clear advantage when deployed in <strong>Triangle Terrain 2</strong>, it performs almost as good as or slightly worse than <strong>CP1</strong> in all the other test cases. Furthermore, it is clearly visible that <strong>BP</strong> isn’t suitable for most of the testing environment as it flat-lines pretty early. While <strong>CP2</strong> learns a more stable gait pattern it is slower and requires lot more movement by the agent which results in <strong>CP1</strong> gaining a few points over it as <strong>CP1</strong> can quickly cover the velocity cost.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Most of the current reinforcement learning based policies use highly constrained rewards due to
+which the locomotion policy developed doesn’t use the entire solution space. Energy minimization
+based policy is able to adjust its gait to the most optimal gait based on the goal velocity.
+Traditional policies that do not use energy minimization are only able to exhibit a single gait.</p>
+<h3 id="current-limitations">Current Limitations</h3>
+<p>The current implementation of the policy although exhibits different gaits when trained at
+different goal velocities, it fails to learn more than one gait during a single training run. We
+believe this is due to the difference in the weights of the network for different gaits. Also, while
+training in extremely unstructured environments leads to the emergence of asymmetrical gait
+that is extremely stable, the policy seems to forget the older gait and tends to use this gait even
+when deployed later on plain terrain</p>
+     </div>
+     <div class="post-tail-wrapper text-muted">
+       <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+            <a href='/categories/projects/'>Projects</a>,
+            <a href='/categories/quadrupeds/'>Quadrupeds</a>
+       </div>
+       <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          <a href="/tags/mdp/"
+            class="post-tag no-text-decoration" >mdp</a>
+          <a href="/tags/optimal-value/"
+            class="post-tag no-text-decoration" >optimal value</a>
+          <a href="/tags/bellman/"
+            class="post-tag no-text-decoration" >bellman</a>
+         </div>
+       <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+         <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+         </div>
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+        <a href="https://twitter.com/intent/tweet?text=Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds - Jai Krishna&url=https://textzip.github.io/posts/Energy-DRL/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds - Jai Krishna&u=https://textzip.github.io/posts/Energy-DRL/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+        <a href="https://telegram.me/share?text=Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds - Jai Krishna&url=https://textzip.github.io/posts/Energy-DRL/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+  </span>
+</div>
+       </div>
+     </div>
+   </div>
+ </div>
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+ <div class="access">
+   <div id="access-lastmod" class="post">
+      <span>Recent Update</span>
+     <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+       <li><a href="/posts/Loco-DRL/">Proprioceptive Locomotion in Unstructured Environments</a>
+       <li><a href="/posts/FTG-DRL/">Policy Modulated Trajectory Generation for Quadrupeds</a>
+       <li><a href="/posts/NST-DRL/">Neural Style Transfer for Locomotion</a>
+       <li><a href="/posts/LIDAR-DRL/">Locomotion with Weighted Belief in Exteroception</a>
+       <li><a href="/posts/BiMan-DRL/">Bi-Manual Loco-Manipulation in Quadrupeds for Opening Doors</a>
+     </ul>
+   </div>
+   <div id="access-tags">
+      <span>Trending Tags</span>
+     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+     </div>
+   </div>
+ </div>
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+   <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+     <nav id="toc" data-toggle="toc"></nav>
+   </div>
+</div>
+</div>
+<div class="row">
+ <div class="col-12 col-lg-11 col-xl-8">
+   <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+ <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+   <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+   <div class="card-deck mb-4">
+     <div class="card">
+        <a href="/posts/DRL-0/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1674027800"
+    >
+  2023-01-18
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Deep Reinforcement Learning - Part 0 - Getting Started</h3>
+           <div class="text-muted small">
+             <p>
+                Getting into deep reinforcement learning is a tough but rewarding journey. The primary reason it is so difficult for beginners is due to the shear number of fields involved. Deep Reinforcement Lear...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/DRL-3/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1674200600"
+    >
+  2023-01-20
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Deep Reinforcement Learning - Part 3 - Dynamic Programming</h3>
+           <div class="text-muted small">
+             <p>
+                This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.
+...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/DRL-4/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1674459800"
+    >
+  2023-01-23
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Deep Reinforcement Learning - Part 4 - Monte Carlo, Temporal Difference & Bootstrapping Methods</h3>
+           <div class="text-muted small">
+             <p>
+                This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.
+...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+   </div>
+ </div>
+<div class="post-navigation d-flex justify-content-between">
+  <a href="/posts/DRL-2/" class="btn btn-outline-primary"
+    prompt="Older">
+   <p>Deep Reinforcement Learning - Part 2 - Finite MDP</p>
+  </a>
+  <a href="/posts/DRL-0/" class="btn btn-outline-primary"
+    prompt="Newer">
+   <p>Deep Reinforcement Learning - Part 0 - Getting Started</p>
+  </a>
+</div>
+    <script src="https://utteranc.es/client.js"
+        repo="TextZip/textzip.github.io"
+        issue-term="title"
+        theme="dark-blue"
+        crossorigin="anonymous"
+        async>
+    </script>
+   </div>
+ </div>
+</div>
+<footer class="d-flex w-100 justify-content-center">
+ <div class="d-flex justify-content-between align-items-center">
+   <div class="footer-left">
+     <p class="mb-0">
+        © 2025
+        <a href="https://github.com/TextZip">Bandi Jai Krishna</a>.
+        <span data-toggle="tooltip" data-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+     </p>
+   </div>
+   <div class="footer-right">
+     <p class="mb-0">
+        Powered by
+        <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+        with
+        <a href="https://github.com/cotes2020/jekyll-theme-chirpy"
+          target="_blank" rel="noopener">Chirpy</a>
+        theme.
+     </p>
+   </div>
+ </div>
+</footer>
+     </div>
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+ <div class="col-12 col-sm-11 post-content">
+   <div id="search-hints">
+     <h4 class="text-muted mb-4">Trending Tags</h4>
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+   </div>
+   <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+ </div>
+</div>
+   </div>
+   <div id="mask"></div>
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script>
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('search-results'),
+  json: '/assets/js/data/search.json',
+  searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="https://textzip.github.io{url}">{title}</a> <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags} </div><p>{snippet}</p></div>',
+  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  templateMiddleware: function(prop, value, template) {
+    if (prop === 'categories') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+      }
+    }
+    if (prop === 'tags') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      }
+    }
+  }
+});
+</script>
+  

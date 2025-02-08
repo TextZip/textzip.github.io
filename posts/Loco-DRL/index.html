@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en-US" 
+>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Proprioceptive Locomotion in Unstructured Environments" />
+<meta name="author" content="Jai Krishna" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A portfolio of my adventures in robotics, electronics and mechanical along with tutorials on topics related to robotics." />
+<meta property="og:description" content="A portfolio of my adventures in robotics, electronics and mechanical along with tutorials on topics related to robotics." />
+<link rel="canonical" href="https://textzip.github.io/posts/Loco-DRL/" />
+<meta property="og:url" content="https://textzip.github.io/posts/Loco-DRL/" />
+<meta property="og:site_name" content="Jai Krishna" />
+<meta property="og:image" content="https://textzip.github.io/assets/img/Loco-DRL/cover2.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-08T13:13:20+05:30" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://textzip.github.io/assets/img/Loco-DRL/cover2.png" />
+<meta property="twitter:title" content="Proprioceptive Locomotion in Unstructured Environments" />
+<meta name="twitter:site" content="@twitter_username" />
+<meta name="twitter:creator" content="@Jai Krishna" />
+<meta name="google-site-verification" content="google_meta_tag_verification" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jai Krishna"},"dateModified":"2025-02-08T02:21:04+05:30","datePublished":"2023-05-08T13:13:20+05:30","description":"A portfolio of my adventures in robotics, electronics and mechanical along with tutorials on topics related to robotics.","headline":"Proprioceptive Locomotion in Unstructured Environments","image":"https://textzip.github.io/assets/img/Loco-DRL/cover2.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://textzip.github.io/posts/Loco-DRL/"},"url":"https://textzip.github.io/posts/Loco-DRL/"}</script>
+ <title>Proprioceptive Locomotion in Unstructured Environments | Jai Krishna
+ </title>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jai Krishna">
+<meta name="application-name" content="Jai Krishna">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script defer
+    src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+  <script async
+    src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
+  <script>
+  /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+  MathJax = {
+    tex: {
+      inlineMath: [              /* start/end delimiter pairs for in-line math */
+        ['$','$'],
+        ['\\(','\\)']
+      ],
+      displayMath: [             /* start/end delimiter pairs for display math */
+        ['$$', '$$'],
+        ['\\[', '\\]']
+      ]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  <script defer src="/app.js"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-KGYYX7MFB2"
+></script>
+<script>
+  /* global dataLayer */
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-KGYYX7MFB2");
+</script>
+ <body data-spy="scroll" data-target="#toc">
+<div id="sidebar" class="d-flex flex-column align-items-end">
+ <div class="profile-wrapper text-center">
+   <div id="avatar">
+      <a href="/" alt="avatar" class="mx-auto">
+        <img src="/assets/img/profile.jpg" alt="avatar" onerror="this.style.display='none'">
+      </a>
+   </div>
+   <div class="site-title mt-3">
+      <a href="/">Jai Krishna</a>
+   </div>
+   <div class="site-subtitle font-italic">Robotics | Electronics | Design</div>
+ </div>
+ <ul class="w-100">
+   <li class="nav-item">
+      <a href="/" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>HOME</span>
+      </a>
+   <li class="nav-item">
+      <a href="/projects/" class="nav-link">
+        <i class="fa-fw fas fa-microchip ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>PROJECTS</span>
+      </a>
+   <li class="nav-item">
+      <a href="/resources/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>RESOURCES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/categories/" class="nav-link">
+        <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>CATEGORIES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/archives/" class="nav-link">
+        <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ARCHIVES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/about/" class="nav-link">
+        <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ABOUT | CONTACT</span>
+      </a>
+   <li class="nav-item">
+      <a href="/tags/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>TAGS</span>
+      </a>
+ </ul>
+ <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
+      <a href="https://github.com/TextZip" aria-label="github"
+        class="order-3"
+        target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="
+          javascript:location.href = 'mailto:' + ['textzip','gmail.com'].join('@')" aria-label="email"
+        class="order-4"
+        >
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/jai-krishna-bandi" aria-label="linkedin"
+        class="order-5"
+        target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+        <span class="icon-border order-2"></span>
+      <span id="mode-toggle-wrapper" class="order-1">
+<i class="mode-toggle fas fa-adjust"></i>
+<script type="text/javascript">
+  class ModeToggle {
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+      var self = this;
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addListener(function() {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+          self.clearMode();
+        }
+        self.updateMermaid();
+      });
+    } /* constructor() */
+    setDark() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+    setLight() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+    clearMode() {
+      $('html').removeAttr(ModeToggle.MODE_KEY);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+    get hasMode() { return this.mode != null; }
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode
+        || (!this.hasMode && this.isSysDarkPrefer) ) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+    updateMermaid() {
+      if (typeof mermaid !== "undefined") {
+        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
+        let config = { theme: expectedTheme };
+        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $(".mermaid").each(function() {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr("data-processed");
+          $(this).html(svgCode);
+        });
+        mermaid.initialize(config);
+        mermaid.init(undefined, ".mermaid");
+      }
+    }
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+      this.updateMermaid();
+    } /* flipMode() */
+  } /* ModeToggle */
+  let toggle = new ModeToggle();
+  $(".mode-toggle").click(function() {
+    toggle.flipMode();
+  });
+</script>
+      </span>
+ </div>
+</div>
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+ <div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+    <span id="breadcrumb">
+        <span>
+          <a href="/">
+            Posts
+          </a>
+        </span>
+          <span>Proprioceptive Locomotion in Unstructured Environments</span>
+    </span>
+    <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+   <div id="topbar-title">
+      Post
+   </div>
+    <i id="search-trigger" class="fas fa-search fa-fw"></i>
+    <span id="search-wrapper" class="align-items-center">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search"
+        aria-label="search" autocomplete="off" placeholder="Search...">
+      <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+    </span>
+    <span id="search-cancel" >Cancel</span>
+ </div>
+</div>
+   <div id="main-wrapper">
+     <div id="main">
+<div class="row">
+ <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+   <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+     <h1 data-toc-skip>Proprioceptive Locomotion in Unstructured Environments</h1>
+     <div class="post-meta text-muted d-flex flex-column">
+       <div>
+          <span class="semi-bold">
+            Bandi Jai Krishna
+          </span>
+<em class="timeago"
+    data-ts="1683531800"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Mon, May  8, 2023,  1:13 PM +0530"
+    >
+  2023-05-08
+</em>
+       </div>
+       <div>
+          <span>
+<em class="timeago lastmod"
+    data-ts="1738961464"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Sat, Feb  8, 2025,  2:21 AM +0530"
+    >
+  2025-02-08
+</em>
+          </span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2284 words">12 min</span>
+       </div>
+     </div>
+     <div class="post-content">
+       <p><img src="/assets/img/Loco-DRL/cover.png" alt="Image1" class="shadow" /></p>
+<p>The following post goes over and outlines a few methods for training a blind locomotion policy for a quadruped robot, most of the work shown here has been done during my time at the <a href="https://unit.aist.go.jp/jrl-22022/index_en.html">CNRS-AIST JRL (Joint Robotics Laboratory), IRL, Japan</a> for my undergraduate thesis under the supervision of <a href="https://unit.aist.go.jp/jrl-22022/en/members/member-morisawa.html">Dr. Mitsuharu Morisawa</a> with support from <a href="https://unit.aist.go.jp/jrl-22022/en/members/member-singh.html">Rohan Singh</a>.</p>
+<blockquote>
+ <p><strong>Note:</strong> Detailed results and video clips can be found in the <a href="#results">Results</a> section below.</p>
+</blockquote>
+<p>The following GitHub Repo can be used to replicate the results from the videos show in this blog post.</p>
+<p><a href="https://github.com/TextZip/go1-rl-kit"><img src="https://gh-card.dev/repos/TextZip/go1-rl-kit.svg" alt="TextZip/go1-rl-kit - GitHub" /></a></p>
+<p>This work is a continuation of my previous post that can be found <a href="https://textzip.github.io/posts/Energy-DRL/">here</a>.</p>
+<p>Let’s establish a few priors and baselines so that we can gradually build on top of them to achieve what can be considered a robust proprioceptive baseline.</p>
+<h2 id="base-policy">Base Policy</h2>
+<p><img src="/assets/img/Loco-DRL/base_policy.png" alt="Base Policy" class="shadow" /></p>
+<p>The simplest policy can be designed by passing the current state of the robot $S_t$ — which consists of joint velocities, joint positions, roll, pitch, base angular velocity, and user commands — along with the actions from the previous timestep $a_{t-1}$, into a Multi-Layer Perceptron (MLP) network. The MLP outputs actions that are then used to compute the joint angles.</p>
+<h2 id="base-policy-with-observation-history">Base Policy with Observation History</h2>
+<p>While the base policy with only the previous timestep’s actions is a good starting point, it works well <em>only</em> when the quadruped is walking on a flat surface. Introducing even the smallest obstacles can cause the robot to stumble and fall. This shouldn’t come as a surprise since the policy has no awareness of what occurred outside the current timestep. Reacting to external disturbances based solely on a single timestep is difficult, so the next logical upgrade is to provide the policy with a history of past states to improve its ability to handle disturbances.</p>
+<p>This can be achieved in various ways. For example, the MLP can be replaced with an RNN-based approach like LSTM or GRU. However, since we are building things from the ground up, we’ll use a simpler method: concatenating the previous 4 states with the current state to create a total of 5 states within a sliding window.</p>
+<p><img src="/assets/img/Loco-DRL/base_policy_ob_history.png" alt="Base Policy with Observation History" class="shadow" /></p>
+<p>For this particular use case, I found empirically that performance improves as the state window increases from 0 to 4. Beyond this, the gains become insignificant, so I limited the window to 4 past states. Your mileage may vary, so feel free to experiment with the window size. If you want to consider much longer horizons, such as 50 or 100 past states, running these states through a 1D CNN layer before feeding them into the base policy can help avoid creating an excessively large input layer.</p>
+<h3 id="effects-of-observation-history">Effects of Observation History</h3>
+<p>At this point, you might be curious (and perhaps a little impatient) to test whether adding just 4 past states actually makes a difference. Here’s a plot illustrating the impact of observation history:</p>
+<p><img src="/assets/img/Loco-DRL/comp_base_vs_history.png" alt="Comparison: Base Policy vs Observation History" class="shadow" /></p>
+<p>Leaving aside the cringe-worthy names in the plot legend and using the labels at the bottom, it’s clear that the agent reaches the full episode length (i.e., the agent doesn’t “die”) much sooner when provided with observation history. Additionally, the reward collected by the agent is higher when observation history is included.</p>
+<p>It’s important to note that while the difference between the two architectures appears to narrow as the number of steps increases, their performances do not completely merge or match. (evident from the steady state difference in their rewards)</p>
+<p>To give a more concrete idea of how all this actually performs on a real robot, here is a quick test of the Base Policy with Observation History compared against the default MPC controller for the Unitree Go1 Robot.</p>
+<iframe width="640" height="385" src="https://youtube.com/embed/-cx2S0UZeyg" frameborder="0" allowfullscreen=""></iframe>
+<p>Note that the default controller experiment had to be cut short due to the fact that the constant trotting by the MPC was causing the robot to swerve to the sides and would have likely resulted in a fall if the experiment continued.</p>
+<p>Here is another quick outdoor run using the default MPC controller and the Base Policy with Observation History.</p>
+<iframe width="640" height="385" src="https://youtube.com/embed/-cx2S0UZeyg" frameborder="0" allowfullscreen=""></iframe>
+<p>Do note that the default MPC controller couldn’t even go over the initial ledge. While the RL controller was able to do it somtimes, you can clearly see the shotcomings of both the controllers. Now lets take a look at the next possible upgrade to improve our RL controller.</p>
+<iframe width="640" height="385" src="https://youtube.com/embed/YXFAZwNgo7Y" frameborder="0" allowfullscreen=""></iframe>
+<h2 id="privileged-information">Privileged Information</h2>
+<p>Privileged Information refers to the set of observations that are typically not available in the real world but can easily be obtained inside a physics engine/simulation. Some of this information might be relavent and can improve the performance of the base policy significantly if provided.</p>
+<p><img src="/assets/img/Loco-DRL/oracle.png" alt="Privileged Information" class="shadow" /></p>
+<p>For example, it might be of use to give the friction cofficient of the surface the robot is currently walking on as an input to the policy but in real life its hard to retrofit the robot with sensors to measure the friction.</p>
+<p>A small note on the nomeclature, a policy that is directly fed in priviliged information is typically refered to as an oracle since it symbolizes the best case performance a policy can achieve in an ideal sitatuion where any information needed can be supplied, in some cases such an oracle is also refered to as a teacher since its used to teach other policies. TLDR: Base Policy with Privileiged information is sometimes also called as a teacher or an oracle.</p>
+<p>At this point you might be wondering what is the point of discussing about such information that is not easy to read or measure in the real world since our final goal is to deploy policies on a real robot. Well reader, while its not easy to measure these parameters in the real world it doesn’t stop us from indirectly infereing these values by other means.</p>
+<p>For example even in humans, while we cannot in many cases look at the surface and guess the friction we can definetly get a feel of the friction the movement we start walking over it, this could be due to the difference in effort required to move our leg or the rate at which our leg moves for a given effort and so on… therefore we can indirectly feel the friction via our senses.</p>
+<p>Similarly, in this case we are interested in certain priviliged information metrics that while cannot be directly measured can be indirectly infered via other indirect metrics such as joint torques, joint velocities and so on via proprioception.</p>
+<h3 id="effects-of-privileged-information">Effects of Privileged Information</h3>
+<p>Before we dive into all the different ways in which privileged information can be indirectly obtained and infered, lets take a look at the ideal case where we have all the priviledged information we want and compare such a policies performance with the base policy that uses only observation history and a base policy without observation history.</p>
+<p><img src="/assets/img/Loco-DRL/obs_oracle.png" alt="Privileged Information" class="shadow" />
+Let’s try to spend some time to understand the plots in the above image, the orange line represents the base policy with only observation history whereas the gray plot represents the base policy with priviliged information and observation history.</p>
+<p>As you can notice from the plot on terrain level, the priviliged information policy reaches terrains with higher difficulty level faster when compared to the policy that just uses observation history. The plot of mean reward is a clear indicator that while both the policies might reach the max episode length, the priviliged information based policy clearly scores a higher reward when comapred to the policy with only observation history.</p>
+<p>Another interesting point to keep in mind is that the episode length plot has some intial ups and downs where at one point the policy with only observation history seems to be surviving for longer when compared to the policy with privileged information and if this seems counter intutive, keep in mind that the policy with the privilieged information is also progressing towards much more difficult terrain as can be infered from the terrain level plot and this could result in its episode length going slightly lower.</p>
+<h2 id="transfer-learning-methods-to-use-priviliged-information">Transfer Learning Methods to use Priviliged Information</h2>
+<p>Let us now shift our focus towards how we can infer priviliged information indirectly so that they can be used during real world deployments. If implemented properly we are looking for a performance that is better than the base policy with just observation history but is lower than the performance of the oracle/teacher. (Take a look at the reward plot from the picture above - we want to basically introduce a new method that will lie between the lines)</p>
+<p>Almost all the methods that try to infer privileged information try to derive this either explicitly or implicitly from the observation history. And likewise most methods that have a training component in simulation try to build an oracle/teacher and use a transfer learning/knowledge distillation framework.</p>
+<h3 id="teacher---student-architecture">Teacher - Student Architecture</h3>
+<p><img src="/assets/img/Loco-DRL/teacher_student.gif" alt="Privileged Information" class="shadow" /></p>
+<blockquote>
+ <p>Note that while the network architeture is based on the original paper, the observations being passed have been tailored to our current use case.</p>
+</blockquote>
+<p>The first method we will take a look at is originally from a paper called learning by cheating, and is quite commonly referred to as the teacher-student transfer learning framework.</p>
+<p>This method consists of two-phases, the first phase involves the training of an oracle/teacher (typically done in simulation) with all the ground truth/privileged information given to the base policy as part of its observations.</p>
+<p>The second phase consists of freezing the trained teacher policy and training a seperate student network to mimic the outputs of the teacher network through regression without the privilieged information being passed in as observations.</p>
+<p>The important distinction to note here is the fact that the teacher and the student are two different networks with different sizes and the teacher cannot be copied or reused as a warmstarter for the student since the number of inputs for both (aka. their observations) are different.</p>
+<h3 id="rapid-motor-adaptation">Rapid Motor Adaptation</h3>
+<p><img src="/assets/img/Loco-DRL/RMA.gif" alt="Privileged Information" class="shadow" /></p>
+<blockquote>
+ <p>Note that while the network architeture is based on the original paper, the observations being passed have been tailored to our current use case.</p>
+</blockquote>
+<p>The second method we are going to take a look at tries to take a slightly different approach to essential obtain the same results(infer priviliged information) but with a few advantages and perks.</p>
+<p>This approach is from a paper titled “Rapid Motor Adaptation” where they essentially propose an architeture that will enable us to reuse the bases policy or the teacher network in the second phase of the training instead of starting with a fresh student network with random weights.</p>
+<p>This is accomplished by passing the priviliged information as latent information instead of their raw values during phase one of the training with the help of an encoder called the priviliged information encoder in the figure.</p>
+<p>During phase two training, a new network called the observation history encoder is trained to mimic the output of the privliged information encoder despite only being passed the observation history and the output of this network is used to replace the latent information that was being sent during phase one by the privilged information encoder. This enables us to reuse the teacher/base policy from phase one in phase two as well.</p>
+<p>One advantage of this method is the fact that since the privileged information is being compressed into a latent vector, more amount of privilieged information can be input to the encoders without the need for increasing the size of the network/input layers when compared to passing this data as raw values.</p>
+<h3 id="asym-actor-critic">Asym. Actor Critic</h3>
+<p>Our final method is called Asymmetrical Actor Critic that was originally published in “Asymmetric actor critic for image-based robot learning”. This method has several advantages and one of the most significant one is the fact that it has only a single phase of training involved.</p>
+<p>This is accomplished by passing the privilged information either in a latent state via an encoder or directly as raw inputs to the critic network, the idea behind this is the fact that the critic is used to compute the value function for state/action transitions and the more information the critic has the better it can assign value functions and therefore the better a critic can judge or help guide the actor, the better the actor performs and learns. While this method might seem like a solid replacement for the above two and a clear winner, it has a few pratical issues and perks that one should be aware of, one of them is the fact that this is a very indirect method of latent information transfer with no visibilty of the transfer to inspect or verify. Another is the fact that asym. actor-critic arch is prone to instability in certain scenarios which can lead to sudden collapses in the loss and/or value functions.</p>
+<p><img src="/assets/img/Loco-DRL/Asym_actor_critic.gif" alt="Privileged Information" class="shadow" /></p>
+<h2 id="results">Results</h2>
+<p><img src="/assets/img/Loco-DRL/PI_transfer_results.png" alt="Privileged Information" class="shadow" /></p>
+<p>In the final figure you can see that we have accomplished our objecteing sive of finding a method that would perform better than the observation history base line and be below the therotical limit of performace possible (i.e the oracle).</p>
+<p>Here is a video compilation of the above policy architeture trained and deployed on a Unitree Go1. If you wish to try out the pre-trained policy on your own Go1 robot, please refer to the GitHub Repo associated with this post.</p>
+<iframe width="640" height="385" src="https://youtube.com/embed/ZzzmQw8UGcA" frameborder="0" allowfullscreen=""></iframe>
+<p>While the training code for this paticular implementation cannot be shared at this point in time, the deployment code is a good starting point to understand the observations and the network arch being used, this combined with other resouces linked below will get you started training your own policy in no time. Furthermore, I will also provide links and discuss in more detail about sim2real for first time deplyoments and some more tips and tricks to get a policy sucessfully transfered from sim to your robot.</p>
+<p>Here is a video version of the above post as part of my JRL Seminar Talks</p>
+<iframe width="640" height="385" src="https://youtube.com/embed/WsgMt6tN6nI" frameborder="0" allowfullscreen=""></iframe>
+     </div>
+     <div class="post-tail-wrapper text-muted">
+       <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+            <a href='/categories/projects/'>Projects</a>,
+            <a href='/categories/quadrupeds/'>Quadrupeds</a>
+       </div>
+       <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          <a href="/tags/reinforcement-learning/"
+            class="post-tag no-text-decoration" >reinforcement learning</a>
+          <a href="/tags/sim2real/"
+            class="post-tag no-text-decoration" >sim2real</a>
+          <a href="/tags/quadruped/"
+            class="post-tag no-text-decoration" >quadruped</a>
+         </div>
+       <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+         <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+         </div>
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+        <a href="https://twitter.com/intent/tweet?text=Proprioceptive Locomotion in Unstructured Environments - Jai Krishna&url=https://textzip.github.io/posts/Loco-DRL/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Proprioceptive Locomotion in Unstructured Environments - Jai Krishna&u=https://textzip.github.io/posts/Loco-DRL/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+        <a href="https://telegram.me/share?text=Proprioceptive Locomotion in Unstructured Environments - Jai Krishna&url=https://textzip.github.io/posts/Loco-DRL/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+  </span>
+</div>
+       </div>
+     </div>
+   </div>
+ </div>
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+ <div class="access">
+   <div id="access-lastmod" class="post">
+      <span>Recent Update</span>
+     <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+       <li><a href="/posts/Loco-DRL/">Proprioceptive Locomotion in Unstructured Environments</a>
+       <li><a href="/posts/FTG-DRL/">Policy Modulated Trajectory Generation for Quadrupeds</a>
+       <li><a href="/posts/NST-DRL/">Neural Style Transfer for Locomotion</a>
+       <li><a href="/posts/LIDAR-DRL/">Locomotion with Weighted Belief in Exteroception</a>
+       <li><a href="/posts/BiMan-DRL/">Bi-Manual Loco-Manipulation in Quadrupeds for Opening Doors</a>
+     </ul>
+   </div>
+   <div id="access-tags">
+      <span>Trending Tags</span>
+     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+     </div>
+   </div>
+ </div>
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+   <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+     <nav id="toc" data-toggle="toc"></nav>
+   </div>
+</div>
+</div>
+<div class="row">
+ <div class="col-12 col-lg-11 col-xl-8">
+   <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+ <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+   <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+   <div class="card-deck mb-4">
+     <div class="card">
+        <a href="/posts/FTG-DRL/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1705045400"
+    >
+  2024-01-12
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Policy Modulated Trajectory Generation for Quadrupeds</h3>
+           <div class="text-muted small">
+             <p>
+This blog post explores the idea of using a set of trajectory generation equations in conjunction with a neural network for quadruped locomotion. We will discuss the advantages of this approach a...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/NST-DRL/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1705736600"
+    >
+  2024-01-20
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Neural Style Transfer for Locomotion</h3>
+           <div class="text-muted small">
+             <p>
+                How do you ensure that a reinforcement learning (RL)-based locomotion policy produces a natural and efficient gait? This project is particularly close to my heart because it helped me answer this q...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/LIDAR-DRL/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1712907800"
+    >
+  2024-04-12
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Locomotion with Weighted Belief in Exteroception</h3>
+           <div class="text-muted small">
+             <p>
+This project goes over the integration of elevation maps (typically obtained from LIDARs/Depth Cameras) into the locomotion pipeline and the intricacies involved in this process. We will try to r...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+   </div>
+ </div>
+<div class="post-navigation d-flex justify-content-between">
+  <a href="/posts/DRL-4/" class="btn btn-outline-primary"
+    prompt="Older">
+   <p>Deep Reinforcement Learning - Part 4 - Monte Carlo, Temporal Difference & Bootstrapping Methods</p>
+  </a>
+  <a href="/posts/FTG-DRL/" class="btn btn-outline-primary"
+    prompt="Newer">
+   <p>Policy Modulated Trajectory Generation for Quadrupeds</p>
+  </a>
+</div>
+    <script src="https://utteranc.es/client.js"
+        repo="TextZip/textzip.github.io"
+        issue-term="title"
+        theme="dark-blue"
+        crossorigin="anonymous"
+        async>
+    </script>
+   </div>
+ </div>
+</div>
+<footer class="d-flex w-100 justify-content-center">
+ <div class="d-flex justify-content-between align-items-center">
+   <div class="footer-left">
+     <p class="mb-0">
+        © 2025
+        <a href="https://github.com/TextZip">Bandi Jai Krishna</a>.
+        <span data-toggle="tooltip" data-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+     </p>
+   </div>
+   <div class="footer-right">
+     <p class="mb-0">
+        Powered by
+        <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+        with
+        <a href="https://github.com/cotes2020/jekyll-theme-chirpy"
+          target="_blank" rel="noopener">Chirpy</a>
+        theme.
+     </p>
+   </div>
+ </div>
+</footer>
+     </div>
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+ <div class="col-12 col-sm-11 post-content">
+   <div id="search-hints">
+     <h4 class="text-muted mb-4">Trending Tags</h4>
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+   </div>
+   <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+ </div>
+</div>
+   </div>
+   <div id="mask"></div>
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script>
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('search-results'),
+  json: '/assets/js/data/search.json',
+  searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="https://textzip.github.io{url}">{title}</a> <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags} </div><p>{snippet}</p></div>',
+  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  templateMiddleware: function(prop, value, template) {
+    if (prop === 'categories') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+      }
+    }
+    if (prop === 'tags') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      }
+    }
+  }
+});
+</script>
+  

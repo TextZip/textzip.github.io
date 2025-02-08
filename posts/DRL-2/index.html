@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en-US" 
+>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Deep Reinforcement Learning - Part 2 - Finite MDP" />
+<meta name="author" content="Jai Krishna" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This post is part of the Deep Reinforcement Learning Blog Series. For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started." />
+<meta property="og:description" content="This post is part of the Deep Reinforcement Learning Blog Series. For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started." />
+<link rel="canonical" href="https://textzip.github.io/posts/DRL-2/" />
+<meta property="og:url" content="https://textzip.github.io/posts/DRL-2/" />
+<meta property="og:site_name" content="Jai Krishna" />
+<meta property="og:image" content="https://textzip.github.io/assets/img/drl_logo.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-16T13:13:20+05:30" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://textzip.github.io/assets/img/drl_logo.jpg" />
+<meta property="twitter:title" content="Deep Reinforcement Learning - Part 2 - Finite MDP" />
+<meta name="twitter:site" content="@twitter_username" />
+<meta name="twitter:creator" content="@Jai Krishna" />
+<meta name="google-site-verification" content="google_meta_tag_verification" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jai Krishna"},"dateModified":"2023-01-23T16:42:20+05:30","datePublished":"2022-11-16T13:13:20+05:30","description":"This post is part of the Deep Reinforcement Learning Blog Series. For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.","headline":"Deep Reinforcement Learning - Part 2 - Finite MDP","image":"https://textzip.github.io/assets/img/drl_logo.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://textzip.github.io/posts/DRL-2/"},"url":"https://textzip.github.io/posts/DRL-2/"}</script>
+ <title>Deep Reinforcement Learning - Part 2 - Finite MDP | Jai Krishna
+ </title>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jai Krishna">
+<meta name="application-name" content="Jai Krishna">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script defer
+    src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+  <script async
+    src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
+  <script>
+  /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+  MathJax = {
+    tex: {
+      inlineMath: [              /* start/end delimiter pairs for in-line math */
+        ['$','$'],
+        ['\\(','\\)']
+      ],
+      displayMath: [             /* start/end delimiter pairs for display math */
+        ['$$', '$$'],
+        ['\\[', '\\]']
+      ]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  <script defer src="/app.js"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-KGYYX7MFB2"
+></script>
+<script>
+  /* global dataLayer */
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-KGYYX7MFB2");
+</script>
+ <body data-spy="scroll" data-target="#toc">
+<div id="sidebar" class="d-flex flex-column align-items-end">
+ <div class="profile-wrapper text-center">
+   <div id="avatar">
+      <a href="/" alt="avatar" class="mx-auto">
+        <img src="/assets/img/profile.jpg" alt="avatar" onerror="this.style.display='none'">
+      </a>
+   </div>
+   <div class="site-title mt-3">
+      <a href="/">Jai Krishna</a>
+   </div>
+   <div class="site-subtitle font-italic">Robotics | Electronics | Design</div>
+ </div>
+ <ul class="w-100">
+   <li class="nav-item">
+      <a href="/" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>HOME</span>
+      </a>
+   <li class="nav-item">
+      <a href="/projects/" class="nav-link">
+        <i class="fa-fw fas fa-microchip ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>PROJECTS</span>
+      </a>
+   <li class="nav-item">
+      <a href="/resources/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>RESOURCES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/categories/" class="nav-link">
+        <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>CATEGORIES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/archives/" class="nav-link">
+        <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ARCHIVES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/about/" class="nav-link">
+        <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ABOUT | CONTACT</span>
+      </a>
+   <li class="nav-item">
+      <a href="/tags/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>TAGS</span>
+      </a>
+ </ul>
+ <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
+      <a href="https://github.com/TextZip" aria-label="github"
+        class="order-3"
+        target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="
+          javascript:location.href = 'mailto:' + ['textzip','gmail.com'].join('@')" aria-label="email"
+        class="order-4"
+        >
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/jai-krishna-bandi" aria-label="linkedin"
+        class="order-5"
+        target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+        <span class="icon-border order-2"></span>
+      <span id="mode-toggle-wrapper" class="order-1">
+<i class="mode-toggle fas fa-adjust"></i>
+<script type="text/javascript">
+  class ModeToggle {
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+      var self = this;
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addListener(function() {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+          self.clearMode();
+        }
+        self.updateMermaid();
+      });
+    } /* constructor() */
+    setDark() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+    setLight() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+    clearMode() {
+      $('html').removeAttr(ModeToggle.MODE_KEY);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+    get hasMode() { return this.mode != null; }
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode
+        || (!this.hasMode && this.isSysDarkPrefer) ) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+    updateMermaid() {
+      if (typeof mermaid !== "undefined") {
+        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
+        let config = { theme: expectedTheme };
+        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $(".mermaid").each(function() {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr("data-processed");
+          $(this).html(svgCode);
+        });
+        mermaid.initialize(config);
+        mermaid.init(undefined, ".mermaid");
+      }
+    }
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+      this.updateMermaid();
+    } /* flipMode() */
+  } /* ModeToggle */
+  let toggle = new ModeToggle();
+  $(".mode-toggle").click(function() {
+    toggle.flipMode();
+  });
+</script>
+      </span>
+ </div>
+</div>
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+ <div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+    <span id="breadcrumb">
+        <span>
+          <a href="/">
+            Posts
+          </a>
+        </span>
+          <span>Deep Reinforcement Learning - Part 2 - Finite MDP</span>
+    </span>
+    <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+   <div id="topbar-title">
+      Post
+   </div>
+    <i id="search-trigger" class="fas fa-search fa-fw"></i>
+    <span id="search-wrapper" class="align-items-center">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search"
+        aria-label="search" autocomplete="off" placeholder="Search...">
+      <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+    </span>
+    <span id="search-cancel" >Cancel</span>
+ </div>
+</div>
+   <div id="main-wrapper">
+     <div id="main">
+<div class="row">
+ <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+   <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+     <h1 data-toc-skip>Deep Reinforcement Learning - Part 2 - Finite MDP</h1>
+     <div class="post-meta text-muted d-flex flex-column">
+       <div>
+          <span class="semi-bold">
+            Bandi Jai Krishna
+          </span>
+<em class="timeago"
+    data-ts="1668584600"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Wed, Nov 16, 2022,  1:13 PM +0530"
+    >
+  2022-11-16
+</em>
+       </div>
+       <div>
+          <span>
+<em class="timeago lastmod"
+    data-ts="1674472340"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Mon, Jan 23, 2023,  8:12 PM +0900"
+    >
+  2023-01-23
+</em>
+          </span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2341 words">13 min</span>
+       </div>
+     </div>
+     <div class="post-content">
+       <p>This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check <a href="https://textzip.github.io/posts/DRL-0/">Part 0 - Getting Started</a>.</p>
+<h3 id="structure-of-the-blog">Structure of the blog</h3>
+<ul>
+ <li><a href="https://textzip.github.io/posts/DRL-0/">Part 0 - Getting Started</a>
+ <li><a href="https://textzip.github.io/posts/DRL-1/">Part 1 - Multi-Arm Bandits</a>
+ <li><a href="https://textzip.github.io/posts/DRL-2/">Part 2 - Finite MDP</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em>
+ <li><a href="https://textzip.github.io/posts/DRL-3/">Part 3 - Dynamic Programming</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em>
+ <li><a href="https://textzip.github.io/posts/DRL-4/">Part 4 - Monte Carlo, Temporal Difference &amp; Bootstrapping Methods</a> | <strong>Prerequisites</strong>: <em>Python, gymnasium, numpy</em>
+ <li>Part 5 - Deep SARSA and Q-Learning | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy, torch</em>
+ <li>Part 6 - REINFORCE, AC, DDPG, TD3, SAC
+ <li>Part 7 - A2C, PPO, TRPO, GAE, A3C
+ <li>TBA (HER, PER, Distillation)
+</ul>
+<h1 id="finite-mdp">Finite MDP</h1>
+<p>We will now consider problems that involve evaluative
+feedback, as in bandits, but also an associative aspect—choosing different actions in different situations.</p>
+<p>MDPs are a classical formalization of sequential decision making,
+where actions inﬂuence not just immediate rewards, but also subsequent situations, or states, and through those future rewards. Thus MDPs involve delayed reward and the need to trade off immediate and delayed reward.</p>
+<p>In bandit problems we estimated the value $q_{\star}(a)$ of each action $a$, in MDPs we estimate the value $q_\star(s, a)$ of each action $a$ in each state $s$, or we estimate the value $v_\star(s)$ of each state given optimal action selections. These state-dependent quantities are essential to accurately assigning credit for long-term consequences to individual action selections.</p>
+<h2 id="mdp-framework">MDP Framework</h2>
+<p><img src="/assets/img/FiniteMDP/AgentWorld.png" alt="image1" class="shadow" />
+In the above figure, the Agent is the learner and decision maker. Everything other than the agent is called the environmnet.</p>
+<p>The agent and the environmnet interact with each other at every discrete timestep $t=0,1,2,..$ at each timestep the agent receives some representation of the environment’s state $S_t \in \mathit{S}$, and on that basis selects an action $A_t \in \mathit{A}(s)$ and one timestep later the environment responds to this action and presents a new state $S_{t+1}$ to the agent along with a numerical value called <em>reward</em> $R_{t+1} \in  \mathit{R} \subset \mathbb{R}$ which the agent seeks to maximize over time through its choice of actions.</p>
+<p>Taking the Cliff-Walking environment as an example, here is how we can access information about the state and observation space in gymnasium.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">"</span><span class="s">CliffWalking-v0</span><span class="sh">"</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">observation</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">The initial state after reset is : </span><span class="si">{</span><span class="n">observation</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">The State space is of the type: </span><span class="si">{</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">The Action space is of the type: </span><span class="si">{</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</pre></table></code></div></div>
+<p>The output for the above program is as follows:</p>
+<div class="language-terminal highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="go">The initial state after reset is : 36
+The State space is of the type: Discrete(48)
+The Action space is of the type: Discrete(4)
+</span></pre></table></code></div></div>
+<p>The MDP and agent together thereby give rise to a sequence or trajectory that begins like this:</p>
+\[S_0,A_0,R_1,S_1,A_1,R_2,...\]
+<p>The following is the python implementation for generating a trajectory for N=5 steps in the Cliff Walking Env
+<img src="/assets/img/DRL2/cliff_walking.gif" alt="image1" class="shadow" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">"</span><span class="s">CliffWalking-v0</span><span class="sh">"</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">observation</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="nf">sample</span><span class="p">()</span>
+    <span class="n">new_observation</span><span class="p">,</span><span class="n">reward</span><span class="p">,</span><span class="n">terminated</span><span class="p">,</span><span class="n">truncated</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">trajectory</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="n">observation</span><span class="p">,</span><span class="n">action</span><span class="p">,</span><span class="n">reward</span><span class="p">])</span>
+    <span class="n">observation</span><span class="o">=</span><span class="n">new_observation</span>
+    
+    <span class="k">if</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span><span class="p">:</span>
+        <span class="n">observation</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">The Trajectory for 5 steps is: </span><span class="si">{</span><span class="n">trajectory</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</pre></table></code></div></div>
+<p>The output of the above program is as follows:</p>
+<div class="language-terminal highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="go">The Trajectory for 5 steps is: [[36, 3, -1], [36, 3, -1], [36, 3, -1], [36, 2, -1], [36, 0, -1]]
+</span></pre></table></code></div></div>
+<p>The above code can be slightly modified to generate the trajectory for an entire episode as follows:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">"</span><span class="s">CliffWalking-v0</span><span class="sh">"</span><span class="p">,</span><span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">rgb_array</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">observation</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">terminated</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="nf">sample</span><span class="p">()</span>
+    <span class="n">new_observation</span><span class="p">,</span><span class="n">reward</span><span class="p">,</span><span class="n">terminated</span><span class="p">,</span><span class="n">truncated</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">trajectory</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="n">observation</span><span class="p">,</span><span class="n">action</span><span class="p">,</span><span class="n">reward</span><span class="p">])</span>
+    <span class="n">observation</span> <span class="o">=</span> <span class="n">new_observation</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Trajectory for entire episode: </span><span class="si">{</span><span class="n">trajectory</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</pre></table></code></div></div>
+<p>In a ﬁnite MDP, the sets of states, actions, and rewards ($\mathit{S}$, $\mathit{A}$, and $\mathit{R}$) all have a ﬁnite number of elements. In this case, the random variables $R_t$ and $S_t$ have well deﬁned
+discrete probability distributions dependent only on the preceding state and action. That is, for particular values of these random variables, $s’ \in \mathit{S}$ and $r \in \mathit{R}$, there is a probability of those values occurring at time t, given particular values of the preceding state and action:</p>
+\[p(s',r|s,a) \ \dot{=} \ \text{Pr}\{S_t=s',R_t=r \ | \  S_{t-1}=s,A_{t-1}=a \}\]
+<p>Further since p speciﬁes a probability distribution for each choice of s
+and a,</p>
+\[\sum_{s'\in \mathit{S}}\sum_{r \in \mathit{R}}p(s',r|s,a)=1, \text{for all } s \in \mathit{S}, a \in \mathit{A}(s)\]
+<p>In a Markov decision process, the probabilities given by $p$ completely characterize the environment’s dynamics. That is, the probability of each possible value for $S_t$ and $R_t$ depends on the immediately preceding state and action, $S_{t-1}$ and $A_{t-1}$, and, given them,
+not at all on earlier states and actions. Therefore the state must include information about all aspects of the past agent–environment interaction that make a difference for the future. If it
+does, then the state is said to have the Markov property.</p>
+<p>From the four-argument dynamics function, $p$, one can compute anything else one might
+want to know about the environment, such as</p>
+<h3 id="state-transition-probabilities">State-Transition Probabilities</h3>
+<p>A three-argument function denoting the probability of reaching state $s’$ when action $a$ is taken from state $s$.</p>
+\[p(s'|s,a) \ \dot{=} \ \text{Pr}\{S_t=s'|S_{t-1}=s,A_{t-1}=a \} = \sum_{r \in \mathit{R}}p(s',r|s,a)\]
+<h3 id="expected-reward-for-state-action">Expected Reward for State-Action</h3>
+<p>A two-argument function defining the expected rewards for a state-action pair.</p>
+\[r(s,a) \ \dot{=} \ \mathbb{E}[R_t|S_{t-1}=s,A_{t-1}=a] = \sum_{r \in \mathit{R}} \left[ r\sum_{s' \in \mathit{S}} p(s',r|s,a)\right]\]
+<h3 id="expected-reward-for-state-action-state">Expected Reward for State-Action-State</h3>
+<p>A Three argument function defining the expected rewards for a state-action-state pair.</p>
+\[\begin{align*}
+r(s,a,s') \ \dot{=} \ \mathbb{E}[R_t|S_{t-1}=s,A_{t-1}=a,S_t=s'] &amp;= \sum_{r \in \mathit{R}}r\dfrac{p(s',r|s,a)}{p(s'|s,a)} \\
+&amp;= \sum_{r \in \mathit{R}}r\dfrac{p(s'|s,a).p(r|s,a,s')}{p(s'|s,a)} \\
+&amp;= \sum_{r \in \mathit{R}}r.p(r|s,a,s') \\ 
+\end{align*}\]
+<h2 id="goals--rewards">Goals &amp; Rewards</h2>
+<p>In reinforcement learning, the purpose or goal of the agent is formalized in terms of a special signal, called the reward, passing from the environment to the agent. At each time step, the reward is a simple number, $R_t \in \mathit{R}$. Informally, the agent’s goal is to maximize the total amount of reward it receives. This means maximizing not immediate reward, but cumulative reward in the long run.</p>
+<p>The reward signal is your way of communicating to the agent what you want achieved, not how you want it achieved..</p>
+<blockquote>
+ <p><strong>The Reward Hypothesis</strong>
+That all of what we mean by goals and purposes can be well thought of as
+the maximization of the expected value of the cumulative sum of a received scalar signal (called reward).</p>
+</blockquote>
+<h2 id="returns--episodes">Returns &amp; Episodes</h2>
+<p>To formally define how we wish to maximize the cumulative reward, we seek to maximize the expected return, where the return, denoted $G_t$,is
+deﬁned as some speciﬁc function of the reward sequence. In the simplest case the return is the sum of the rewards:</p>
+\[G_t \ \dot{=}\ R_{t+1} + R_{t+2} + R_{t+3}+...+R_T\]
+<p>Where T is the final timestep, this approach is applicable when there is a natural notion of ﬁnal time step, that is, when the agent–environment interaction breaks naturally into subsequences, which we call episodes. Each episode ends in a special state called the terminal state, followed by a reset to a standard starting state or to a
+sample from a standard distribution of starting states. Even if you think of episodes as ending in different ways, such as winning and losing a game, the next episode begins independently of how the previous one ended. Thus the episodes can all be considered to
+end in the same terminal state, with different rewards for the different outcomes.</p>
+<p>Tasks with episodes of this kind are called episodic tasks. In episodic tasks we sometimes need to distinguish the set of all nonterminal states, denoted $S$, from the set of all states plus
+the terminal state, denoted $S^+$. The time of termination, $T$, is a random variable that normally varies from episode to episode.</p>
+<p>On the other hand, in many cases the agent–environment interaction does not break naturally into identiﬁable episodes, but goes on continually without limit. For example,this would be the natural way to formulate an on-going process-control task, or an application to a robot with a long life span. We call these continuing tasks. The return formulation discussed above is problematic for continuing tasks because the ﬁnal time step would be $T = \infty$, and the return, which is what we are trying to maximize, could easily be inﬁnite.</p>
+<p>The additional concept that we need is that of discounting. According to this approach, the agent tries to select actions so that the sum of the discounted rewards it receives over the future is maximized. In particular, it chooses $A_t$ to maximize the expected discounted
+return:</p>
+\[G_t \ \dot{=}\ R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}}+... = \sum_{k=0}^{\infty}\gamma^kR_{t+k+1}\]
+<p>Where $\gamma$ is called the discount factor and lies between $[0,1]$. The above formula can also be written recursivly as,</p>
+\[G_t \ \dot{=} R_{t+1} + \gamma G_{t+1}\]
+<h2 id="unified-notation-for-tasks">Unified Notation for Tasks</h2>
+<p>We need one other convention to obtain a single notation that covers both episodic and continuing tasks. We have deﬁned the return as a sum over a ﬁnite number of terms in one case and as a sum over an inﬁnite number of terms in the other. These two can be uniﬁed by considering episode termination to be the entering of a special absorbing state that transitions only to itself and that generates only rewards of zero. For example, consider the state transition diagram:
+<img src="/assets/img/FiniteMDP/UnifiedTask.png" alt="image1" class="shadow" />
+Here the solid square represents the special absorbing state corresponding to the end of an
+episode. Starting from $S_0$, we get the reward sequence +1, +1, +1, 0, 0, 0,. …Summing these, we get the same return whether we sum over the ﬁrst $T$ rewards (here $T$ = 3) or over the full inﬁnite sequence. This remains true even if we introduce discounting.</p>
+<p>We can therefore write the expected return as,</p>
+\[G_{t}  \dot{=}  \sum_{k=t+1}^{T}\gamma^{k-t-1}R_k\]
+<p>Where there is a possibilty that $T = \infty$ or $\gamma = 1$ (but not both).</p>
+<p>The above formula can be used in code as follows:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span> 
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">"</span><span class="s">CliffWalking-v0</span><span class="sh">"</span><span class="p">,</span><span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">rgb_array</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">terminated</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">G</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Return 
+</span><span class="n">observation</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="nf">sample</span><span class="p">()</span>
+    <span class="n">observation</span><span class="p">,</span><span class="n">reward</span><span class="p">,</span><span class="n">terminated</span><span class="p">,</span><span class="n">truncated</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">G</span> <span class="o">+=</span> <span class="n">reward</span><span class="o">*</span><span class="p">(</span><span class="n">gamma</span><span class="o">**</span><span class="n">counter</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">+=</span><span class="mi">1</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">The episode terminated after </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s"> steps with Return(G) </span><span class="si">{</span><span class="n">G</span><span class="si">}</span><span class="s"> for gamma </span><span class="si">{</span><span class="n">gamma</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</pre></table></code></div></div>
+<p>The output for the above code with various values of gamma is as follows:</p>
+<div class="language-terminal highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="go">The episode terminated after 853 steps with Return(G) -8575 for gamma 1
+
+The episode terminated after 1391 steps with Return(G) -1445.9837656301004 for gamma 0.99
+
+The episode terminated after 4516 steps with Return(G) -1 for gamma 0
+</span></pre></table></code></div></div>
+<h2 id="policies--value-functions">Policies &amp; Value Functions</h2>
+<p>Almost all reinforcement learning algorithms involve estimating value functions— which are functions of states (or of state–action pairs) that estimate how good it is for the agent to be in a given state (or how good it is to perform a given action in a given state).</p>
+<p>The notion of “how good” here is deﬁned in terms of future rewards that can be expected, or, to be precise, in terms of expected return. Of course the rewards the agent can expect to receive in the future depend on what actions it will take. Accordingly, value functions
+are deﬁned with respect to particular ways of acting, called policies.</p>
+<p>Formally, a policy is a mapping from states to probabilities of selecting each possible action. If the agent is following policy $\pi$ at time $t$,then $\pi(a\mid s)$ is the probability that $A_t = a$ if $S_t = s$. Like $p,\pi$ is an ordinary function.</p>
+<p>The $\mid$ in the middle of $\pi(a\mid s)$ merely reminds us that it deﬁnes a probability distribution over $a \in \mathit{A}(s)$ for each $s \in \mathit{S}$. Reinforcement learning methods specify how the agent’s policy is changed as a result of its experience.</p>
+<h3 id="state-value-function">State Value Function</h3>
+<p>The value function of a state $s$ under a policy $\pi$, denoted by $v_\pi(s)$, is the expected return when starting in $s$ and following $\pi$ thereafter. For MDPs, we can deﬁne $v_\pi$ formally as</p>
+\[\begin{align*}
+v_\pi(s) \ &amp;\dot{=} \ \mathbb{E}_\pi[G_t|S_t=s] = \mathbb{E}\left[ \sum_{k=0}^{\infty}\gamma^k R_{k+t+1} | S_t=s\right] \text{ for all } s \in \mathit{S}\\
+v_\pi(s) \ &amp;\dot{=} \ \mathbb{E}_\pi[R_{t+1} + \gamma G_{t+1}|S_t=s]\\
+v_\pi(s) \ &amp;\dot{=} \ \mathbb{E}_\pi[R_{t+1} + \gamma v_\pi({S_{t+1}})|S_t=s]
+\end{align*}\]
+<p>where $\mathbb{E}[.]$ denotes the expected value of the variable given that the agent follows the policy $\pi$. Also, the value of the terminal state is considered to be zero.</p>
+<h3 id="action-value-function">Action Value Function</h3>
+<p>The value of taking action $a$ in state $s$ under a policy $\pi$, denoted by $q_\pi(s, a)$, as the expected return starting from $s$, taking the action $a$, and thereafter following policy $\pi$:</p>
+\[\begin{align*}
+q_\pi(s,a) \ &amp;\dot{=} \ \mathbb{E}_\pi[G_t|S_t=s,A_t=a] = \mathbb{E}\left[ \sum_{k=0}^{\infty}\gamma^k R_{k+t+1} | S_t=s, A_t=a\right]\\
+q_\pi(s,a) \ &amp;\dot{=} \ \mathbb{E}_\pi[R_{t+1} + \gamma G_{t+1}|S_t=s,A_t=a]\\
+q_\pi(s,a) \ &amp;\dot{=} \ \mathbb{E}_\pi[R_{t+1} + \gamma q_\pi{(S_{t+1})}|S_t=s,A_t=a]\\
+\end{align*}\]
+<h3 id="bellman-value-equations">Bellman Value Equations</h3>
+<p><img src="/assets/img/FiniteMDP/v_q.png" alt="image1" class="shadow" /></p>
+\[v_\pi(s) = \sum_a \pi(a\mid s)q_\pi(s,a) \tag{2.1}\]
+<p><img src="/assets/img/FiniteMDP/q_v.png" alt="image1" class="shadow" /></p>
+\[q_\pi(s,a) = \sum_{s',r} p(s',r\mid s,a)(r + \gamma v_\pi(s')) \tag{2.2}\]
+<p><img src="/assets/img/FiniteMDP/v_q_v.png" alt="image1" class="shadow" /></p>
+<p>Substuting equation (2.2) in (2.1) we get the following recursive relation in terms of $v_\pi.$</p>
+\[v_\pi(s) = \sum_{a}\pi(a\mid s)\sum_{s',r} p(s',r\mid a,s)[r+\gamma v_\pi(s')] \tag{2.2}\]
+<p><img src="/assets/img/FiniteMDP/q_v_q.png" alt="image1" class="shadow" /></p>
+<p>Substuting equation (2.1) in (2.2) we get the following recursive relation in terms of $q_\pi.$</p>
+\[q_\pi(a,s) = \sum_{s',r}p(s',r\mid s,a)[r + \gamma \sum_a' \pi(a'\mid s')q_\pi(s',a')] \tag{2.3}\]
+<h2 id="optimal-policies--value-functions">Optimal Policies &amp; Value Functions</h2>
+<p>There is always at least one policy that is better than or equal to all other policies. This is an optimal policy. Although there may be more than one, we denote all the optimal policies by $\pi_{\star}$. They share the same state-value function, called the optimal
+state-value function, denoted $v_\star$.</p>
+<p><img src="/assets/img/FiniteMDP/v_q_o.png" alt="image1" class="shadow" /></p>
+\[v_\star(s) = \text{max}_a q_\star (s,a) \tag{2.4}\]
+<p><img src="/assets/img/FiniteMDP/q_v_o.png" alt="image1" class="shadow" /></p>
+\[q_\star(s,a) = \text{max}\sum_{s',r} p(s',r\mid s,a)(r + v_\star(s')) \tag{2.5}\]
+<p><img src="/assets/img/FiniteMDP/v_q_v_o.png" alt="image1" class="shadow" /></p>
+<p>Substuting equation (2.5) in (2.4) we get the following recursive relation in terms of $v_\pi.$</p>
+\[v_\star(s) = \text{max}\sum_{s',a}p(r,s'\mid s,a)[r + \gamma v_\star (s')] \tag{2.6}\]
+<p><img src="/assets/img/FiniteMDP/q_v_q_o.png" alt="image1" class="shadow" /></p>
+<p>Substuting equation (2.4) in (2.5) we get the following recursive relation in terms of $q_\pi.$</p>
+\[q_\star(s,a) = \sum p(s',r\mid s,a) [r + \gamma\  \text{max} \ q_\star(s',a')] \tag{2.7}\]
+     </div>
+     <div class="post-tail-wrapper text-muted">
+       <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+            <a href='/categories/resources/'>Resources</a>,
+            <a href='/categories/deep-reinforcement-learning/'>Deep Reinforcement Learning</a>
+       </div>
+       <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          <a href="/tags/mdp/"
+            class="post-tag no-text-decoration" >mdp</a>
+          <a href="/tags/optimal-value/"
+            class="post-tag no-text-decoration" >optimal value</a>
+          <a href="/tags/bellman/"
+            class="post-tag no-text-decoration" >bellman</a>
+         </div>
+       <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+         <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+         </div>
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+        <a href="https://twitter.com/intent/tweet?text=Deep Reinforcement Learning - Part 2 - Finite MDP - Jai Krishna&url=https://textzip.github.io/posts/DRL-2/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Deep Reinforcement Learning - Part 2 - Finite MDP - Jai Krishna&u=https://textzip.github.io/posts/DRL-2/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+        <a href="https://telegram.me/share?text=Deep Reinforcement Learning - Part 2 - Finite MDP - Jai Krishna&url=https://textzip.github.io/posts/DRL-2/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+  </span>
+</div>
+       </div>
+     </div>
+   </div>
+ </div>
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+ <div class="access">
+   <div id="access-lastmod" class="post">
+      <span>Recent Update</span>
+     <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+       <li><a href="/posts/Loco-DRL/">Proprioceptive Locomotion in Unstructured Environments</a>
+       <li><a href="/posts/FTG-DRL/">Policy Modulated Trajectory Generation for Quadrupeds</a>
+       <li><a href="/posts/NST-DRL/">Neural Style Transfer for Locomotion</a>
+       <li><a href="/posts/LIDAR-DRL/">Locomotion with Weighted Belief in Exteroception</a>
+       <li><a href="/posts/BiMan-DRL/">Bi-Manual Loco-Manipulation in Quadrupeds for Opening Doors</a>
+     </ul>
+   </div>
+   <div id="access-tags">
+      <span>Trending Tags</span>
+     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+     </div>
+   </div>
+ </div>
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+   <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+     <nav id="toc" data-toggle="toc"></nav>
+   </div>
+</div>
+</div>
+<div class="row">
+ <div class="col-12 col-lg-11 col-xl-8">
+   <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+ <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+   <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+   <div class="card-deck mb-4">
+     <div class="card">
+        <a href="/posts/DRL-0/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1674027800"
+    >
+  2023-01-18
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Deep Reinforcement Learning - Part 0 - Getting Started</h3>
+           <div class="text-muted small">
+             <p>
+                Getting into deep reinforcement learning is a tough but rewarding journey. The primary reason it is so difficult for beginners is due to the shear number of fields involved. Deep Reinforcement Lear...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/DRL-3/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1674200600"
+    >
+  2023-01-20
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Deep Reinforcement Learning - Part 3 - Dynamic Programming</h3>
+           <div class="text-muted small">
+             <p>
+                This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.
+...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/DRL-4/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1674459800"
+    >
+  2023-01-23
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Deep Reinforcement Learning - Part 4 - Monte Carlo, Temporal Difference & Bootstrapping Methods</h3>
+           <div class="text-muted small">
+             <p>
+                This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.
+...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+   </div>
+ </div>
+<div class="post-navigation d-flex justify-content-between">
+  <a href="/posts/DRL-1/" class="btn btn-outline-primary"
+    prompt="Older">
+   <p>Deep Reinforcement Learning - Part 1 - Multi-Arm Bandits</p>
+  </a>
+  <a href="/posts/Energy-DRL/" class="btn btn-outline-primary"
+    prompt="Newer">
+   <p>Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds</p>
+  </a>
+</div>
+    <script src="https://utteranc.es/client.js"
+        repo="TextZip/textzip.github.io"
+        issue-term="title"
+        theme="dark-blue"
+        crossorigin="anonymous"
+        async>
+    </script>
+   </div>
+ </div>
+</div>
+<footer class="d-flex w-100 justify-content-center">
+ <div class="d-flex justify-content-between align-items-center">
+   <div class="footer-left">
+     <p class="mb-0">
+        © 2025
+        <a href="https://github.com/TextZip">Bandi Jai Krishna</a>.
+        <span data-toggle="tooltip" data-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+     </p>
+   </div>
+   <div class="footer-right">
+     <p class="mb-0">
+        Powered by
+        <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+        with
+        <a href="https://github.com/cotes2020/jekyll-theme-chirpy"
+          target="_blank" rel="noopener">Chirpy</a>
+        theme.
+     </p>
+   </div>
+ </div>
+</footer>
+     </div>
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+ <div class="col-12 col-sm-11 post-content">
+   <div id="search-hints">
+     <h4 class="text-muted mb-4">Trending Tags</h4>
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+   </div>
+   <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+ </div>
+</div>
+   </div>
+   <div id="mask"></div>
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script>
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('search-results'),
+  json: '/assets/js/data/search.json',
+  searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="https://textzip.github.io{url}">{title}</a> <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags} </div><p>{snippet}</p></div>',
+  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  templateMiddleware: function(prop, value, template) {
+    if (prop === 'categories') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+      }
+    }
+    if (prop === 'tags') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      }
+    }
+  }
+});
+</script>
+  

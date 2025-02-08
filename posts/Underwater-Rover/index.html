@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en-US" 
+>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Underwater Rover" />
+<meta name="author" content="Jai Krishna" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A portfolio of my adventures in robotics, electronics and mechanical along with tutorials on topics related to robotics." />
+<meta property="og:description" content="A portfolio of my adventures in robotics, electronics and mechanical along with tutorials on topics related to robotics." />
+<link rel="canonical" href="https://textzip.github.io/posts/Underwater-Rover/" />
+<meta property="og:url" content="https://textzip.github.io/posts/Underwater-Rover/" />
+<meta property="og:site_name" content="Jai Krishna" />
+<meta property="og:image" content="https://textzip.github.io/assets/img/UnderwaterRover/rover_4.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-15T19:13:20+05:30" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://textzip.github.io/assets/img/UnderwaterRover/rover_4.jpg" />
+<meta property="twitter:title" content="Underwater Rover" />
+<meta name="twitter:site" content="@twitter_username" />
+<meta name="twitter:creator" content="@Jai Krishna" />
+<meta name="google-site-verification" content="google_meta_tag_verification" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jai Krishna"},"dateModified":"2022-01-18T16:36:00+05:30","datePublished":"2019-12-15T19:13:20+05:30","description":"A portfolio of my adventures in robotics, electronics and mechanical along with tutorials on topics related to robotics.","headline":"Underwater Rover","image":"https://textzip.github.io/assets/img/UnderwaterRover/rover_4.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://textzip.github.io/posts/Underwater-Rover/"},"url":"https://textzip.github.io/posts/Underwater-Rover/"}</script>
+ <title>Underwater Rover | Jai Krishna
+ </title>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jai Krishna">
+<meta name="application-name" content="Jai Krishna">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="/assets/css/slider/ideal-image-slider.css">
+<link rel="stylesheet" href="/assets/css/slider/themes/default.css">
+  <script src="/assets/js/slider/ideal-image-slider.min.js"></script>
+  <script src="/assets/js/slider/iis-bullet-nav.js"></script>
+  <script src="/assets/js/slider/iis-captions.js"></script>
+  <script>
+  var underwater_rover_1 = new IdealImageSlider.Slider({
+      selector: '#underwater_rover_1',
+      height: 500,
+      interval: 4000,
+      effect: 'slide',
+      keyboardNav: true,
+      });
+    underwater_rover_1.addCaptions();
+    underwater_rover_1.start();
+  </script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script defer
+    src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+  <script async
+    src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
+  <script defer src="/app.js"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-KGYYX7MFB2"
+></script>
+<script>
+  /* global dataLayer */
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-KGYYX7MFB2");
+</script>
+ <body data-spy="scroll" data-target="#toc">
+<div id="sidebar" class="d-flex flex-column align-items-end">
+ <div class="profile-wrapper text-center">
+   <div id="avatar">
+      <a href="/" alt="avatar" class="mx-auto">
+        <img src="/assets/img/profile.jpg" alt="avatar" onerror="this.style.display='none'">
+      </a>
+   </div>
+   <div class="site-title mt-3">
+      <a href="/">Jai Krishna</a>
+   </div>
+   <div class="site-subtitle font-italic">Robotics | Electronics | Design</div>
+ </div>
+ <ul class="w-100">
+   <li class="nav-item">
+      <a href="/" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>HOME</span>
+      </a>
+   <li class="nav-item">
+      <a href="/projects/" class="nav-link">
+        <i class="fa-fw fas fa-microchip ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>PROJECTS</span>
+      </a>
+   <li class="nav-item">
+      <a href="/resources/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>RESOURCES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/categories/" class="nav-link">
+        <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>CATEGORIES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/archives/" class="nav-link">
+        <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ARCHIVES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/about/" class="nav-link">
+        <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ABOUT | CONTACT</span>
+      </a>
+   <li class="nav-item">
+      <a href="/tags/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>TAGS</span>
+      </a>
+ </ul>
+ <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
+      <a href="https://github.com/TextZip" aria-label="github"
+        class="order-3"
+        target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="
+          javascript:location.href = 'mailto:' + ['textzip','gmail.com'].join('@')" aria-label="email"
+        class="order-4"
+        >
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/jai-krishna-bandi" aria-label="linkedin"
+        class="order-5"
+        target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+        <span class="icon-border order-2"></span>
+      <span id="mode-toggle-wrapper" class="order-1">
+<i class="mode-toggle fas fa-adjust"></i>
+<script type="text/javascript">
+  class ModeToggle {
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+      var self = this;
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addListener(function() {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+          self.clearMode();
+        }
+        self.updateMermaid();
+      });
+    } /* constructor() */
+    setDark() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+    setLight() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+    clearMode() {
+      $('html').removeAttr(ModeToggle.MODE_KEY);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+    get hasMode() { return this.mode != null; }
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode
+        || (!this.hasMode && this.isSysDarkPrefer) ) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+    updateMermaid() {
+      if (typeof mermaid !== "undefined") {
+        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
+        let config = { theme: expectedTheme };
+        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $(".mermaid").each(function() {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr("data-processed");
+          $(this).html(svgCode);
+        });
+        mermaid.initialize(config);
+        mermaid.init(undefined, ".mermaid");
+      }
+    }
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+      this.updateMermaid();
+    } /* flipMode() */
+  } /* ModeToggle */
+  let toggle = new ModeToggle();
+  $(".mode-toggle").click(function() {
+    toggle.flipMode();
+  });
+</script>
+      </span>
+ </div>
+</div>
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+ <div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+    <span id="breadcrumb">
+        <span>
+          <a href="/">
+            Posts
+          </a>
+        </span>
+          <span>Underwater Rover</span>
+    </span>
+    <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+   <div id="topbar-title">
+      Post
+   </div>
+    <i id="search-trigger" class="fas fa-search fa-fw"></i>
+    <span id="search-wrapper" class="align-items-center">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search"
+        aria-label="search" autocomplete="off" placeholder="Search...">
+      <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+    </span>
+    <span id="search-cancel" >Cancel</span>
+ </div>
+</div>
+   <div id="main-wrapper">
+     <div id="main">
+<div class="row">
+ <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+   <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+     <h1 data-toc-skip>Underwater Rover</h1>
+     <div class="post-meta text-muted d-flex flex-column">
+       <div>
+          <span class="semi-bold">
+            Bandi Jai Krishna
+          </span>
+<em class="timeago"
+    data-ts="1576417400"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Sun, Dec 15, 2019,  7:13 PM +0530"
+    >
+  2019-12-15
+</em>
+       </div>
+       <div>
+          <span>
+<em class="timeago lastmod"
+    data-ts="1642503960"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Tue, Jan 18, 2022,  4:36 PM +0530"
+    >
+  2022-01-18
+</em>
+          </span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1744 words">9 min</span>
+       </div>
+     </div>
+     <div class="post-content">
+       <p><img src="/assets/img/UnderwaterRover/rover_9.jpg" alt="Image1" class="shadow" /></p>
+<p>The primary objective of this project was to build an underwater rover platform that can be used to experiment with topics ranging from control systems and computer vision to embedded systems and machine learning.</p>
+<h1 id="hardware-layout">Hardware Layout</h1>
+<p><img src="/assets/img/UnderwaterRover/chart1.png" alt="Image1" class="shadow" /></p>
+<h1 id="fabrication">Fabrication</h1>
+<p><img src="/assets/img/UnderwaterRover/cutting_2.jpeg" alt="Image1" class="shadow" /></p>
+<h2 id="test-stand">Test Stand</h2>
+<p>The test stand is used to measure the thrust that was generated by different combinations of motors and propellers. Devices that measure thrust are already available in the market, but they are meant for measuring the thrust of propellers designed to work in the air.
+Our design is based on these devices that work in air, and was modified so that the electronics can be placed outside the water, while the propeller and the motors are inside water.</p>
+<p>The device works on the principle of moments. It consists of an arm that is pivoted near one end. This end has an extension that makes contact with a load cell that measures the thrust. The other end of the arm is attached to the motor fitted with the propeller, and is dipped inside water. As the motor rotates, the propeller generates thrust and pulls the arm in the forward direction, which results in a clockwise moment about the pivot point. This moment is balanced by the anticlockwise moment that is generated by the normal force of the load cell on the other end. This force is measured by the load cell and is adjusted according to the arm lengths on either side of the pivot to give the final reading of the thrust generated by the propeller.</p>
+<p>The load cell needs to be calibrated before every test in order to remove the weight of the arm from interfering with the readings. The parameters of the load cell were set in such a way that it gives a precision of upto 1gf.</p>
+<p>Two prototypes of the test stand were built and tested.</p>
+<h3 id="prototype-1">Prototype 1</h3>
+<p><img src="/assets/img/UnderwaterRover/old_test_stand_water.jpg" alt="Image1" class="shadow" /></p>
+<p>This is a makeshift prototype which was built using pieces of wood and the broken arm of a quadcopter. The motor was dipped in a bucket of water to measure the thrust.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+ <li>As the arm lengths were very small, the motor could not be tested at greater depths.
+ <li>Since the setup was limited to testing in a bucket of water, the readings of the thrust were not fully accurate because propellers create turbulence when water hits the walls of the bucket.
+ <li>The arms were made of wood, which could very easily get spoiled in water. Propellers of larger thrust could also break the arms apart.
+</ul>
+<h3 id="prototype-2">Prototype 2</h3>
+<p><img src="/assets/img/UnderwaterRover/new_test_stand.jpg" alt="Image1" class="shadow" /></p>
+<p>This is the model that was used for all the final testing. The arms and frame are both made of stainless steel extrusions that were welded together in the workshop. The frame was then used along with a 1000 litre water tank.</p>
+<p><strong>Limitations</strong></p>
+<ul>
+ <li>Since the arms were also made of stainless steel, they were heavy and could interfere with the readings. This was taken into account in the calibration phase of the load cell.
+</ul>
+<p><strong>Advantages</strong></p>
+<ul>
+ <li>The bigger tank ensured that there was no turbulence due to water hitting the walls of the vessel.
+ <li>Since the arm was made of stainless steel, it was much more durable, and could be tested with all possible combinations of motors and propellers.
+</ul>
+<p><img src="/assets/img/UnderwaterRover/test_stand_water.jpg" alt="Image1" class="shadow" /></p>
+<h2 id="rover">Rover</h2>
+<div id="underwater_rover_1">
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/CAD.png" title="" alt="Early CAD model" />
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/CAD2.png" title="" alt="CAD model with shrouds" />
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/rover_1.jpg" title="" alt="Aligning parts" />
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/rover_2.jpg" title="" alt="welding thruster cylinder" />
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/rover_3.jpg" title="" alt="shrouds" />
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/rover_4.jpg" title="" alt="backplate with wires" />
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/fab3.png" title="" alt="PVC seal for backplate" />
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/black1.png" title="" alt="fully painted rover" />
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/rover_7.jpg" title="" alt="electronics setup" />
+  <img data-src="" data-src-2x="" src="/assets/img/UnderwaterRover/rover_8.jpg" title="" alt="assembled rover" />
+ </div>
+<p>After all possible combinations of motors and propellers were tested to get the best possible thrust, the actual rover was fabricated. The thrust values were important to be calculated before fabricating the rover since the amount of upward thrust required for the rover to stay at a particular height needed to be known so that the rover could be designed to be positively buoyant if necessary.</p>
+<p>The main parts of the rover can be listed as:</p>
+<ul>
+ <li>
+   <p><strong>Central enclosure</strong>: This is the single cylindrical enclosure in the centre of the rover, that houses all the electrical components, the power system and the control system. It is made up of a thick stainless steel tube, with a diameter that is sufficiently large to fit in the single board computer (Raspberry Pi 4 or Jetson Nano) along with the LiPo battery back comfortably.</p>
+ <li>
+   <p><strong>Front dome:</strong> This is the clear dome made of acrylic in the front of the rover. It will be used to house the camera in the future prototypes. Its shape ensures the maximum possible field of view for the camera. This was fixed permanently to the central enclosure using clay epoxy, in order to make the joint waterproof.</p>
+ <li>
+   <p><strong>Backplate:</strong> This is the clear plate at the back of the rover. It houses the valves that were used to connect the cables from the thrusters to the power distribution inside the central enclosure. These valves were permanently fixed to the plate to ensure no leakage of water from the joints. The plate is fixed to the central enclosure using a set of 12 bolts and nuts. Since this plate was made to be removable, its waterproofing was of utmost importance. We made a custom seal for the backplate using a soft acrylic sheet. Furthermore, we used silicone sealant before fastening the bolts to ensure the best possible waterproofing of the joint.
+<img src="/assets/img/UnderwaterRover/rover_5.jpg" alt="Image1" class="shadow" /></p>
+ <li>
+   <p><strong>Thruster shrouds:</strong> These are the four tubes that enclose the mounts for the thrusters. The configuration of thrusters on our rover are:</p>
+   <ul>
+     <li>Two thrusters facing in the horizontal direction on the far ends of both the sides.
+     <li>Two thrusters facing the vertical direction adjacent to the central enclosure, on both sides.
+   </ul>
+</ul>
+<p>These shrouds help in increasing the thrust that was generated by the thrusters while simultaneously protecting them from hitting large objects underwater. They are also made out of thick stainless steel cylindrical tubes.</p>
+<p>We also attached a thin sheet of stainless steel to join the shrouds from end to end in order to give the design a more streamlined look, as well as to increase the surface area of the rover, which helped in increasing the buoyant force acting on it.</p>
+<ul>
+ <li><strong>Emergency stop:</strong> This component is incorporated into the top of the central enclosure so that it is easy to access. It is designed like a ‘key’ which when detached from the bot will cut off power to all the components of the bot.
+</ul>
+<p>The entire rover was fabricated in the central workshop.
+Stainless steel tubes were cut and welded together in order to first make the basic frame of the bot. Mounts for the thrusters were also welded in place.</p>
+<p>Next, the dome and backplate along with the valves were attached.</p>
+<p>Finally, the sheet covering the thruster shrouds was welded and the bot was painted black to give it a finishing touch.</p>
+<h1 id="propulsion">Propulsion</h1>
+<h2 id="motors">Motors</h2>
+<p><img src="/assets/img/UnderwaterRover/motorEpoxy.png" alt="Image1" class="shadow" /></p>
+<p>Brushless DC motors have been chosen for the project as they are the most ideal choice of actuators for high speed and high torque applications. Unlike typical DC motors which are carbon brushes for commutation, BLDC motors have zero contact points which therefore allows them to obtain high speeds and also incur less maintenance. After testing out various BLDC motors in the thruster test stand we decided to go ahead with 400 kv and 1000 kv motors for vertical and horizontal thrusters respectively. These motors, unlike traditional ones, need specialised driving circuits called “Electronic Speed Controllers”  for controlling them. We went ahead with 80A and 35A ESC’s for the 400kv and 1000kv motors based on their power consumption.</p>
+<p>Most of the commercially available BLDC motors are meant for usage in air and not water due to which we had to prepare the motors before using them for our project. While we have observed that dipping a BLDC underwater as it is doesn’t cause any problems and the motor works normally. It is well documented that prolonged usage underwater causes corrosion of the chemical coating on the stator coils that once depleted causes internal shorting and therefore drastically reduces performance before permanently killing the motor.</p>
+<p>We went ahead with a 2 part epoxy resin that was applied on top of the stator coils so that they do not come in contact with the water, special care was taken to select the resin as thermal conductivity and water resistance were two important factors for our use case. The stators were coated in epoxy and left to cure overnight, the results were promising and there was no noticeable difference in the amount of thrust produced although we did see the lifetime of the motors increase drastically.</p>
+<p>The curing process, although working, can be made better by using vacuum to remove air pockets that were generated during the epoxy mixing process.</p>
+<h2 id="propellers">Propellers</h2>
+<p><img src="/assets/img/UnderwaterRover/motor2.png" alt="Image1" class="shadow" /></p>
+<p>Custom propellers were designed for the BLDC motors using MATLAB, Solidworks and OpenProp ( an open source software used for the design and analysis of marine propellers). Given that the propellers were 3D printed in sandboxx using PLA filament. The propellers were designed for easy and fast fabrication due to which they were of fixed pitch. Two different propellers were created as the motor housing diameters for the 1000kv and 400kv motors were very different.</p>
+<p>Each propeller model once generated in MATLAB was exported into solidworks as a set of splines and the final model was formed via extrusion and shape forming.</p>
+<h1 id="testing">Testing</h1>
+<p><img src="/assets/img/UnderwaterRover/sink.png" alt="Image1" class="shadow" /></p>
+<p>Multiple subsystems of the rover were tested individually many times before the final assembly took place, given that the team had no access to a proper swimming pool. Initial testing took place in any available container ranging from a water bucket to 1000 L PVC Tank that we custom cut out for the project. 
+The final testing for the robot took place in a pool outside of the campus, we had a limited set of tools at hand given the location and shortage of crew. The final test did show a few problems but they were not major enough and the rover did function as per expectations.</p>
+<h1 id="upcoming-work">Upcoming Work</h1>
+<p>The current rover design has many shortcomings and given that it was the first prototype we were working on, the focus was more on testing the feasibility of the idea and getting to know what it takes to get a rover working rather than actually making a full fledged model. That being said the team is currently working on a revised prototype that addresses most if not all of the shortcomings in the first model. Since the campus now has a swimming pool we believe that the testing and debugging will be very easy when compared to the past. Given the remote setting since last semester the team has been working on the simulation and software side of the rover.</p>
+     </div>
+     <div class="post-tail-wrapper text-muted">
+       <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+            <a href='/categories/projects/'>Projects</a>,
+            <a href='/categories/autonomous-robots/'>Autonomous Robots</a>
+       </div>
+       <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          <a href="/tags/jetson/"
+            class="post-tag no-text-decoration" >jetson</a>
+          <a href="/tags/underwater/"
+            class="post-tag no-text-decoration" >underwater</a>
+          <a href="/tags/imu/"
+            class="post-tag no-text-decoration" >imu</a>
+          <a href="/tags/mpu6050/"
+            class="post-tag no-text-decoration" >mpu6050</a>
+          <a href="/tags/thruster/"
+            class="post-tag no-text-decoration" >thruster</a>
+          <a href="/tags/bldc/"
+            class="post-tag no-text-decoration" >bldc</a>
+          <a href="/tags/ros/"
+            class="post-tag no-text-decoration" >ros</a>
+         </div>
+       <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+         <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+         </div>
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+        <a href="https://twitter.com/intent/tweet?text=Underwater Rover - Jai Krishna&url=https://textzip.github.io/posts/Underwater-Rover/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Underwater Rover - Jai Krishna&u=https://textzip.github.io/posts/Underwater-Rover/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+        <a href="https://telegram.me/share?text=Underwater Rover - Jai Krishna&url=https://textzip.github.io/posts/Underwater-Rover/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+  </span>
+</div>
+       </div>
+     </div>
+   </div>
+ </div>
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+ <div class="access">
+   <div id="access-lastmod" class="post">
+      <span>Recent Update</span>
+     <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+       <li><a href="/posts/Loco-DRL/">Proprioceptive Locomotion in Unstructured Environments</a>
+       <li><a href="/posts/FTG-DRL/">Policy Modulated Trajectory Generation for Quadrupeds</a>
+       <li><a href="/posts/NST-DRL/">Neural Style Transfer for Locomotion</a>
+       <li><a href="/posts/LIDAR-DRL/">Locomotion with Weighted Belief in Exteroception</a>
+       <li><a href="/posts/BiMan-DRL/">Bi-Manual Loco-Manipulation in Quadrupeds for Opening Doors</a>
+     </ul>
+   </div>
+   <div id="access-tags">
+      <span>Trending Tags</span>
+     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+     </div>
+   </div>
+ </div>
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+   <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+     <nav id="toc" data-toggle="toc"></nav>
+   </div>
+</div>
+</div>
+<div class="row">
+ <div class="col-12 col-lg-11 col-xl-8">
+   <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+ <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+   <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+   <div class="card-deck mb-4">
+     <div class="card">
+        <a href="/posts/Stair-Climbing/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1600184120"
+    >
+  2020-09-15
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Autonomous Stair Climbing Robot</h3>
+           <div class="text-muted small">
+             <p>
+The aim of this project is to “Design, Develop and Implement an Autonomous Stair Climbing Robot which can climb stairs, turn at the quarter-landings and deliver packages autonomously”.
+Team
+  ...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/Gaming-Wheel/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1545486200"
+    >
+  2018-12-22
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Gaming Wheel</h3>
+           <div class="text-muted small">
+             <p>
+A cheap and affordable gaming wheel based on the Atmega-328p,
+MPU6050 and capacitive touch sensors for an immersive gaming
+experience.
+Hardware
+  Arduino Uno
+  ADXL345 (or any IMU or tilt senso...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/ROS-Baiscs/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1620125245"
+    >
+  2021-05-04
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>ROS Basics</h3>
+           <div class="text-muted small">
+             <p>
+                Packages
+ROS uses packages to orgnaize its program, you can think of a package as all the files that a specific ROS program needs to run sucessfully. 
+A few common items inside a package:
+  launc...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+   </div>
+ </div>
+<div class="post-navigation d-flex justify-content-between">
+  <a href="/posts/Spherical-Robot/" class="btn btn-outline-primary"
+    prompt="Older">
+   <p>Spherical Robot</p>
+  </a>
+  <a href="/posts/AVR-Diaries-01-Port-Manipulation/" class="btn btn-outline-primary"
+    prompt="Newer">
+   <p>Hands On with AVR - 01 Port Manipulation</p>
+  </a>
+</div>
+    <script src="https://utteranc.es/client.js"
+        repo="TextZip/textzip.github.io"
+        issue-term="title"
+        theme="dark-blue"
+        crossorigin="anonymous"
+        async>
+    </script>
+   </div>
+ </div>
+</div>
+<footer class="d-flex w-100 justify-content-center">
+ <div class="d-flex justify-content-between align-items-center">
+   <div class="footer-left">
+     <p class="mb-0">
+        © 2025
+        <a href="https://github.com/TextZip">Bandi Jai Krishna</a>.
+        <span data-toggle="tooltip" data-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+     </p>
+   </div>
+   <div class="footer-right">
+     <p class="mb-0">
+        Powered by
+        <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+        with
+        <a href="https://github.com/cotes2020/jekyll-theme-chirpy"
+          target="_blank" rel="noopener">Chirpy</a>
+        theme.
+     </p>
+   </div>
+ </div>
+</footer>
+     </div>
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+ <div class="col-12 col-sm-11 post-content">
+   <div id="search-hints">
+     <h4 class="text-muted mb-4">Trending Tags</h4>
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+   </div>
+   <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+ </div>
+</div>
+   </div>
+   <div id="mask"></div>
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script>
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('search-results'),
+  json: '/assets/js/data/search.json',
+  searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="https://textzip.github.io{url}">{title}</a> <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags} </div><p>{snippet}</p></div>',
+  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  templateMiddleware: function(prop, value, template) {
+    if (prop === 'categories') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+      }
+    }
+    if (prop === 'tags') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      }
+    }
+  }
+});
+</script>
+  <script src="/assets/js/slider/ideal-image-slider.min.js"></script>
+  <script src="/assets/js/slider/iis-bullet-nav.js"></script>
+  <script src="/assets/js/slider/iis-captions.js"></script>
+  <script>
+  var underwater_rover_1 = new IdealImageSlider.Slider({
+      selector: '#underwater_rover_1',
+      height: 500,
+      interval: 4000,
+      effect: 'slide',
+      keyboardNav: true,
+      });
+    underwater_rover_1.addCaptions();
+    underwater_rover_1.start();
+  </script>
+  

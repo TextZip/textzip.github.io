@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en-US" 
+>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Deep Reinforcement Learning - Part 0 - Getting Started" />
+<meta name="author" content="Jai Krishna" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Getting into deep reinforcement learning is a tough but rewarding journey. The primary reason it is so difficult for beginners is due to the shear number of fields involved. Deep Reinforcement Learning for Robotics can be broken down into three almost seperate parts: Deep Learning (Neural Networks) Reinforcement Learning Algorithm Choice of State Space, Action Space and Reward Functions" />
+<meta property="og:description" content="Getting into deep reinforcement learning is a tough but rewarding journey. The primary reason it is so difficult for beginners is due to the shear number of fields involved. Deep Reinforcement Learning for Robotics can be broken down into three almost seperate parts: Deep Learning (Neural Networks) Reinforcement Learning Algorithm Choice of State Space, Action Space and Reward Functions" />
+<link rel="canonical" href="https://textzip.github.io/posts/DRL-0/" />
+<meta property="og:url" content="https://textzip.github.io/posts/DRL-0/" />
+<meta property="og:site_name" content="Jai Krishna" />
+<meta property="og:image" content="https://textzip.github.io/assets/img/drl_logo.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-18T13:13:20+05:30" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://textzip.github.io/assets/img/drl_logo.jpg" />
+<meta property="twitter:title" content="Deep Reinforcement Learning - Part 0 - Getting Started" />
+<meta name="twitter:site" content="@twitter_username" />
+<meta name="twitter:creator" content="@Jai Krishna" />
+<meta name="google-site-verification" content="google_meta_tag_verification" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jai Krishna"},"dateModified":"2023-01-23T16:42:20+05:30","datePublished":"2023-01-18T13:13:20+05:30","description":"Getting into deep reinforcement learning is a tough but rewarding journey. The primary reason it is so difficult for beginners is due to the shear number of fields involved. Deep Reinforcement Learning for Robotics can be broken down into three almost seperate parts: Deep Learning (Neural Networks) Reinforcement Learning Algorithm Choice of State Space, Action Space and Reward Functions","headline":"Deep Reinforcement Learning - Part 0 - Getting Started","image":"https://textzip.github.io/assets/img/drl_logo.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://textzip.github.io/posts/DRL-0/"},"url":"https://textzip.github.io/posts/DRL-0/"}</script>
+ <title>Deep Reinforcement Learning - Part 0 - Getting Started | Jai Krishna
+ </title>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jai Krishna">
+<meta name="application-name" content="Jai Krishna">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script defer
+    src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+  <script async
+    src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
+  <script>
+  /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+  MathJax = {
+    tex: {
+      inlineMath: [              /* start/end delimiter pairs for in-line math */
+        ['$','$'],
+        ['\\(','\\)']
+      ],
+      displayMath: [             /* start/end delimiter pairs for display math */
+        ['$$', '$$'],
+        ['\\[', '\\]']
+      ]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  <script defer src="/app.js"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-KGYYX7MFB2"
+></script>
+<script>
+  /* global dataLayer */
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-KGYYX7MFB2");
+</script>
+ <body data-spy="scroll" data-target="#toc">
+<div id="sidebar" class="d-flex flex-column align-items-end">
+ <div class="profile-wrapper text-center">
+   <div id="avatar">
+      <a href="/" alt="avatar" class="mx-auto">
+        <img src="/assets/img/profile.jpg" alt="avatar" onerror="this.style.display='none'">
+      </a>
+   </div>
+   <div class="site-title mt-3">
+      <a href="/">Jai Krishna</a>
+   </div>
+   <div class="site-subtitle font-italic">Robotics | Electronics | Design</div>
+ </div>
+ <ul class="w-100">
+   <li class="nav-item">
+      <a href="/" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>HOME</span>
+      </a>
+   <li class="nav-item">
+      <a href="/projects/" class="nav-link">
+        <i class="fa-fw fas fa-microchip ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>PROJECTS</span>
+      </a>
+   <li class="nav-item">
+      <a href="/resources/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>RESOURCES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/categories/" class="nav-link">
+        <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>CATEGORIES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/archives/" class="nav-link">
+        <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ARCHIVES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/about/" class="nav-link">
+        <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ABOUT | CONTACT</span>
+      </a>
+   <li class="nav-item">
+      <a href="/tags/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>TAGS</span>
+      </a>
+ </ul>
+ <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
+      <a href="https://github.com/TextZip" aria-label="github"
+        class="order-3"
+        target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="
+          javascript:location.href = 'mailto:' + ['textzip','gmail.com'].join('@')" aria-label="email"
+        class="order-4"
+        >
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/jai-krishna-bandi" aria-label="linkedin"
+        class="order-5"
+        target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+        <span class="icon-border order-2"></span>
+      <span id="mode-toggle-wrapper" class="order-1">
+<i class="mode-toggle fas fa-adjust"></i>
+<script type="text/javascript">
+  class ModeToggle {
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+      var self = this;
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addListener(function() {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+          self.clearMode();
+        }
+        self.updateMermaid();
+      });
+    } /* constructor() */
+    setDark() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+    setLight() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+    clearMode() {
+      $('html').removeAttr(ModeToggle.MODE_KEY);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+    get hasMode() { return this.mode != null; }
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode
+        || (!this.hasMode && this.isSysDarkPrefer) ) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+    updateMermaid() {
+      if (typeof mermaid !== "undefined") {
+        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
+        let config = { theme: expectedTheme };
+        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $(".mermaid").each(function() {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr("data-processed");
+          $(this).html(svgCode);
+        });
+        mermaid.initialize(config);
+        mermaid.init(undefined, ".mermaid");
+      }
+    }
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+      this.updateMermaid();
+    } /* flipMode() */
+  } /* ModeToggle */
+  let toggle = new ModeToggle();
+  $(".mode-toggle").click(function() {
+    toggle.flipMode();
+  });
+</script>
+      </span>
+ </div>
+</div>
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+ <div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+    <span id="breadcrumb">
+        <span>
+          <a href="/">
+            Posts
+          </a>
+        </span>
+          <span>Deep Reinforcement Learning - Part 0 - Getting Started</span>
+    </span>
+    <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+   <div id="topbar-title">
+      Post
+   </div>
+    <i id="search-trigger" class="fas fa-search fa-fw"></i>
+    <span id="search-wrapper" class="align-items-center">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search"
+        aria-label="search" autocomplete="off" placeholder="Search...">
+      <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+    </span>
+    <span id="search-cancel" >Cancel</span>
+ </div>
+</div>
+   <div id="main-wrapper">
+     <div id="main">
+<div class="row">
+ <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+   <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+     <h1 data-toc-skip>Deep Reinforcement Learning - Part 0 - Getting Started</h1>
+     <div class="post-meta text-muted d-flex flex-column">
+       <div>
+          <span class="semi-bold">
+            Bandi Jai Krishna
+          </span>
+<em class="timeago"
+    data-ts="1674027800"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Wed, Jan 18, 2023,  1:13 PM +0530"
+    >
+  2023-01-18
+</em>
+       </div>
+       <div>
+          <span>
+<em class="timeago lastmod"
+    data-ts="1674472340"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Mon, Jan 23, 2023,  8:12 PM +0900"
+    >
+  2023-01-23
+</em>
+          </span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1768 words">9 min</span>
+       </div>
+     </div>
+     <div class="post-content">
+       <p>Getting into deep reinforcement learning is a tough but rewarding journey. The primary reason it is so difficult for beginners is due to the shear number of fields involved. Deep Reinforcement Learning for Robotics can be broken down into three almost seperate parts:</p>
+<ul>
+ <li>Deep Learning (Neural Networks)
+ <li>Reinforcement Learning Algorithm
+ <li>Choice of State Space, Action Space and Reward Functions
+</ul>
+<h1 id="how-to-get-started">How To Get Started</h1>
+<p>There are a finite number of ways to get started with DRL, but I believe that the right curriculum (learning xD) can make you go a long way.</p>
+<p>RL Agents pretty much wither and die when left in environments with sparse rewards. One of the easiest solution for both RL Agents and beginners trying to learn DRL is to have a dense reward function that introduces a lot of fun and rewards at every timestep in the journey.</p>
+<h3 id="target-audiance">Target-Audiance</h3>
+<p>People who have prior experience with python, numpy(preferably) and basic understanding of probability and statistics. Added benefit if you are comfortable with basic calculus.</p>
+<p>You can learn the maths and numpy on the go as and when it is required but a decent understanding of python datatypes, object-oriented-programming is expected.</p>
+<h3 id="end-goal">End-Goal</h3>
+<p>The end-goal for this curriculum is to equip you with the skills required to read through research papers and reimplement/modify them, understand opensource projects and ultimately help you get started with research in DRL.</p>
+<p>If this is not what your looking for then this probably isn’t the right curriculum for you.</p>
+<h2 id="curriculum">Curriculum</h2>
+<p>The curriculum laid out below is my opinon and it might or might not be the best way for you to get into DRL, so please use it accordingly.</p>
+<h3 id="system-setup">System Setup</h3>
+<p>Please create a virtualenv and switch to python 3.8 for the entire series. Linux(Ubuntu or any other distro) is the recommended OS, while some of the code and packages might work in windows, I will not be helping with any windows debugging.</p>
+<h2 id="phase-one">Phase One</h2>
+<h3 id="1-get-started-with-gymnasium"><strong>1. Get started with gymnasium</strong></h3>
+<p><strong>Prerequisites</strong>: <em>python</em></p>
+<p><strong>Note</strong>: If you are an existing user of gym please refer to the migration guide to gymnasium <a href="https://gymnasium.farama.org/content/migration-guide/">here</a>.</p>
+<ul>
+ <li>
+   <p>Explore the structure of <a href="https://gymnasium.farama.org/content/basic_usage/">gymnasium-api</a>. Render a couple of environments until your comfortable with the syntax and have a general idea of what is happening in the code.</p>
+ <li>
+   <p><strong>Progress Check:</strong> Assignmnet-1 | Solution-1</p>
+</ul>
+<h3 id="2-play-around-with-rewards-states-and-actions"><strong>2. Play around with rewards, states and actions</strong></h3>
+<p><strong>Prerequisites</strong>: <em>python, gymnasium</em></p>
+<ul>
+ <li>
+   <p>Get started with a 3rd party RL Library (<a href="https://stable-baselines3.readthedocs.io/en/master/index.html">SB3</a>, <a href="https://docs.cleanrl.dev/get-started/basic-usage/#get-documentation">CleanRL</a>, <a href="https://docs.ray.io/en/latest/rllib/index.html">RLlib</a> or any other implementation of your choice) and a robust RL algorithm like PPO and focus on changing the rewards, states and actions in the <a href="https://gymnasium.farama.org/environments/classic_control/">basic environments</a> to solve them. Gain an intution of how the RL framework works.</p>
+ <li>
+   <p>For robotics in paticular, try the <a href="https://gymnasium.farama.org/environments/mujoco/">MuJoCo environments</a> like Ant or check <a href="https://github.com/clvrai/awesome-rl-envs">here</a> and <a href="https://github.com/kengz/awesome-deep-rl">here</a> for other available options (This is not an exhaustive list).</p>
+ <li>
+   <p>What happens when you use torque instead of position in the action space ? What happens when you given a combination of negative and postive rewards ? What are termination conditions ?</p>
+ <li>
+   <p>Believe it or not, you are already in a position to replicate a couple of basic DRL papers. Search for papers that are related to blind locomotion in quadrupeds or robotic manipulators (for example), you should be able to comfortably work with any paper that involve changes to only the state, action and rewards.</p>
+ <li>
+   <p>Try importing different robot models into MuJoCo or any other physics engine of your choice and getting them to work or alternativly use one of the above listed rl-envs. Here here a couple of papers that you can implement along with a link to my implementation, feel free to try it on your own first or tinker around with my code directly:</p>
+   <blockquote>
+     <p>Fu, Z., Kumar, A., Malik, J., &amp; Pathak, D. (2021). <a href="https://arxiv.org/pdf/2111.01674.pdf">Minimizing Energy Consumption Leads to the Emergence of Gaits in Legged Robots.</a> doi:10.48550/ARXIV.2111.01674</p>
+   </blockquote>
+   <blockquote>
+     <p>Franceschetti, A., Tosello, E., Castaman, N., &amp; Ghidoni, S. (2020). <a href="https://arxiv.org/abs/2005.02632">Robotic Arm Control and Task Training through Deep Reinforcement Learning.</a> doi:10.48550/ARXIV.2005.02632</p>
+   </blockquote>
+   <blockquote>
+     <p>Michel Aractingi, Pierre-Alexandre Léziart, Thomas Flayols, Julien Perez, Tomi Silander, et al.. <a href="https://hal.laas.fr/hal-03761331/document">Controlling the Solo12 Quadruped Robot with Deep Reinforcement Learning.</a> 2022. ⟨hal-03761331⟩</p>
+   </blockquote>
+   <blockquote>
+     <p>Fang-I Hsiao, Cheng-Min Chiang, Alvin Hou, et al.. <a href="https://web.stanford.edu/class/aa228/reports/2019/final62.pdf">Reinforcement Learning Based Quadcopter Controller</a></p>
+   </blockquote>
+ <li>
+   <p>You can even try ideas like curriculum learning, dynamic goal generation and other ideas that vary the difficult of the training as per the agents performance.</p>
+ <li>
+   <p><strong>Progress Check:</strong> Assignmnet-2 | Solution-2</p>
+</ul>
+<h3 id="3-learn-tabular-reinforcement-learning-methods"><strong>3. Learn Tabular Reinforcement Learning Methods</strong></h3>
+<p><strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em></p>
+<p><strong>NOTE</strong>: <em>You can continue to explore ideas and research papers from step 2 in parallel.</em></p>
+<ul>
+ <li>
+   <p>Learn about the basics/fundamentals of reinforcement learning mainly: K-Arm Bandits, MDP, Monte-Carlo Methods, Temporal Difference Methods, Bootstrapping</p>
+ <li>
+   <p>Refer to the <a href="#sources--references">Sources &amp; References</a> for links to external resources like video lectures.</p>
+ <li>
+   <p>Refer to the following sections of the blog series for code and theory:</p>
+   <blockquote>
+     <p><a href="https://textzip.github.io/posts/DRL-1/">Part 1 - Multi-Arm Bandits</a></p>
+   </blockquote>
+   <blockquote>
+     <p><a href="https://textzip.github.io/posts/DRL-2/">Part 2 - Finite MDP</a></p>
+   </blockquote>
+   <blockquote>
+     <p><a href="https://textzip.github.io/posts/DRL-3/">Part 3 - Dynamic Programming</a></p>
+   </blockquote>
+   <blockquote>
+     <p>Part 4 - Monte Carlo and Temporal Difference Methods</p>
+   </blockquote>
+ <li>
+   <p>Solve some of the basic low dimenssional problems from the gym environments like <a href="https://gymnasium.farama.org/environments/toy_text/">toy-text</a> problems</p>
+ <li>
+   <p><strong>Progress Check:</strong> Assignmnet-3 | Solution-3</p>
+</ul>
+<h2 id="phase-two">Phase Two</h2>
+<h3 id="4-deep-learning-framework"><strong>4. Deep Learning Framework</strong></h3>
+<p><strong>Prerequisites</strong>: <em>python, numpy</em></p>
+<ul>
+ <li>
+   <p>Pick a library of your choice for learning Neural Networks, this guide will be based on PyTorch. (Other options like TensorFlow exist, pick whatever works best for you.)</p>
+ <li>
+   <p>Learn Deep Learning using PyTorch. In paticular try a couple of basic projects till your comfortable with the following ideas: Loss Functions, Activation Functions, PyTorch Syntax, MLP, CNN, RNN, LSTM, GAN, Autoencoders, Weight Initializations, Dropout, Optimizers.</p>
+ <li>
+   <p>Refer to the <a href="#sources--references">Sources &amp; References</a> for links to external resources for learning.</p>
+ <li>
+   <p>Do a couple of pure Deep-Learning projects like binary/multi-class classification, De-noising Images and so on..</p>
+ <li>
+   <p>Try going through some of the classic papers in DL that laid the foundation for modern DL. <a href="https://github.com/TextZip/drl-resources">Here</a> is a link to my collection of must read classics. Here are links to an external collection that is more exhaustive <a href="https://spinningup.openai.com/en/latest/spinningup/keypapers.html#bonus-classic-papers-in-rl-theory-or-review">spinning-openai</a>, <a href="https://github.com/tigerneil/awesome-deep-rl">awesome-deep-rl</a>, <a href="https://github.com/jgvictores/awesome-deep-reinforcement-learning">awesome-deep-reinforcement-learning</a></p>
+ <li>
+   <p><strong>Progress Check:</strong> Assignmnet-4 | Solution-4</p>
+</ul>
+<h3 id="5-apply-deep-learning-to-rl"><strong>5. Apply Deep Learning to RL</strong></h3>
+<p><strong>Prerequisites</strong>: <em>python, numpy, rl-library-of-your-choice</em></p>
+<ul>
+ <li>
+   <p>Make small changes to the exisiting neural networks from your prior projects in Section <a href="#2-play-around-with-rewards-states-and-actions">2. Play around with rewards, states and actions</a> which were based on 3rd party RL libraries.</p>
+ <li>
+   <p>Change the number of layers, the type of NNet, the activation functon, maybe add a CNN and take camera input in the state.</p>
+ <li>
+   <p>Upgrade projects you worked on earlier like quadruped/robotics arm by adding camera inputs to the state space or change the NNet type to RNNs or LSTMs and check how the performace of the agent changes.</p>
+ <li>
+   <p><strong>Progress Check:</strong> Assignmnet-5 | Solution-5</p>
+</ul>
+<h3 id="6-approx-methods-in-rl"><strong>6. Approx. Methods in RL</strong></h3>
+<p><strong>Prerequisites</strong>: <em>python, numpy, PyTorch</em></p>
+<ul>
+ <li>
+   <p>Learn Deep Q-Learning, Policy Gradient, Actor-Critic Methods and other algorithms and implement them.</p>
+ <li>
+   <p>Refer to the following sections of the blog series:</p>
+   <blockquote>
+     <p>Part 5 - Deep SARSA and Q-Learning</p>
+   </blockquote>
+   <blockquote>
+     <p>Part 6 - REINFORCE, AC, DDPG, TD3, SAC</p>
+   </blockquote>
+   <blockquote>
+     <p>Part 7 - A2C, PPO, TRPO, GAE, A3C</p>
+   </blockquote>
+ <li>
+   <p>You should now be able to implement a good number of research papers, explore ideas like HER, PER, World Models and other concepts.</p>
+ <li>
+   <p><strong>Progress Check:</strong> Assignmnet-6 | Solution-6</p>
+</ul>
+<h2 id="where-does-this-blog-fit-in-">Where Does This Blog Fit in ?</h2>
+<p>Some drawbacks of the existing resources for DRL:</p>
+<ul>
+ <li>
+   <p>Most of them only focus on the theory or the code but not both. A majority of the courses that cover the theory in great detail do not have any coding components making it very difficult to implement any learning. The courses which are coding centric only focus on the code and skip most of the theory and give a vague intution about the proof or the derivation for the formulas used.</p>
+ <li>
+   <p>Many courses use their own custom environments for teaching (ahm ahm Coursera Specialization) while this can make learning/teaching easy. Some use jupyter notebooks for teaching, most if not all the RL libraries and opensource projects in the internet use argparse and write their code in modular file structures. Once you step outside the course sandbox it becomes very difficult to switch or even follow other projects.</p>
+ <li>
+   <p>A good majority of courses are topic specific aka they only teach something with limits scope or prespective in mind. For example, there are tons of Deep Learning courses but there usually isn’t a deep learning for reinforcement learning course. So, you end up learning a lot more than what is needed and the course usually might focus on things that are not really required for DRL.</p>
+</ul>
+<p><strong>The primary goal for this blog series is to bridge the gap between theory and code in Deep Reinforcement Learning.</strong></p>
+<p>This blog isn’t a one stop solution and will not teach you DRL from start to finish, you will still need to learn a good portion of the curriculum from other resources. This blog is a sort of an extended cheatsheet for people to refer to when they are learning/implementing DRL via code. It contains a mix of theory and code that build on top of each other.</p>
+<h3 id="structure-of-the-blog">Structure of the blog</h3>
+<ul>
+ <li><a href="https://textzip.github.io/posts/DRL-0/">Part 0 - Getting Started</a>
+ <li><a href="https://textzip.github.io/posts/DRL-1/">Part 1 - Multi-Arm Bandits</a>
+ <li><a href="https://textzip.github.io/posts/DRL-2/">Part 2 - Finite MDP</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em>
+ <li><a href="https://textzip.github.io/posts/DRL-3/">Part 3 - Dynamic Programming</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em>
+ <li><a href="https://textzip.github.io/posts/DRL-4/">Part 4 - Monte Carlo, Temporal Difference &amp; Bootstrapping Methods</a> | <strong>Prerequisites</strong>: <em>Python, gymnasium, numpy</em>
+ <li>Part 5 - Deep SARSA and Q-Learning | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy, torch</em>
+ <li>Part 6 - REINFORCE, AC, DDPG, TD3, SAC
+ <li>Part 7 - A2C, PPO, TRPO, GAE, A3C
+ <li>TBA (HER, PER, Distillation)
+</ul>
+<h2 id="sources--references">Sources &amp; References</h2>
+<p>This section contains a collection of all the various sources for this blog series (in no paticular order):</p>
+<ol>
+ <li>Sutton, R. S., Barto, A. G. (2018 ). <a href="http://incompleteideas.net/book/the-book.html">Reinforcement Learning: An Introduction.</a> The MIT Press.
+ <li>David Silver (2015). <a href="https://www.davidsilver.uk/teaching/">Lectures on Reinforcement Learning</a>
+ <li>Udemy Course <a href="https://www.udemy.com/course/beginner-master-rl-1/">Reinforcement Learning beginner to master - AI in Python</a>
+ <li>Udemy Course <a href="https://www.udemy.com/course/deep-q-learning-from-paper-to-code/">Modern Reinforcement Learning: Deep Q Learning in PyTorch</a>
+ <li>Chris G. Willcocks - Durham University <a href="https://youtube.com/playlist?list=PLMsTLcO6ettgmyLVrcPvFLYi2Rs-R4JOE">Reinforcement Learning Lectures</a>
+ <li>(My repo) <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>
+ <li>Pieter Abbeel <a href="https://www.youtube.com/playlist?list=PLwRJQ4m4UJjNymuBM9RdmB3Z9N5-0IlY0">Foundations of Deep RL</a>
+ <li>Weng, L. (2018, February 19). <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/">A (long) peek into reinforcement learning. Lil’Log</a>
+ <li>Aditya Chopra. (2022). <a href="https://adeecc.vercel.app/blog/intro-to-basic-rl">Introduction to Concepts in Reinforcement Learning</a>
+</ol>
+<p>This section contains a collection of various references which are required to learn DRL and have been mentioned in the curriculum but have not been covered in this blog series:</p>
+<ol>
+ <li>Udemy Course <a href="https://www.udemy.com/course/pytorch-for-deep-learning/">PyTorch for Deep Learning in 2023: Zero to Mastery</a>
+ <li>Udemy Course <a href="https://www.udemy.com/course/deeplearning_x/">A deep understanding of deep learning (with Python intro)</a>
+</ol>
+<p>This section contains other references that I have not used in this blog series but are in general useful:</p>
+<ol>
+ <li>Coursera <a href="https://www.coursera.org/specializations/reinforcement-learning">Reinforcement Learning Specialization</a>
+ <li>HuggingFace <a href="https://huggingface.co/deep-rl-course/unit0/introduction?fw=pt">Deep Reinforcement Learning Course</a>
+ <li>Professor Emma Brunskill, Stanford University <a href="https://www.youtube.com/watch?v=FgzM3zpZ55o&amp;list=PLoROMvodv4rOSOPzutgyCTapiGlY2Nd8u">Stanford CS234: Reinforcement Learning | Winter 2019</a>
+ <li>DeepMind x UCL <a href="https://www.youtube.com/watch?v=_DpLWBG_nvk&amp;list=PLki3HkfgNEsKiZXMoYlR-14r1t_MAS7M8">RL Lecture Series</a>
+ <li>RAIL <a href="https://www.youtube.com/watch?v=JHrlF10v2Og&amp;list=PL_iWQOsE6TfXxKgI1GgyV1B_Xa0DxE5eH">CS285: Deep Reinforcement Learning Series UC Berkeley</a>
+</ol>
+     </div>
+     <div class="post-tail-wrapper text-muted">
+       <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+            <a href='/categories/resources/'>Resources</a>,
+            <a href='/categories/deep-reinforcement-learning/'>Deep Reinforcement Learning</a>
+       </div>
+       <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          <a href="/tags/mdp/"
+            class="post-tag no-text-decoration" >mdp</a>
+          <a href="/tags/optimal-value/"
+            class="post-tag no-text-decoration" >optimal value</a>
+          <a href="/tags/bellman/"
+            class="post-tag no-text-decoration" >bellman</a>
+         </div>
+       <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+         <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+         </div>
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+        <a href="https://twitter.com/intent/tweet?text=Deep Reinforcement Learning - Part 0 - Getting Started - Jai Krishna&url=https://textzip.github.io/posts/DRL-0/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Deep Reinforcement Learning - Part 0 - Getting Started - Jai Krishna&u=https://textzip.github.io/posts/DRL-0/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+        <a href="https://telegram.me/share?text=Deep Reinforcement Learning - Part 0 - Getting Started - Jai Krishna&url=https://textzip.github.io/posts/DRL-0/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+  </span>
+</div>
+       </div>
+     </div>
+   </div>
+ </div>
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+ <div class="access">
+   <div id="access-lastmod" class="post">
+      <span>Recent Update</span>
+     <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+       <li><a href="/posts/Loco-DRL/">Proprioceptive Locomotion in Unstructured Environments</a>
+       <li><a href="/posts/FTG-DRL/">Policy Modulated Trajectory Generation for Quadrupeds</a>
+       <li><a href="/posts/NST-DRL/">Neural Style Transfer for Locomotion</a>
+       <li><a href="/posts/LIDAR-DRL/">Locomotion with Weighted Belief in Exteroception</a>
+       <li><a href="/posts/BiMan-DRL/">Bi-Manual Loco-Manipulation in Quadrupeds for Opening Doors</a>
+     </ul>
+   </div>
+   <div id="access-tags">
+      <span>Trending Tags</span>
+     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+     </div>
+   </div>
+ </div>
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+   <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+     <nav id="toc" data-toggle="toc"></nav>
+   </div>
+</div>
+</div>
+<div class="row">
+ <div class="col-12 col-lg-11 col-xl-8">
+   <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+ <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+   <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+   <div class="card-deck mb-4">
+     <div class="card">
+        <a href="/posts/DRL-3/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1674200600"
+    >
+  2023-01-20
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Deep Reinforcement Learning - Part 3 - Dynamic Programming</h3>
+           <div class="text-muted small">
+             <p>
+                This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.
+...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/DRL-4/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1674459800"
+    >
+  2023-01-23
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Deep Reinforcement Learning - Part 4 - Monte Carlo, Temporal Difference & Bootstrapping Methods</h3>
+           <div class="text-muted small">
+             <p>
+                This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.
+...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/DRL-2/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1668584600"
+    >
+  2022-11-16
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Deep Reinforcement Learning - Part 2 - Finite MDP</h3>
+           <div class="text-muted small">
+             <p>
+                This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.
+...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+   </div>
+ </div>
+<div class="post-navigation d-flex justify-content-between">
+  <a href="/posts/Energy-DRL/" class="btn btn-outline-primary"
+    prompt="Older">
+   <p>Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds</p>
+  </a>
+  <a href="/posts/DRL-3/" class="btn btn-outline-primary"
+    prompt="Newer">
+   <p>Deep Reinforcement Learning - Part 3 - Dynamic Programming</p>
+  </a>
+</div>
+    <script src="https://utteranc.es/client.js"
+        repo="TextZip/textzip.github.io"
+        issue-term="title"
+        theme="dark-blue"
+        crossorigin="anonymous"
+        async>
+    </script>
+   </div>
+ </div>
+</div>
+<footer class="d-flex w-100 justify-content-center">
+ <div class="d-flex justify-content-between align-items-center">
+   <div class="footer-left">
+     <p class="mb-0">
+        © 2025
+        <a href="https://github.com/TextZip">Bandi Jai Krishna</a>.
+        <span data-toggle="tooltip" data-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+     </p>
+   </div>
+   <div class="footer-right">
+     <p class="mb-0">
+        Powered by
+        <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+        with
+        <a href="https://github.com/cotes2020/jekyll-theme-chirpy"
+          target="_blank" rel="noopener">Chirpy</a>
+        theme.
+     </p>
+   </div>
+ </div>
+</footer>
+     </div>
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+ <div class="col-12 col-sm-11 post-content">
+   <div id="search-hints">
+     <h4 class="text-muted mb-4">Trending Tags</h4>
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+   </div>
+   <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+ </div>
+</div>
+   </div>
+   <div id="mask"></div>
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script>
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('search-results'),
+  json: '/assets/js/data/search.json',
+  searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="https://textzip.github.io{url}">{title}</a> <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags} </div><p>{snippet}</p></div>',
+  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  templateMiddleware: function(prop, value, template) {
+    if (prop === 'categories') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+      }
+    }
+    if (prop === 'tags') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      }
+    }
+  }
+});
+</script>
+  

@@ -1,0 +1,2013 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://textzip.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://textzip.github.io/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2025-02-08T21:01:38+05:30</updated><id>https://textzip.github.io/feed.xml</id><title type="html">Jai Krishna</title><subtitle>A portfolio of my adventures in robotics, electronics and mechanical along with tutorials on topics related to robotics.</subtitle><author><name>Jai Krishna</name></author><entry><title type="html">Bi-Manual Loco-Manipulation in Quadrupeds for Opening Doors</title><link href="https://textzip.github.io/posts/BiMan-DRL/" rel="alternate" type="text/html" title="Bi-Manual Loco-Manipulation in Quadrupeds for Opening Doors" /><published>2024-12-02T13:13:20+05:30</published><updated>2025-02-01T03:49:57+05:30</updated><id>https://textzip.github.io/posts/BiMan-DRL</id><content type="html" xml:base="https://textzip.github.io/posts/BiMan-DRL/"><![CDATA[<p>This project explores the use of Action Chunking Transformers and related architectures for learning via demonstration for solving loco-manipulation tasks, in paticular interacting with a varity of doors via various action groups such as push, pull and re-grasping.</p>
+
+<p><img src="/assets/img/BiMan/biman_arm_pose.gif" alt="Image1" class="shadow" /></p>
+
+<h2 id="brief-overview">Brief Overview</h2>
+
+<p><img src="/assets/img/BiMan/overview.png" alt="Image1" class="shadow" /></p>
+
+<h2 id="some-early-results">Some Early Results</h2>
+
+<h3 id="pushing-door">Pushing Door</h3>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/VaiBB3WeJiw" frameborder="0" allowfullscreen=""></iframe>
+
+<h3 id="pulling-door">Pulling Door</h3>
+
+<!-- TODO Insert Pulling Door Video  (Remove audio, unlisted video, speed up video) -->
+
+<p>More details about the project to be released soon…</p>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="Manipulators" /><category term="reinforcement learning" /><category term="sim2real" /><category term="manipulators" /><category term="quadrupeds" /><summary type="html"><![CDATA[This project explores the use of Action Chunking Transformers and related architectures for learning via demonstration for solving loco-manipulation tasks, in paticular interacting with a varity of doors via various action groups such as push, pull and re-grasping.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/BiMan/BiMan-icon.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/BiMan/BiMan-icon.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Getting Started with SO100 for Reinforcement Learning</title><link href="https://textzip.github.io/posts/GS-SO-100/" rel="alternate" type="text/html" title="Getting Started with SO100 for Reinforcement Learning" /><published>2024-10-08T13:13:20+05:30</published><updated>2025-01-31T20:51:37+05:30</updated><id>https://textzip.github.io/posts/GS-SO-100</id><content type="html" xml:base="https://textzip.github.io/posts/GS-SO-100/"><![CDATA[<p>Over the past few years, I’ve had the opportunity to tinker with various robots—quadrupeds, bipeds, wheeled robots, and more. This hands-on experience has helped me apply and refine my skills in reinforcement learning. However, despite all this, I’ve always wanted to explore the full Sim2Real pipeline—from designing a robot from scratch (CAD and mechanical design) to fabrication, simulation, training, and ultimately deploying it in the real world.</p>
+
+<p>This blog post captures my journey of attempting this process with the SO-100, a low-cost, easy-to-build robotic arm.</p>
+
+<p>In particular, I will cover the following topics:</p>
+
+<ul>
+  <li>Designing the robot in CAD (SolidWorks) and generating a URDF</li>
+  <li>Importing the URDF into Isaac Sim/USD Composer</li>
+  <li>Adding sensors and actuators in Isaac Sim</li>
+  <li>Performing system identification</li>
+  <li>Training a basic policy</li>
+  <li>Sim2Real transfer and deployment</li>
+</ul>
+
+<p><img src="/assets/img/SO100/zero_pose.jpg" alt="Image1" class="shadow" /></p>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/tXi-rkQwmaE" frameborder="0" allowfullscreen=""></iframe>
+
+<p>More details about the project to be added soon…</p>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="Manipulators" /><category term="reinforcement learning" /><category term="sim2real" /><category term="manipulators" /><summary type="html"><![CDATA[Over the past few years, I’ve had the opportunity to tinker with various robots—quadrupeds, bipeds, wheeled robots, and more. This hands-on experience has helped me apply and refine my skills in reinforcement learning. However, despite all this, I’ve always wanted to explore the full Sim2Real pipeline—from designing a robot from scratch (CAD and mechanical design) to fabrication, simulation, training, and ultimately deploying it in the real world.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/SO100/zero_pose.jpg" /><media:content medium="image" url="https://textzip.github.io/assets/img/SO100/zero_pose.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Locomotion with Weighted Belief in Exteroception</title><link href="https://textzip.github.io/posts/LIDAR-DRL/" rel="alternate" type="text/html" title="Locomotion with Weighted Belief in Exteroception" /><published>2024-04-12T13:13:20+05:30</published><updated>2025-02-08T01:02:02+05:30</updated><id>https://textzip.github.io/posts/LIDAR-DRL</id><content type="html" xml:base="https://textzip.github.io/posts/LIDAR-DRL/"><![CDATA[<!-- ![Image1](/assets/img/LIDAR-DRL/lidar_student.png){: .shadow} -->
+
+<p>This project goes over the integration of elevation maps (typically obtained from LIDARs/Depth Cameras) into the locomotion pipeline and the intricacies involved in this process. We will try to reimplement and upgrade(in my humble opinion) a pretty well known paper from ETH RSL titled <a href="https://leggedrobotics.github.io/rl-perceptiveloco/">Learning robust perceptive locomotion for quadrupedal robots in the wild et al. Takahiro Miki</a>.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Detailed results and video clips can be found in the <a href="#results">Results</a> section below.</p>
+</blockquote>
+
+<h2 id="paper-overview">Paper Overview</h2>
+
+<p>As you might have noticed, this paper is pretty huge (in both quality and quantity), and in a way is a compilation of their past work and new results. Therefore I will try to break this paper into several sections and focus on one topic at a time.</p>
+
+<p>The entire paper can be broken down into the following parts:</p>
+
+<ul>
+  <li>Foot Trajectory Generator for Gait</li>
+  <li>Noise Model for the LIDAR/Elevation Points</li>
+  <li>Belief State Encoder/Decoder Arch</li>
+</ul>
+
+<h3 id="foot-trajectory-generators">Foot Trajectory Generators</h3>
+
+<p>The paper builds on top of their older work on blind locomotion using FTG, so if you are unaware of FTGs please refer to my blog post on it <a href="https://textzip.github.io/posts/FTG-DRL/">here</a> and also to these two papers<a href="https://arxiv.org/pdf/1910.02812">[1]</a>,<a href="https://arxiv.org/abs/2010.11251">[2]</a>.</p>
+
+<p>But a TLDR about FTGs is basically the fact that they provide a method to offload the gait generation from the locomotion policy via the the use of a bunch of Trajectory Generation Equations, and the policy is given control over some of the parameters that are embedded into these equations and finally the output of the policy and the output of the FTG is added before being passed onto the robot.</p>
+
+<h3 id="noise-in-lidar">Noise in LIDAR</h3>
+
+<p>A crucial part of the paper involves the noise model that is used to bridge the sim2real gap between the scan dots that are obtained using ground truth in sim vs the real world noisy values. The following snippet from the paper explains all the different types of noises that are superimposed and added to the ground truth.</p>
+
+<p><img src="/assets/img/LIDAR-DRL/noise.jpg" alt="Image1" class="shadow" /></p>
+
+<p>As you might have noticed from the above annotated image, the paper has some missing elements for the noise parameters, I will be sharing the noise parameters I have used in the custom implementation section.</p>
+
+<h3 id="belief-state-encoderdecoder">Belief State Encoder/Decoder</h3>
+
+<p><img src="/assets/img/LIDAR-DRL/original_arch.jpg" alt="Image1" class="shadow" /></p>
+
+<h2 id="custom-implementation">Custom Implementation</h2>
+
+<h3 id="teacher-training">Teacher Training</h3>
+
+<p><img src="/assets/img/LIDAR-DRL/teacher_training.jpg" alt="Image1" class="shadow" /></p>
+
+<h3 id="student-training">Student Training</h3>
+
+<p><img src="/assets/img/LIDAR-DRL/student_training.jpg" alt="Image1" class="shadow" /></p>
+
+<h3 id="modified-belief-state-encoderdecoder">Modified Belief State Encoder/Decoder</h3>
+
+<p><img src="/assets/img/LIDAR-DRL/encoder.jpg" alt="Image1" class="shadow" />
+<img src="/assets/img/LIDAR-DRL/decoder.jpg" alt="Image1" class="shadow" /></p>
+
+<h3 id="deployment">Deployment</h3>
+
+<p><img src="/assets/img/LIDAR-DRL/system_overview.jpg" alt="Image1" class="shadow" /></p>
+
+<h2 id="results">Results</h2>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/Qu5r9823Za0" frameborder="0" allowfullscreen=""></iframe>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/Vu6mLTbqOj0" frameborder="0" allowfullscreen=""></iframe>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="Quadrupeds" /><category term="reinforcement learning" /><category term="lidar" /><category term="quadruped" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/LIDAR-DRL/lidar_points_cover.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/LIDAR-DRL/lidar_points_cover.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Neural Style Transfer for Locomotion</title><link href="https://textzip.github.io/posts/NST-DRL/" rel="alternate" type="text/html" title="Neural Style Transfer for Locomotion" /><published>2024-01-20T13:13:20+05:30</published><updated>2025-02-08T01:02:02+05:30</updated><id>https://textzip.github.io/posts/NST-DRL</id><content type="html" xml:base="https://textzip.github.io/posts/NST-DRL/"><![CDATA[<p>How do you ensure that a reinforcement learning (RL)-based locomotion policy produces a natural and efficient gait? This project is particularly close to my heart because it helped me answer this question I’ve had since I first started working on locomotion policies in RL. In this blog, I’ll walk you through an approach that can help you move beyond tedious reward tuning and instead focus on achieving the perfect gait for your robot—without the frustration and the transfer this gait across multiple robot embodiments.</p>
+
+<!-- ![Image1](/assets/img/LIDAR-DRL/lidar_student.png){: .shadow} -->
+
+<h2 id="results">Results</h2>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/c8puGsdpP4I" frameborder="0" allowfullscreen=""></iframe>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/1XgtvwJMpFg" frameborder="0" allowfullscreen=""></iframe>
+<!-- > **Note:** Detailed results and video clips can be found in the [Results](#results) section below. -->
+
+<p>To be updated soon</p>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="Quadrupeds" /><category term="reinforcement learning" /><category term="gait" /><category term="quadruped" /><summary type="html"><![CDATA[How do you ensure that a reinforcement learning (RL)-based locomotion policy produces a natural and efficient gait? This project is particularly close to my heart because it helped me answer this question I’ve had since I first started working on locomotion policies in RL. In this blog, I’ll walk you through an approach that can help you move beyond tedious reward tuning and instead focus on achieving the perfect gait for your robot—without the frustration and the transfer this gait across multiple robot embodiments.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/NST-DRL/NST-icon.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/NST-DRL/NST-icon.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Policy Modulated Trajectory Generation for Quadrupeds</title><link href="https://textzip.github.io/posts/FTG-DRL/" rel="alternate" type="text/html" title="Policy Modulated Trajectory Generation for Quadrupeds" /><published>2024-01-12T13:13:20+05:30</published><updated>2025-02-08T01:02:02+05:30</updated><id>https://textzip.github.io/posts/FTG-DRL</id><content type="html" xml:base="https://textzip.github.io/posts/FTG-DRL/"><![CDATA[<!-- ![Image1](/assets/img/LIDAR-DRL/lidar_student.png){: .shadow} -->
+
+<p>This blog post explores the idea of using a set of trajectory generation equations in conjunction with a neural network for quadruped locomotion. We will discuss the advantages of this approach and how it compares to directly using a neural network to generate joint angle deltas.</p>
+
+<p>My implementation is inspired by the method presented in the paper <a href="https://arxiv.org/pdf/1910.02812">Policies Modulating Trajectory Generators et al. Atil Iscen</a>, with a few modifications.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Detailed results and video clips can be found in the <a href="#results">Results</a> section below.</p>
+</blockquote>
+
+<h2 id="why-use-a-trajectory-generator">Why Use a Trajectory Generator?</h2>
+
+<p>You might wonder why this method is necessary when direct neural network-based control has already shown promising results, as demonstrated in our previous post on blind locomotion using proprioception. The key advantage of using a trajectory generator (TG) is that it produces cleaner gaits with minimal reward function tuning. Since the gait is defined by a system of equations, the neural network is relieved from learning the complexities of generating a stable gait. Instead, the network focuses on modulation and stabilization, leading to more efficient learning and better overall performance.</p>
+
+<p><img src="/assets/img/FTG-DRL/PMTG_fig1.png" alt="Image1" class="shadow" /></p>
+
+<h2 id="paper-overview">Paper Overview</h2>
+
+<p>Before diving into our custom implementation, let’s examine the approach used in the original paper.</p>
+
+<p>As illustrated in the figure below, the trajectory generator is indirectly controlled by a subset of the policy’s output (TG Parameters). These parameters are set based on the TG state along with other inputs to the policy. The final joint position command sent to the robot is the sum of the TG’s output and the policy’s modulation.</p>
+
+<p>In an ideal scenario, even if the policy outputs zero joint modifications, the trajectory generator should still produce a trotting motion, allowing the robot to trot in place. The policy’s primary task is to stabilize this motion and modulate it as needed to achieve locomotion by adjusting the phase, height, or stride length of the legs.</p>
+
+<p><img src="/assets/img/FTG-DRL/PMTG_fig2.png" alt="Image1" class="shadow" /></p>
+
+<p>To understand the implementation in more detail, let’s take a look at the parameters that the policy sets.</p>
+
+<p>From the paper:</p>
+
+<blockquote>
+  <p>The detailed architecture adapted to quadruped locomotion is shown in Fig. 5. At every timestep, the policy receives observations (s), desired velocity (v, control input) and the phase (φ) of the trajectory generator. It computes 3 parameters for the TG (frequency f, amplitude a and walking height h) and 8 actions for the legs of the robot ($u_{fb}$) that will directly be added to the TG’s calculated leg positions ($u_{tg}$). The sum of these actions is used as desired motor positions, which are tracked by Proportional-Derivative controllers. Since the policy dictates the frequency at each time step, it dictates the step-size that will be added to TG’s phase. This eventually allows the policy to warp time and use the TG in a time-independent fashion.</p>
+</blockquote>
+
+<h2 id="custom-implementation">Custom Implementation</h2>
+
+<p>The custom implementation is strongly inspired by the above paper and method but has some crucial changes that helped with a smoother implementation.</p>
+
+<p><img src="/assets/img/FTG-DRL/custom_FTG_1.png" alt="Image1" class="shadow" /></p>
+
+<!-- TODO: Add weight to actions coming from policy -->
+
+<p>The most important changes are to the inputs to the FTG from the policy consisting of only the residual phase differences and the policy input consisting of total phase and current phases for each legs.</p>
+
+<p>Here is a detailed breakdown to further explain things:
+The policy output can be broken down into two components: joint actions ${(a_t^P)}$ and residual phase difference $(\Delta\phi_{res})$</p>
+
+<p>The height of each leg as a function of the total phase$(\Phi)$ of the leg $h(\Phi)$ in the FTG can be expressed using the following formula</p>
+
+\[\begin{aligned}
+h(\Phi) =
+\begin{cases}
+h_{\max} \left(-2\left(\dfrac{2}{\pi}\Phi\right)^3 + 3\left(\dfrac{2}{\pi}\Phi\right)^2\right), &amp; \text{if } 0 \leq \Phi \leq \frac{\pi}{2}, \\
+h_{\max} \left(2\left(\dfrac{2}{\pi}\Phi - 1\right)^3 - 3\left(\dfrac{2}{\pi}\Phi - 1\right)^2 + 1\right), &amp; \text{if } \frac{\pi}{2} &lt; \Phi \leq \pi, \\
+0, &amp; \text{if } \pi &lt; \Phi &lt; 2\pi.
+\end{cases}
+\end{aligned}\]
+
+<p>The total phase of the leg $(\Phi)$ is computed using the following formula:</p>
+
+<!-- $$
+\Phi = \left( \phi + \phi_{\text{base}} + \Delta \phi_{\text{res}} \right) \bmod (2\pi)
+$$ -->
+
+<p><img src="/assets/img/FTG-DRL/custom_FTG_2.png" alt="Image1" class="shadow" /></p>
+
+<p>In the above equation, $\phi$ is the current phase that is incremented each time step as follows $\phi_{t+1} = ( \phi_t + \Delta\phi) \text{ mod}(2\pi)$ where $\Delta\phi$ is a constant like 0.2</p>
+
+<p>In the above equation, $\phi_{base}$ is used to encode a gait prior by setting in the phase difference between different legs in the robot, its value is usually like</p>
+
+\[\phi_{base} = \begin{cases}
+[0, \pi, \pi, 0], &amp; \text{if walk}\\
+[\pi, \pi, 0, 0], &amp; \text{if gallop}\\
+[0, 0, 0, 0], &amp; \text{if stand}\\
+\end{cases}\]
+
+<p>And finally $\Delta\phi_{res}$ is the residual phase difference that can be set by the policy as part of its output to make adjustments to the total phase of each leg.</p>
+
+<p>The height of each foot is now used to compute the joint angles for each leg using Inverse Kinematics as follows:</p>
+
+<p>For the First Joint Angle $(q_1)$</p>
+
+\[L = \sqrt{p_y^2 + p_z^2 - l_1^2}\]
+
+\[q_1 = \arctan\!\left(\frac{p_z\, l_1 + p_y\, L}{p_y\, l_1 - p_z\, L}\right)\]
+
+<p>For the Third Joint Angle $(q_3)$</p>
+
+\[\text{temp} = \frac{b_{3z}^2 + b_{4z}^2 - b^2}{2\,\left|b_{3z}\, b_{4z}\right|}\]
+
+\[q_3 = -\Bigl(\pi - \arccos\bigl(\text{temp}\bigr)\Bigr)\]
+
+<p>For the Second Joint Angle $(q_2)$</p>
+
+\[a_1 = p_y \sin(q_1) - p_z \cos(q_1)\]
+
+\[a_2 = p_x\]
+
+\[m_1 = b_{4z} \sin(q_3)\]
+
+\[m_2 = b_{3z} + b_{4z} \cos(q_3)\]
+
+\[q_2 = \arctan\!\left(\frac{m_1\, a_1 + m_2\, a_2}{m_1\, a_2 - m_2\, a_1}\right)\]
+
+<p>Body Orientation Adjustment is done using the following transformations</p>
+
+<p>Roll rotation matrix (for roll angle $\alpha$)</p>
+
+\[R\_{\text{roll}} =
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; \cos\alpha &amp; -\sin\alpha \\
+0 &amp; \sin\alpha &amp; \cos\alpha
+\end{pmatrix}\]
+
+<p>Pitch rotation matrix (for pitch angle $\beta$)</p>
+
+\[R\_{\text{pitch}} =
+\begin{pmatrix}
+\cos\beta &amp; 0 &amp; -\sin\beta \\
+0 &amp; 1 &amp; 0 \\
+\sin\beta &amp; 0 &amp; \cos\beta
+\end{pmatrix}\]
+
+<p>Combined rotation to adjust the foot position vector $\mathbf{p}$</p>
+
+\[\mathbf{p}_{\text{adjusted}} = R_{\text{pitch}} \, R\_{\text{roll}} \, \mathbf{p}\]
+
+<p>For your reference here is what each of these variables mean:</p>
+
+<p>$p_x,p_y,p_z$ are the Cartesian coordinates of the foot’s target position in the robot’s coordinate system.</p>
+
+<ul>
+  <li>$p_x$ is the position along the forward-backward direction.</li>
+  <li>$p_y$ is the lateral position (side-to-side).</li>
+  <li>$p_z$ is the vertical position (height).</li>
+</ul>
+
+<p>$l_1,l_2,l_3$ are the lengths of the segments (links) in the leg.</p>
+
+<ul>
+  <li>$l_1$ corresponds to the distance from the hip to the first joint.</li>
+  <li>$l_2$ corresponds to the second segment (e.g., thigh length).</li>
+  <li>$l_3$ corresponds to the third segment (e.g., shank length).</li>
+</ul>
+
+<p>$L$ is an auxiliary variable defined as:</p>
+
+\[L =\sqrt{p_y^2+p_z^2-l_1^2}\]
+
+<p>It helps in computing the first joint angle by combining the lateral and vertical components.</p>
+
+<ul>
+  <li>$q_1$ The first joint angle, computed using the positions $p_x$ and $p_y$ along with the link length $l_1$. It primarily handles the orientation of the leg in the vertical plane.</li>
+  <li>$b_{3z}$ and $b_{4z}$ These represent the effective lengths (or offsets) associated with the second and third segments of the leg. In many implementations, they are set as $-l_2$ and $-l_3$</li>
+</ul>
+
+<p>The final actions $a_t$ that are passed on to the PD controller can now be computed using the following equation:</p>
+
+\[a_t = \alpha .a_t^P + a_t^F\]
+
+<p>Where $\alpha$ is the weight given to the joint actions from the policy.</p>
+
+<!-- <iframe width="640" height="385" src="https://youtube.com/embed/Mq8utqI5-_g" frameborder="0" allowfullscreen></iframe> -->
+
+<h2 id="results">Results</h2>
+
+<p>Here is a compilation video of the FTG based locomotion policy being implemented, this was just a quick test of the method for a richer and complete implementation have a look at my post on <a href="https://textzip.github.io/posts/LIDAR-DRL/">Locomotion with Weighted Belief in Exteroception</a> where FTG is reused.</p>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/PBWn1WDgLNU" frameborder="0" allowfullscreen=""></iframe>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="Quadrupeds" /><category term="reinforcement learning" /><category term="gait" /><category term="quadruped" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/FTG-DRL/PMTG-icon.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/FTG-DRL/PMTG-icon.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Proprioceptive Locomotion in Unstructured Environments</title><link href="https://textzip.github.io/posts/Loco-DRL/" rel="alternate" type="text/html" title="Proprioceptive Locomotion in Unstructured Environments" /><published>2023-05-08T13:13:20+05:30</published><updated>2025-02-08T02:21:04+05:30</updated><id>https://textzip.github.io/posts/Loco-DRL</id><content type="html" xml:base="https://textzip.github.io/posts/Loco-DRL/"><![CDATA[<p><img src="/assets/img/Loco-DRL/cover.png" alt="Image1" class="shadow" /></p>
+
+<p>The following post goes over and outlines a few methods for training a blind locomotion policy for a quadruped robot, most of the work shown here has been done during my time at the <a href="https://unit.aist.go.jp/jrl-22022/index_en.html">CNRS-AIST JRL (Joint Robotics Laboratory), IRL, Japan</a> for my undergraduate thesis under the supervision of <a href="https://unit.aist.go.jp/jrl-22022/en/members/member-morisawa.html">Dr. Mitsuharu Morisawa</a> with support from <a href="https://unit.aist.go.jp/jrl-22022/en/members/member-singh.html">Rohan Singh</a>.</p>
+
+<!-- <iframe width="640" height="385" src="https://youtube.com/embed/Mq8utqI5-_g" frameborder="0" allowfullscreen></iframe> -->
+
+<blockquote>
+  <p><strong>Note:</strong> Detailed results and video clips can be found in the <a href="#results">Results</a> section below.</p>
+</blockquote>
+
+<p>The following GitHub Repo can be used to replicate the results from the videos show in this blog post.</p>
+
+<p><a href="https://github.com/TextZip/go1-rl-kit"><img src="https://gh-card.dev/repos/TextZip/go1-rl-kit.svg" alt="TextZip/go1-rl-kit - GitHub" /></a></p>
+
+<p>This work is a continuation of my previous post that can be found <a href="https://textzip.github.io/posts/Energy-DRL/">here</a>.</p>
+
+<p>Let’s establish a few priors and baselines so that we can gradually build on top of them to achieve what can be considered a robust proprioceptive baseline.</p>
+
+<h2 id="base-policy">Base Policy</h2>
+
+<p><img src="/assets/img/Loco-DRL/base_policy.png" alt="Base Policy" class="shadow" /></p>
+
+<p>The simplest policy can be designed by passing the current state of the robot $S_t$ — which consists of joint velocities, joint positions, roll, pitch, base angular velocity, and user commands — along with the actions from the previous timestep $a_{t-1}$, into a Multi-Layer Perceptron (MLP) network. The MLP outputs actions that are then used to compute the joint angles.</p>
+
+<h2 id="base-policy-with-observation-history">Base Policy with Observation History</h2>
+
+<p>While the base policy with only the previous timestep’s actions is a good starting point, it works well <em>only</em> when the quadruped is walking on a flat surface. Introducing even the smallest obstacles can cause the robot to stumble and fall. This shouldn’t come as a surprise since the policy has no awareness of what occurred outside the current timestep. Reacting to external disturbances based solely on a single timestep is difficult, so the next logical upgrade is to provide the policy with a history of past states to improve its ability to handle disturbances.</p>
+
+<p>This can be achieved in various ways. For example, the MLP can be replaced with an RNN-based approach like LSTM or GRU. However, since we are building things from the ground up, we’ll use a simpler method: concatenating the previous 4 states with the current state to create a total of 5 states within a sliding window.</p>
+
+<p><img src="/assets/img/Loco-DRL/base_policy_ob_history.png" alt="Base Policy with Observation History" class="shadow" /></p>
+
+<p>For this particular use case, I found empirically that performance improves as the state window increases from 0 to 4. Beyond this, the gains become insignificant, so I limited the window to 4 past states. Your mileage may vary, so feel free to experiment with the window size. If you want to consider much longer horizons, such as 50 or 100 past states, running these states through a 1D CNN layer before feeding them into the base policy can help avoid creating an excessively large input layer.</p>
+
+<!-- TODO Add reference to RMA here -->
+
+<h3 id="effects-of-observation-history">Effects of Observation History</h3>
+
+<p>At this point, you might be curious (and perhaps a little impatient) to test whether adding just 4 past states actually makes a difference. Here’s a plot illustrating the impact of observation history:</p>
+
+<p><img src="/assets/img/Loco-DRL/comp_base_vs_history.png" alt="Comparison: Base Policy vs Observation History" class="shadow" /></p>
+
+<p>Leaving aside the cringe-worthy names in the plot legend and using the labels at the bottom, it’s clear that the agent reaches the full episode length (i.e., the agent doesn’t “die”) much sooner when provided with observation history. Additionally, the reward collected by the agent is higher when observation history is included.</p>
+
+<p>It’s important to note that while the difference between the two architectures appears to narrow as the number of steps increases, their performances do not completely merge or match. (evident from the steady state difference in their rewards)</p>
+
+<p>To give a more concrete idea of how all this actually performs on a real robot, here is a quick test of the Base Policy with Observation History compared against the default MPC controller for the Unitree Go1 Robot.</p>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/-cx2S0UZeyg" frameborder="0" allowfullscreen=""></iframe>
+
+<p>Note that the default controller experiment had to be cut short due to the fact that the constant trotting by the MPC was causing the robot to swerve to the sides and would have likely resulted in a fall if the experiment continued.</p>
+
+<p>Here is another quick outdoor run using the default MPC controller and the Base Policy with Observation History.</p>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/-cx2S0UZeyg" frameborder="0" allowfullscreen=""></iframe>
+<!-- TODO Swap video with the correct one -->
+
+<p>Do note that the default MPC controller couldn’t even go over the initial ledge. While the RL controller was able to do it somtimes, you can clearly see the shotcomings of both the controllers. Now lets take a look at the next possible upgrade to improve our RL controller.</p>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/YXFAZwNgo7Y" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="privileged-information">Privileged Information</h2>
+
+<p>Privileged Information refers to the set of observations that are typically not available in the real world but can easily be obtained inside a physics engine/simulation. Some of this information might be relavent and can improve the performance of the base policy significantly if provided.</p>
+
+<p><img src="/assets/img/Loco-DRL/oracle.png" alt="Privileged Information" class="shadow" /></p>
+
+<p>For example, it might be of use to give the friction cofficient of the surface the robot is currently walking on as an input to the policy but in real life its hard to retrofit the robot with sensors to measure the friction.</p>
+
+<p>A small note on the nomeclature, a policy that is directly fed in priviliged information is typically refered to as an oracle since it symbolizes the best case performance a policy can achieve in an ideal sitatuion where any information needed can be supplied, in some cases such an oracle is also refered to as a teacher since its used to teach other policies. TLDR: Base Policy with Privileiged information is sometimes also called as a teacher or an oracle.</p>
+
+<p>At this point you might be wondering what is the point of discussing about such information that is not easy to read or measure in the real world since our final goal is to deploy policies on a real robot. Well reader, while its not easy to measure these parameters in the real world it doesn’t stop us from indirectly infereing these values by other means.</p>
+
+<p>For example even in humans, while we cannot in many cases look at the surface and guess the friction we can definetly get a feel of the friction the movement we start walking over it, this could be due to the difference in effort required to move our leg or the rate at which our leg moves for a given effort and so on… therefore we can indirectly feel the friction via our senses.</p>
+
+<p>Similarly, in this case we are interested in certain priviliged information metrics that while cannot be directly measured can be indirectly infered via other indirect metrics such as joint torques, joint velocities and so on via proprioception.</p>
+
+<h3 id="effects-of-privileged-information">Effects of Privileged Information</h3>
+
+<p>Before we dive into all the different ways in which privileged information can be indirectly obtained and infered, lets take a look at the ideal case where we have all the priviledged information we want and compare such a policies performance with the base policy that uses only observation history and a base policy without observation history.</p>
+
+<p><img src="/assets/img/Loco-DRL/obs_oracle.png" alt="Privileged Information" class="shadow" />
+Let’s try to spend some time to understand the plots in the above image, the orange line represents the base policy with only observation history whereas the gray plot represents the base policy with priviliged information and observation history.</p>
+
+<p>As you can notice from the plot on terrain level, the priviliged information policy reaches terrains with higher difficulty level faster when compared to the policy that just uses observation history. The plot of mean reward is a clear indicator that while both the policies might reach the max episode length, the priviliged information based policy clearly scores a higher reward when comapred to the policy with only observation history.</p>
+
+<p>Another interesting point to keep in mind is that the episode length plot has some intial ups and downs where at one point the policy with only observation history seems to be surviving for longer when compared to the policy with privileged information and if this seems counter intutive, keep in mind that the policy with the privilieged information is also progressing towards much more difficult terrain as can be infered from the terrain level plot and this could result in its episode length going slightly lower.</p>
+
+<h2 id="transfer-learning-methods-to-use-priviliged-information">Transfer Learning Methods to use Priviliged Information</h2>
+
+<p>Let us now shift our focus towards how we can infer priviliged information indirectly so that they can be used during real world deployments. If implemented properly we are looking for a performance that is better than the base policy with just observation history but is lower than the performance of the oracle/teacher. (Take a look at the reward plot from the picture above - we want to basically introduce a new method that will lie between the lines)</p>
+
+<p>Almost all the methods that try to infer privileged information try to derive this either explicitly or implicitly from the observation history. And likewise most methods that have a training component in simulation try to build an oracle/teacher and use a transfer learning/knowledge distillation framework.</p>
+
+<h3 id="teacher---student-architecture">Teacher - Student Architecture</h3>
+
+<p><img src="/assets/img/Loco-DRL/teacher_student.gif" alt="Privileged Information" class="shadow" /></p>
+
+<blockquote>
+  <p>Note that while the network architeture is based on the original paper, the observations being passed have been tailored to our current use case.</p>
+</blockquote>
+
+<p>The first method we will take a look at is originally from a paper called learning by cheating, and is quite commonly referred to as the teacher-student transfer learning framework.</p>
+
+<p>This method consists of two-phases, the first phase involves the training of an oracle/teacher (typically done in simulation) with all the ground truth/privileged information given to the base policy as part of its observations.</p>
+
+<p>The second phase consists of freezing the trained teacher policy and training a seperate student network to mimic the outputs of the teacher network through regression without the privilieged information being passed in as observations.</p>
+
+<p>The important distinction to note here is the fact that the teacher and the student are two different networks with different sizes and the teacher cannot be copied or reused as a warmstarter for the student since the number of inputs for both (aka. their observations) are different.</p>
+
+<h3 id="rapid-motor-adaptation">Rapid Motor Adaptation</h3>
+
+<p><img src="/assets/img/Loco-DRL/RMA.gif" alt="Privileged Information" class="shadow" /></p>
+
+<blockquote>
+  <p>Note that while the network architeture is based on the original paper, the observations being passed have been tailored to our current use case.</p>
+</blockquote>
+
+<p>The second method we are going to take a look at tries to take a slightly different approach to essential obtain the same results(infer priviliged information) but with a few advantages and perks.</p>
+
+<p>This approach is from a paper titled “Rapid Motor Adaptation” where they essentially propose an architeture that will enable us to reuse the bases policy or the teacher network in the second phase of the training instead of starting with a fresh student network with random weights.</p>
+
+<p>This is accomplished by passing the priviliged information as latent information instead of their raw values during phase one of the training with the help of an encoder called the priviliged information encoder in the figure.</p>
+
+<p>During phase two training, a new network called the observation history encoder is trained to mimic the output of the privliged information encoder despite only being passed the observation history and the output of this network is used to replace the latent information that was being sent during phase one by the privilged information encoder. This enables us to reuse the teacher/base policy from phase one in phase two as well.</p>
+
+<p>One advantage of this method is the fact that since the privileged information is being compressed into a latent vector, more amount of privilieged information can be input to the encoders without the need for increasing the size of the network/input layers when compared to passing this data as raw values.</p>
+
+<!-- TODO Talk about potential steady state error between PI and OH and also about repeated RMA in humanoids -->
+
+<h3 id="asym-actor-critic">Asym. Actor Critic</h3>
+
+<p>Our final method is called Asymmetrical Actor Critic that was originally published in “Asymmetric actor critic for image-based robot learning”. This method has several advantages and one of the most significant one is the fact that it has only a single phase of training involved.</p>
+
+<p>This is accomplished by passing the privilged information either in a latent state via an encoder or directly as raw inputs to the critic network, the idea behind this is the fact that the critic is used to compute the value function for state/action transitions and the more information the critic has the better it can assign value functions and therefore the better a critic can judge or help guide the actor, the better the actor performs and learns. While this method might seem like a solid replacement for the above two and a clear winner, it has a few pratical issues and perks that one should be aware of, one of them is the fact that this is a very indirect method of latent information transfer with no visibilty of the transfer to inspect or verify. Another is the fact that asym. actor-critic arch is prone to instability in certain scenarios which can lead to sudden collapses in the loss and/or value functions.</p>
+
+<p><img src="/assets/img/Loco-DRL/Asym_actor_critic.gif" alt="Privileged Information" class="shadow" /></p>
+
+<h2 id="results">Results</h2>
+
+<p><img src="/assets/img/Loco-DRL/PI_transfer_results.png" alt="Privileged Information" class="shadow" /></p>
+
+<!-- TODO Video on Results Here -->
+
+<p>In the final figure you can see that we have accomplished our objecteing sive of finding a method that would perform better than the observation history base line and be below the therotical limit of performace possible (i.e the oracle).</p>
+
+<p>Here is a video compilation of the above policy architeture trained and deployed on a Unitree Go1. If you wish to try out the pre-trained policy on your own Go1 robot, please refer to the GitHub Repo associated with this post.</p>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/ZzzmQw8UGcA" frameborder="0" allowfullscreen=""></iframe>
+
+<p>While the training code for this paticular implementation cannot be shared at this point in time, the deployment code is a good starting point to understand the observations and the network arch being used, this combined with other resouces linked below will get you started training your own policy in no time. Furthermore, I will also provide links and discuss in more detail about sim2real for first time deplyoments and some more tips and tricks to get a policy sucessfully transfered from sim to your robot.</p>
+
+<p>Here is a video version of the above post as part of my JRL Seminar Talks</p>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/WsgMt6tN6nI" frameborder="0" allowfullscreen=""></iframe>]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="Quadrupeds" /><category term="reinforcement learning" /><category term="sim2real" /><category term="quadruped" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/Loco-DRL/cover2.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/Loco-DRL/cover2.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Deep Reinforcement Learning - Part 4 - Monte Carlo, Temporal Difference &amp;amp; Bootstrapping Methods</title><link href="https://textzip.github.io/posts/DRL-4/" rel="alternate" type="text/html" title="Deep Reinforcement Learning - Part 4 - Monte Carlo, Temporal Difference &amp;amp; Bootstrapping Methods" /><published>2023-01-23T13:13:20+05:30</published><updated>2023-01-24T14:55:44+05:30</updated><id>https://textzip.github.io/posts/DRL-4</id><content type="html" xml:base="https://textzip.github.io/posts/DRL-4/"><![CDATA[<p>This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check <a href="https://textzip.github.io/posts/DRL-0/">Part 0 - Getting Started</a>.</p>
+
+<h3 id="structure-of-the-blog">Structure of the blog</h3>
+<ul>
+  <li><a href="https://textzip.github.io/posts/DRL-0/">Part 0 - Getting Started</a></li>
+  <li><a href="https://textzip.github.io/posts/DRL-1/">Part 1 - Multi-Arm Bandits</a></li>
+  <li><a href="https://textzip.github.io/posts/DRL-2/">Part 2 - Finite MDP</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em></li>
+  <li><a href="https://textzip.github.io/posts/DRL-3/">Part 3 - Dynamic Programming</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em></li>
+  <li><a href="https://textzip.github.io/posts/DRL-4/">Part 4 - Monte Carlo, Temporal Difference &amp; Bootstrapping Methods</a> | <strong>Prerequisites</strong>: <em>Python, gymnasium, numpy</em></li>
+  <li>Part 5 - Deep SARSA and Q-Learning | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy, torch</em></li>
+  <li>Part 6 - REINFORCE, AC, DDPG, TD3, SAC</li>
+  <li>Part 7 - A2C, PPO, TRPO, GAE, A3C</li>
+  <li>TBA (HER, PER, Distillation)</li>
+</ul>
+
+<h1 id="monte-carlo-methods">Monte Carlo Methods</h1>
+<p>MC methods improvise over DP methods as they can be used in cases where we do not have a model of the environment. They do this by learning from episodes of experience. Therefore one caviat of MC methods is that they do not work on continous MDPs and learn only from complete episodes (Episodes must terminate).</p>
+
+<h2 id="monte-carlo-prediction">Monte Carlo Prediction</h2>
+<p>We begin by considering Monte Carlo methods for learning the state-value function for a given policy. Recall that the value of a state is the expected return—expected cumulative future discounted reward—starting from that state. An obvious way to estimate it from experience, then, is simply to average the returns observed after visits to that state. As more returns are observed, the average should converge to the expected value. This idea underlies all Monte Carlo methods.</p>
+<h3 id="on-policy-mc-prediction">On-Policy MC Prediction</h3>
+<p>We have a small variation in the fact that we can consider each state only the first time it has been visited while estimating the mean return or we can account for multiple visits to the same state(if any) and the follwoing pseudocodes illustrate both the variations 
+<img src="/assets/img/DRL4/first-visit-mc-pred.png" alt="image1" class="shadow" /></p>
+
+<p>The every-visit version can be implemented by removing the “Unless $S_t$ appears in $S_0$, $S_1$, … $S_{t-1}$” line.</p>
+
+<h4 id="incremental-updates">Incremental Updates</h4>
+<p>A more computationally efficient method would be to calculate the mean incrementally as follows:</p>
+
+<ul>
+  <li>Update $V(s)$ incrementally after episode $S_1,A_1,R_2,….,S_T$</li>
+  <li>For each state $S_t$ with return $G_t$</li>
+</ul>
+
+\[N(S_t) \leftarrow  N(S_t) + 1\]
+
+\[V(S_t) \leftarrow  V(S_t) + \dfrac{1}{N(S_t)}(G_t-V(S_t))\]
+
+<p>For non-stationary problems, it can be useful to track a running mean (forgets old epiosdes and gives more weight to recent experiences).</p>
+
+\[V(S_t) \leftarrow  V(S_t) + \alpha(G_t-V(S_t))\]
+
+<h3 id="off-policy-mc-prediction">Off-Policy MC Prediction</h3>
+<p>Almost all off-policy methods utilize importance sampling, a general technique for estimating expected values under one distribution given samples from another. We apply importance sampling to off-policy learning by weighting returns according to the relative probability of their trajectories occurring under the target and behavior policies, called the importance-sampling ratio. Off-Policy Monte Carlo Prediction can be implemented via two variations of importance sampling which are discussed below.</p>
+<h4 id="ordinary-importance-sampling">Ordinary Importance Sampling</h4>
+<p>For evaluating a terget policy $\pi(a|s)$ to compute $v_\pi(s)$ or $q_\pi(s,a)$ while following a behaviour policy $\mu(a|s)$.</p>
+
+<p>Given, 
+\(\{S_1,A_1,R_2,...,S_T\} \sim \mu\)</p>
+
+<p>We can weight returns $G_t$ according to similarity between the two policies. By multiplying the importance sampling corrections along the whole episode we get:</p>
+
+\[G_t^{\pi/\mu} = \dfrac{\pi(A_t|S_t)\pi(A_{t+1}|S_{t+1})...\pi(A_{T}|S_{T})}{\mu(A_{t}|S_{t})\mu(A_{t+1}|S_{t+1})...\mu(A_{T}|S_{T})}G_t\]
+
+<p>We can then update the state value towards the corrected return like this</p>
+
+\[V(S_t) \leftarrow  V(S_t) + \alpha(G_t^{\pi/\mu}-V(S_t))\]
+
+<p>Note that we cannot use this if $\mu$ is zero when $\pi$ is non-zero, also that importance sampling can increase variance.</p>
+
+<h4 id="weighted-importance-sampling">Weighted Importance Sampling</h4>
+<p><img src="/assets/img/DRL4/off-policy-mc-weight-sample-pred.png" alt="image1" class="shadow" />
+The derivation of the Weighted Importance Sampling equations has been left-out for the time being.</p>
+
+<p>Ordinary importance sampling is unbiased whereas weighted importance sampling is biased (though the bias converges
+asymptotically to zero). On the other hand, the variance of ordinary importance sampling is in general unbounded because the variance of the ratios can be unbounded, whereas in the weighted estimator the largest weight on any single return is one. In fact, assuming bounded returns, the variance of the weighted importance-sampling estimator converges to zero even if the variance of the ratios themselves is infinite (Precup, Sutton, and
+Dasgupta 2001). In practice, the weighted estimator usually has dramatically lower variance and is strongly preferred.</p>
+<h2 id="monte-carlo-control">Monte Carlo Control</h2>
+<p>While it might seem straight forward to implement MC Methods in GPI by plugging MC Prediction for policy evaluation and using greedy policy improvement to complete the cycle, there is one key problem that needs to be addressed.</p>
+
+<p>Greedy policy improvement over $V(s)$ requires knowledge about the MDP
+\(\pi'(s) = \mathtt{argmax}_{a\in A}  r(a|s) + p(s'|s,a)V(s')\)</p>
+
+<p>To remain model free we can instead switch to action value functions which will not require prior details about the MDP</p>
+
+\[\pi'(s) = \mathtt{argmax}_{a\in A} Q(s,a)\]
+
+<p>While this solves the issue of knowing the model MDP, we now have a deterministic policy and we will never be able to collect experiences of alternative actions and therefore might miss out on exploration altogether.</p>
+
+<p>This can be solved in the following ways:</p>
+
+<ul>
+  <li>
+    <p><strong>Exploring Starts:</strong> Every state-action pair has a non-zero probability of being selected as the starting pair, this ensures sufficient exploration but in reality, this might not always be possible.</p>
+  </li>
+  <li>
+    <p><strong>$\epsilon-$ soft policies:</strong> A small probability to explore every time an action is to be choosen.</p>
+  </li>
+  <li>
+    <p><strong>Off-Policy:</strong> Use a different policy to collect experience than the one target policy being improved.</p>
+  </li>
+</ul>
+
+<h3 id="on-policy-mc-control">On-Policy MC Control</h3>
+<h4 id="exploring-starts">Exploring Starts</h4>
+<p>The pseudocode for exploring starts can be found below:
+<img src="/assets/img/DRL4/mc-es-control.png" alt="image1" class="shadow" /></p>
+
+<h4 id="on-policy-first-visit-mc-control">On-Policy First Visit MC Control</h4>
+<p>The pseudocode for On-Policy First Visit MC Control can be found below:
+<img src="/assets/img/DRL4/on-policy-fv-mc-control.png" alt="image1" class="shadow" /></p>
+
+<p>The python implementation for the following can be found below:
+This code is part of my collection of RL algorithms, that can be found in my GitHub repo <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">rgb_array</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">action_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">,</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span><span class="o">&lt;</span><span class="n">epsilon</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">flatnonzero</span><span class="p">(</span><span class="n">action_value</span> <span class="o">==</span> <span class="n">action_value</span><span class="p">.</span><span class="nf">max</span><span class="p">()))</span>
+
+<span class="k">def</span> <span class="nf">on_policy_monte_carlo</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span><span class="n">action_values</span><span class="p">,</span><span class="n">episodes</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="n">sa_returns</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">episodes</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">state</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">transitions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
+            <span class="n">next_state</span><span class="p">,</span><span class="n">reward</span><span class="p">,</span><span class="n">terminated</span><span class="p">,</span><span class="n">truncated</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span>
+            <span class="n">transitions</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="n">state</span><span class="p">,</span><span class="n">action</span><span class="p">,</span><span class="n">reward</span><span class="p">])</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+
+        <span class="n">G</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">,</span><span class="n">reward_t</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">transitions</span><span class="p">):</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">reward_t</span> <span class="o">+</span> <span class="n">gamma</span><span class="o">*</span><span class="n">G</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">)</span> <span class="ow">in</span> <span class="n">sa_returns</span><span class="p">:</span>
+                <span class="n">sa_returns</span><span class="p">[(</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">sa_returns</span><span class="p">[(</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">)].</span><span class="nf">append</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+                <span class="n">action_values</span><span class="p">[</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">sa_returns</span><span class="p">[(</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">)])</span>
+    <span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+
+<span class="nf">on_policy_monte_carlo</span><span class="p">(</span><span class="n">policy</span><span class="o">=</span><span class="n">policy</span><span class="p">,</span><span class="n">action_values</span><span class="o">=</span><span class="n">action_values</span><span class="p">,</span><span class="n">episodes</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">observation</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+<span class="n">terminated</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h4 id="on-policy-every-visit-mc-control">On-Policy Every Visit MC Control</h4>
+<p>On-Policy Every Visit MC Control can be implemented by making a small change to the inner loop of the above code for the first visit version as follows:
+This code is part of my collection of RL algorithms, that can be found in my GitHub repo <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">on_policy_monte_carlo</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span><span class="n">action_values</span><span class="p">,</span><span class="n">episodes</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="n">sa_returns</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">episodes</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">state</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">transitions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
+            <span class="n">next_state</span><span class="p">,</span><span class="n">reward</span><span class="p">,</span><span class="n">terminated</span><span class="p">,</span><span class="n">truncated</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span>
+            <span class="n">transitions</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="n">state</span><span class="p">,</span><span class="n">action</span><span class="p">,</span><span class="n">reward</span><span class="p">])</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+
+        <span class="n">G</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">,</span><span class="n">reward_t</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">transitions</span><span class="p">):</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">reward_t</span> <span class="o">+</span> <span class="n">gamma</span><span class="o">*</span><span class="n">G</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">)</span> <span class="ow">in</span> <span class="n">sa_returns</span><span class="p">:</span>
+                <span class="n">sa_returns</span><span class="p">[(</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">sa_returns</span><span class="p">[(</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">)].</span><span class="nf">append</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+            <span class="n">action_values</span><span class="p">[</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">sa_returns</span><span class="p">[(</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">)])</span>
+    <span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="on-policy-every-visit-constant-alpha-mc-control">On-Policy Every Visit Constant Alpha MC Control</h4>
+<p>The constant alpha version is based on the idea of using a running mean instead of using a normal return to deal with non-stationary problems.</p>
+
+<p>The major change being the following equation: 
+\(Q(S_t|A_t) \leftarrow  Q(S_t|A_t) + \alpha(G_t-Q(S_t|A_t))\)</p>
+
+<p>The python implementation can be found below:
+This code is part of my collection of RL algorithms, that can be found in my GitHub repo <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">rgb_array</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">action_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">,</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span><span class="o">&lt;</span><span class="n">epsilon</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">flatnonzero</span><span class="p">(</span><span class="n">action_value</span> <span class="o">==</span> <span class="n">action_value</span><span class="p">.</span><span class="nf">max</span><span class="p">()))</span>
+
+<span class="k">def</span> <span class="nf">constant_alpha_monte_carlo</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span><span class="n">action_values</span><span class="p">,</span><span class="n">episodes</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+
+    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">episodes</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">state</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">transitions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
+            <span class="n">next_state</span><span class="p">,</span><span class="n">reward</span><span class="p">,</span><span class="n">terminated</span><span class="p">,</span><span class="n">truncated</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span>
+            <span class="n">transitions</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="n">state</span><span class="p">,</span><span class="n">action</span><span class="p">,</span><span class="n">reward</span><span class="p">])</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+
+        <span class="n">G</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">,</span><span class="n">reward_t</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">transitions</span><span class="p">):</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">reward_t</span> <span class="o">+</span> <span class="n">gamma</span><span class="o">*</span><span class="n">G</span>
+
+            <span class="n">old_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">]</span>
+            <span class="n">action_values</span><span class="p">[</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">alpha</span><span class="o">*</span><span class="p">(</span><span class="n">G</span><span class="o">-</span><span class="n">old_value</span><span class="p">)</span>
+
+    <span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+
+<span class="nf">constant_alpha_monte_carlo</span><span class="p">(</span><span class="n">policy</span><span class="o">=</span><span class="n">policy</span><span class="p">,</span><span class="n">action_values</span><span class="o">=</span><span class="n">action_values</span><span class="p">,</span><span class="n">episodes</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">observation</span><span class="p">,</span><span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+<span class="n">terminated</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="off-policy-mc-control">Off-Policy MC Control</h3>
+<p>In Off-Policy methods, the policy used to generate behavior, called the behavior policy, may in fact be unrelated to the policy that is evaluated and improved, called the target policy. An advantage of this separation is that the target policy may be deterministic (e.g., greedy), while the behavior policy can continue to sample all possible actions.</p>
+
+<p>Off-policy Monte Carlo control methods use one of the techniques presented in the preceding two sections. They follow the behavior policy while learning about and improving the target policy. These techniques require that the behavior policy has a nonzero probability of selecting all actions that might be selected by the target policy (coverage). To explore all possibilities, we require that the behavior policy be soft (i.e., that it select all actions in all states with nonzero probability).</p>
+
+<p><img src="/assets/img/DRL4/off-policy-mc-control.png" alt="image1" class="shadow" /></p>
+
+<p>The python implementation of the above can be found here:
+This code is part of my collection of RL algorithms, that can be found in my GitHub repo <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+                <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">rgb_array</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">action_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">,</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">target_policy</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">flatnonzero</span><span class="p">(</span><span class="n">action_value</span> <span class="o">==</span> <span class="n">action_value</span><span class="p">.</span><span class="nf">max</span><span class="p">()))</span>
+
+<span class="k">def</span> <span class="nf">exploratory_policy</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span><span class="o">&lt;</span><span class="n">epsilon</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">flatnonzero</span><span class="p">(</span><span class="n">action_value</span> <span class="o">==</span> <span class="n">action_value</span><span class="p">.</span><span class="nf">max</span><span class="p">()))</span>
+
+
+<span class="k">def</span> <span class="nf">off_policy_monte_carlo</span><span class="p">(</span><span class="n">action_values</span><span class="p">,</span><span class="n">target_policy</span><span class="p">,</span><span class="n">exploratory_ploicy</span><span class="p">,</span><span class="n">episodes</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="n">counter_sa_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">,</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">episodes</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">state</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">transitions</span> <span class="o">=</span> <span class="p">[]</span> 
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="nf">exploratory_ploicy</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
+            <span class="n">next_state</span><span class="p">,</span><span class="n">reward</span><span class="p">,</span><span class="n">terminated</span><span class="p">,</span><span class="n">truncated</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span>
+            <span class="n">transitions</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="n">state</span><span class="p">,</span><span class="n">action</span><span class="p">,</span><span class="n">reward</span><span class="p">])</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+        
+        <span class="n">G</span> <span class="o">=</span> <span class="mi">0</span> 
+        <span class="n">W</span> <span class="o">=</span> <span class="mi">1</span>     
+
+        <span class="k">for</span> <span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">,</span><span class="n">reward_t</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="n">transitions</span><span class="p">):</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">reward_t</span> <span class="o">+</span> <span class="n">gamma</span><span class="o">*</span><span class="n">G</span>
+            <span class="n">counter_sa_values</span><span class="p">[</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">W</span>
+            <span class="n">old_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">]</span>
+            <span class="n">action_values</span><span class="p">[</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="n">counter_sa_values</span><span class="p">[</span><span class="n">state_t</span><span class="p">,</span><span class="n">action_t</span><span class="p">])</span><span class="o">*</span> <span class="p">(</span><span class="n">G</span> <span class="o">-</span> <span class="n">old_value</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">action_t</span> <span class="o">!=</span> <span class="nf">target_policy</span><span class="p">(</span><span class="n">state_t</span><span class="p">):</span>
+                <span class="k">break</span>
+
+            <span class="n">W</span> <span class="o">=</span> <span class="n">W</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">epsilon</span> <span class="o">+</span> <span class="p">(</span><span class="n">epsilon</span><span class="o">/</span><span class="mi">4</span><span class="p">)))</span>
+    <span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+<span class="nf">off_policy_monte_carlo</span><span class="p">(</span><span class="n">action_values</span><span class="o">=</span><span class="n">action_values</span><span class="p">,</span><span class="n">target_policy</span><span class="o">=</span><span class="n">target_policy</span><span class="p">,</span><span class="n">exploratory_ploicy</span><span class="o">=</span><span class="n">exploratory_policy</span><span class="p">,</span><span class="n">episodes</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">observation</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+<span class="n">terminated</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="nf">target_policy</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h1 id="temporal-difference-methods">Temporal Difference Methods</h1>
+<p>Temporal Difference methods improvise over MC methods by learning from incomplete episodes of experience using bootstrapping.</p>
+<h2 id="temporal-difference-prediction">Temporal Difference Prediction</h2>
+<p>The simplest temporal-difference learning algorithm TD(0) works as follows:</p>
+
+<p>The $V(S_t)$ can be updated using the actual return $G_t$</p>
+
+\[V(S_t) \leftarrow V(S_t) + \alpha(G_t - V(S_t))\]
+
+<p>We can replace the actual return $G_t$ with the estimated return $R_{t+1} + \gamma V(S_{t+1})$ as follows</p>
+
+\[V(S_t) \leftarrow V(S_t) + \alpha(R_{t+1} + \gamma V(S_{t+1}) - V(S_t))\]
+
+<p>Where,</p>
+
+<p>$R_{t+1} + \gamma V(S_{t+1})$ is called the TD target</p>
+
+<p>$\delta_t =  R_{t+1} + \gamma V(S_{t+1}) - V(S_t) $ is called the TD error</p>
+
+<h3 id="on-policy-td-prediction">On-Policy TD Prediction</h3>
+<p>On-Policy TD prediction can be implemented as explained below
+<img src="/assets/img/DRL4/TD-0-pred-online.png" alt="image1" class="shadow" /></p>
+
+<h3 id="off-policy-td-prediction">Off-Policy TD Prediction</h3>
+<p>Using Importance Sampling for Off-Policy Learning, we can implement TD Prediction as follows:</p>
+
+<p>Use TD targets generated from $\mu$ to evaluate $\pi$. We can weight the TD target $(R + \gamma V(S’))$ by the importance sampling ratio. Note that we only need to correct a single instane of the prediction unlike MC methods where the whole episde has to be corrected.</p>
+
+\[V(S_t) \leftarrow V(S_t) + \alpha \left( \dfrac{\pi(A_t|S_t)}{\mu(A_t|S_t)}(R_{t+1} + \gamma V(S_{t+1})) - V(S_t) \right)\]
+
+<p>Note that the variance is much lower than MC importance sampling</p>
+
+<h2 id="temporal-difference-control">Temporal Difference Control</h2>
+<p>The basic stratergy for using TD methods for control is to plug them into the GPI framework for policy evaluation by learning action values to remain model-free.</p>
+
+<p>The general update rule for action value estimation can be written as:</p>
+
+\[Q(S_t,A_t) \leftarrow Q(S_t,A_t) + \alpha [R_{t+1} + \gamma Q(S_{t+1},A_{t+1}) - Q(S_t,A_t)]\]
+
+<h3 id="on-policy-td-control-sarsa">On-Policy TD Control (SARSA)</h3>
+<p>The On-Policy TD Control method is also referred to as SARSA as it uses the quintuple of events $(S_t,A_t,R_{t+1},S_{t+1},A_{t+1})$ for every update.</p>
+
+<p>The pseudocode for SARSA can be found below
+<img src="/assets/img/DRL4/sarsa.png" alt="image1" class="shadow" /></p>
+
+<p>The python implementation of the above can be found here:
+This code is part of my collection of RL algorithms, that can be found in my GitHub repo <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">rgb_array</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">action_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">,</span> <span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">flatnonzero</span><span class="p">(</span><span class="n">action_value</span> <span class="o">==</span> <span class="n">action_value</span><span class="p">.</span><span class="nf">max</span><span class="p">()))</span>
+
+
+<span class="k">def</span> <span class="nf">sarsa</span><span class="p">(</span><span class="n">action_values</span><span class="p">,</span> <span class="n">episodes</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>  <span class="c1"># on-policy-td-learning
+</span>    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">episodes</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span>
+                <span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="n">termination</span> <span class="ow">or</span> <span class="n">truncation</span>
+            <span class="n">next_action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">next_state</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
+
+            <span class="n">action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span>
+            <span class="n">next_action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">next_state</span><span class="p">,</span> <span class="n">next_action</span><span class="p">]</span>
+            <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="n">action_value</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> \
+                <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">gamma</span><span class="o">*</span><span class="n">next_action_value</span> <span class="o">-</span> <span class="n">action_value</span><span class="p">)</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">next_action</span>
+    <span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+
+<span class="nf">sarsa</span><span class="p">(</span><span class="n">action_values</span><span class="o">=</span><span class="n">action_values</span><span class="p">,</span> <span class="n">episodes</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">policy</span><span class="o">=</span><span class="n">policy</span><span class="p">)</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">observation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+<span class="n">terminated</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="off-policy-td-control-q-learning">Off-Policy TD Control (Q-Learning)</h3>
+<p>Off-Policy TD Control is often referred to as Q-Learning and does not require importance sampling. For TD(0) based Q-Learning, since the action $A_t$ is already determined the  importance sampling ratio essentially becomes 1 and therefore can be ignored.</p>
+
+<p>The next action is chosen using a behaviour policy $A_{t+1} \sim \mu(.|S_t)$ which is $\epsilon$-greedy w.r.t $Q(S,A)$. But we consider alternative successor action $a \sim \pi(.|S_t)$ using the target policy $\pi$ which is greedy w.r.t $Q(S,A)$</p>
+
+<p>The update rule can be written down as follows:</p>
+
+\[Q(S_t,A_t) \leftarrow Q(S_t,A_t) + \alpha[R_{t+1} + \gamma \mathtt{max}_{a} Q(S_{t+1},a) - Q(S_t,A_t)]\]
+
+<p>The pseudocode for Q-Learning can be found below:
+ <img src="/assets/img/DRL4/q-learning.png" alt="image1" class="shadow" /></p>
+
+<p>The python implementation of the above can be found here:
+This code is part of my collection of RL algorithms, that can be found in my GitHub repo <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">rgb_array</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">action_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">,</span> <span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">target_policy</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">flatnonzero</span><span class="p">(</span><span class="n">action_value</span> <span class="o">==</span> <span class="n">action_value</span><span class="p">.</span><span class="nf">max</span><span class="p">()))</span>
+
+
+<span class="k">def</span> <span class="nf">exploratory_policy</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">q_learning</span><span class="p">(</span><span class="n">action_values</span><span class="p">,</span> <span class="n">episodes</span><span class="p">,</span> <span class="n">target_policy</span><span class="p">,</span> <span class="n">exploratory_policy</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>  <span class="c1"># on-policy-td-learning
+</span>    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">episodes</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="nf">exploratory_policy</span><span class="p">()</span>
+            <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">termination</span><span class="p">,</span> <span class="n">truncation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span>
+                <span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="n">termination</span> <span class="ow">or</span> <span class="n">truncation</span>
+            <span class="n">next_action</span> <span class="o">=</span> <span class="nf">target_policy</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">next_state</span><span class="p">)</span>
+
+            <span class="n">action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span>
+            <span class="n">next_action_value</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">next_state</span><span class="p">,</span> <span class="n">next_action</span><span class="p">]</span>
+            <span class="n">action_values</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="n">action_value</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> \
+                <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">gamma</span><span class="o">*</span><span class="n">next_action_value</span> <span class="o">-</span> <span class="n">action_value</span><span class="p">)</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+    <span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+<span class="nf">q_learning</span><span class="p">(</span><span class="n">action_values</span><span class="o">=</span><span class="n">action_values</span><span class="p">,</span> <span class="n">episodes</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">target_policy</span><span class="o">=</span><span class="n">target_policy</span><span class="p">,</span> <span class="n">exploratory_policy</span><span class="o">=</span><span class="n">exploratory_policy</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">observation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+<span class="n">terminated</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="nf">target_policy</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="expected-sarsa">Expected SARSA</h3>
+<p>Consider the learning algorithm that is just like Q-learning except that instead of the maximum over next state–action pairs it uses the expected value, taking into account how likely each action is under the current policy. That is, consider the algorithm with the update rule as follows:</p>
+
+\[Q(S_t,A_t) \leftarrow Q(S_t,A_t) + \alpha[R_{t+1} + \gamma \mathbf{E}_\pi[Q(S_{t+1},A_{t+1} | S_{t+1})] - Q(S_t,A_t) ]\]
+
+<p>which can be written as</p>
+
+\[Q(S_t,A_t) = Q(S_t,A_t) + \alpha[R_{t+1} + \gamma \Sigma_a\pi(a|S_{t+1})Q(S_{t+1},a) - Q(S_t,A_t) ]\]
+
+<p>Expected Sarsa is more complex computationally than Sarsa but, in return, it eliminates the variance due to the random selection of At+1. Given the same amount of experience we might expect it to perform slightly better than Sarss.</p>
+
+<h1 id="bootstrapping">Bootstrapping</h1>
+<p>While TD(0) methods take one step and estimate the return, MC methods wait till the end of the episode to calculate the return. While both these methods might appear to be very different they can unified by using TD methods to look n-steps into the future, as shown by the image below.
+<img src="/assets/img/DRL4/n-step-td.png" alt="image1" class="shadow" /></p>
+
+<!-- ## n-step TD
+
+## n-step SARSA -->
+
+<!-- ## TD$(\lambda)$
+
+
+## SARSA$(\lambda)$ -->]]></content><author><name>Jai Krishna</name></author><category term="Resources" /><category term="Deep Reinforcement Learning" /><category term="mdp" /><category term="optimal value" /><category term="bellman" /><summary type="html"><![CDATA[This post is part of the Deep Reinforcement Learning Blog Series. For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/drl_logo.jpg" /><media:content medium="image" url="https://textzip.github.io/assets/img/drl_logo.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Deep Reinforcement Learning - Part 3 - Dynamic Programming</title><link href="https://textzip.github.io/posts/DRL-3/" rel="alternate" type="text/html" title="Deep Reinforcement Learning - Part 3 - Dynamic Programming" /><published>2023-01-20T13:13:20+05:30</published><updated>2023-01-23T16:42:20+05:30</updated><id>https://textzip.github.io/posts/DRL-3</id><content type="html" xml:base="https://textzip.github.io/posts/DRL-3/"><![CDATA[<p>This post is part of the Deep Reinforcement Learning Blog Series.  For a detailed introduction about the series, the curicullum, sources and references used, please check <a href="https://textzip.github.io/posts/DRL-0/">Part 0 - Getting Started</a>.</p>
+
+<h3 id="structure-of-the-blog">Structure of the blog</h3>
+<ul>
+  <li><a href="https://textzip.github.io/posts/DRL-0/">Part 0 - Getting Started</a></li>
+  <li><a href="https://textzip.github.io/posts/DRL-1/">Part 1 - Multi-Arm Bandits</a></li>
+  <li><a href="https://textzip.github.io/posts/DRL-2/">Part 2 - Finite MDP</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em></li>
+  <li><a href="https://textzip.github.io/posts/DRL-3/">Part 3 - Dynamic Programming</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em></li>
+  <li><a href="https://textzip.github.io/posts/DRL-4/">Part 4 - Monte Carlo, Temporal Difference &amp; Bootstrapping Methods</a> | <strong>Prerequisites</strong>: <em>Python, gymnasium, numpy</em></li>
+  <li>Part 5 - Deep SARSA and Q-Learning | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy, torch</em></li>
+  <li>Part 6 - REINFORCE, AC, DDPG, TD3, SAC</li>
+  <li>Part 7 - A2C, PPO, TRPO, GAE, A3C</li>
+  <li>TBA (HER, PER, Distillation)</li>
+</ul>
+
+<h1 id="dynamic-programming">Dynamic Programming</h1>
+<p>The term dynamic programming (DP) refers to a collection of algorithms that can be used to compute optimal policies given a perfect model of the environment as a Markov decision process (MDP). Classical DP algorithms are of limited utility in reinforcement learning both because of their assumption of a perfect model and because of their great computational expense, but they are still important theoretically. DP provides an essential foundation for the understanding of the Approx. methods presented in later parts. In
+fact, all of these methods can be viewed as attempts to achieve much the same effect as DP, only with less computation and without assuming a perfect model of the environment.</p>
+
+<h2 id="policy-evaluation">Policy Evaluation</h2>
+<p>First we consider how to compute the state-value function $v_\pi$ for an arbitrary policy $\pi$. This is called policy evaluation in the DP literature. We also refer to it as the prediction problem.</p>
+
+<p>Recall that,</p>
+
+\[v_\pi(s) = \sum_{a}\pi(a\mid s)\sum_{s',r} p(s',r\mid a,s)[r+\gamma v_\pi(s')]\]
+
+<p>We can evaluate a given policy $\pi$ by iterativly applying the bellman expectation backup as an update rule until the value function $v(s)$ converges to the $v_\pi(s)$.</p>
+
+<h2 id="policy-improvement">Policy Improvement</h2>
+<p>We can then improve a given policy by acting greedily with respect to the given value function for the policy $v_\pi(s)$.</p>
+
+<p>The new policy $\pi’$ is better than or equal to the old policy $\pi$. Therefore, $\pi’ \ge \pi$.</p>
+
+<p>If the improvement stops</p>
+
+\[q_\pi(s,\pi'(s)) = \mathtt{max}_{a \in A} \  q_\pi(s,a) \ =   q_\pi(s,\pi(s)) = v_\pi(s)\]
+
+<p>Therefore,</p>
+
+\[v_\pi(s) =  \mathtt{max}_{a \in A}  q_\pi(s,a)\]
+
+<p>which is the bellman optimality equation and $v_\pi(s) = v_\star(s)$.</p>
+
+<h2 id="policy-iteration">Policy Iteration</h2>
+<p>Policy Iteration combines the evaluation and improvement steps into a single algorithm where a random policy is taken, its evaluated and then improved upon and the resulting policy is again evaluated and then improved upon and so on until the policy finally converges and becomes the optimal policy.</p>
+
+<p>Policy Iteration is also refered to as the control problem in DP litrature as opposed to the prediction problem that is policy evaluation.</p>
+
+<p><img src="/assets/img/DRL3/Policy_Iteration.png" alt="image1" class="shadow" /></p>
+
+<p>The algorithm can be summaried as follows:</p>
+
+<p><img src="/assets/img/DRL3/PI_algo.png" alt="image1" class="shadow" /></p>
+
+<p>The $\Delta$ in the above code is used to determine the accuracy of the estimation and can be a value close to 0.</p>
+
+<p>The python code for Policy Iteration is as follows:</p>
+
+<p>This code is part of my collection of RL algorithms, that can be found in my GitHub repo <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">observation</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+<span class="n">terminated</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="c1"># state-action table
+</span><span class="n">policy_probs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">,</span> <span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="n">state_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">policy_iteration</span><span class="p">(</span><span class="n">policy_probs</span><span class="p">,</span> <span class="n">state_values</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
+    <span class="n">policy_stable</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">while</span> <span class="n">policy_stable</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+        <span class="c1"># policy eval
+</span>        <span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">delta</span> <span class="o">&gt;</span> <span class="n">theta</span><span class="p">:</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">old_value</span> <span class="o">=</span> <span class="n">state_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
+                <span class="n">new_state_value</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">):</span>
+                    <span class="n">probablity</span><span class="p">,</span> <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">P</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">action</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">new_state_value</span> <span class="o">+=</span> <span class="n">policy_probs</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span><span class="o">*</span><span class="p">(</span>
+                        <span class="n">reward</span> <span class="o">+</span> <span class="p">(</span><span class="n">gamma</span><span class="o">*</span><span class="n">state_values</span><span class="p">[</span><span class="n">next_state</span><span class="p">]))</span>
+                <span class="n">state_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_state_value</span>
+                <span class="n">delta</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="nf">abs</span><span class="p">(</span><span class="n">old_value</span><span class="o">-</span><span class="n">state_values</span><span class="p">[</span><span class="n">state</span><span class="p">]))</span>
+        <span class="c1"># policy improvement
+</span>        <span class="n">policy_stable</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">old_action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">)</span>
+            <span class="n">action_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">max_q</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">-inf</span><span class="sh">'</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">probablity</span><span class="p">,</span> <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">P</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">action</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">action_values</span><span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="n">probablity</span> <span class="o">*</span> \
+                    <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="p">(</span><span class="n">gamma</span><span class="o">*</span><span class="n">state_values</span><span class="p">[</span><span class="n">next_state</span><span class="p">]))</span>
+                <span class="k">if</span> <span class="n">action_values</span><span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_q</span><span class="p">:</span>
+                    <span class="n">max_q</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">action</span><span class="p">]</span>
+                    <span class="n">action_probs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+                    <span class="n">action_probs</span><span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">policy_probs</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="n">action_probs</span>
+        <span class="c1"># check termination condition and update policy_stable variable
+</span>            <span class="k">if</span> <span class="n">old_action</span> <span class="o">!=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">):</span>
+                <span class="n">policy_stable</span> <span class="o">=</span> <span class="bp">False</span>
+
+
+<span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">policy_probs</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>
+
+
+<span class="nf">policy_iteration</span><span class="p">(</span><span class="n">policy_probs</span><span class="o">=</span><span class="n">policy_probs</span><span class="p">,</span> <span class="n">state_values</span><span class="o">=</span><span class="n">state_values</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Done</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Another important point is the fact that we do not need to wait for the policy evaluation to converge to $v_\pi$ before performing policy improvement. Therefore, a stopping condition can be introduced without effecting the performance.</p>
+
+<p>When the policy evaluation step is stopped after a single step, k = 1 we arrive at a special case of policy evaluation which is equivalent to another method called value iteration.</p>
+<h2 id="value-iteration">Value Iteration</h2>
+<p>The bellman optimality backup equation can be applied iteratively until convergence to arrive at the optimal value function $v_\star(s)$. Unlike policy iteration the itermediate value functions do not correspond to any policy. 
+The algorithm can be summaried as follows:</p>
+
+<p><img src="/assets/img/DRL3/VI_algo.png" alt="image1" class="shadow" />
+The python code for Value Iteration is as follows:</p>
+
+<p>This code is part of my collection of RL algorithms, that can be found in my GitHub repo <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="n">gymnasium</span> <span class="k">as</span> <span class="n">gym</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="sh">'</span><span class="s">FrozenLake-v1</span><span class="sh">'</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">map_name</span><span class="o">=</span><span class="sh">"</span><span class="s">8x8</span><span class="sh">"</span><span class="p">,</span>
+               <span class="n">is_slippery</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">human</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">observation</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">reset</span><span class="p">()</span>
+<span class="n">terminated</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="c1"># state-action table
+</span><span class="n">policy_probs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">,</span> <span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">),</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="n">state_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">value_iteration</span><span class="p">(</span><span class="n">policy_probs</span><span class="p">,</span> <span class="n">state_values</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">delta</span> <span class="o">&gt;</span> <span class="n">theta</span><span class="p">:</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">observation_space</span><span class="p">.</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">old_value</span> <span class="o">=</span> <span class="n">state_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
+            <span class="n">action_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">max_q</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">-inf</span><span class="sh">'</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">probablity</span><span class="p">,</span> <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">P</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">action</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">action_values</span><span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="n">probablity</span> <span class="o">*</span> \
+                    <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="p">(</span><span class="n">gamma</span><span class="o">*</span><span class="n">state_values</span><span class="p">[</span><span class="n">next_state</span><span class="p">]))</span>
+                <span class="k">if</span> <span class="n">action_values</span><span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_q</span><span class="p">:</span>
+                    <span class="n">max_q</span> <span class="o">=</span> <span class="n">action_values</span><span class="p">[</span><span class="n">action</span><span class="p">]</span>
+                    <span class="n">action_probs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+                    <span class="n">action_probs</span><span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">state_values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_q</span>
+            <span class="n">policy_probs</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="n">action_probs</span>
+
+            <span class="n">delta</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="nf">abs</span><span class="p">(</span><span class="n">old_value</span> <span class="o">-</span> <span class="n">state_values</span><span class="p">[</span><span class="n">state</span><span class="p">]))</span>
+
+
+<span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">policy_probs</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>
+
+
+<span class="nf">value_iteration</span><span class="p">(</span><span class="n">policy_probs</span><span class="o">=</span><span class="n">policy_probs</span><span class="p">,</span> <span class="n">state_values</span><span class="o">=</span><span class="n">state_values</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="nf">policy</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+    <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+<span class="n">env</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>This code is part of my collection of RL algorithms, that can be found in my GitHub repo <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Problem</th>
+      <th>Bellman Equation</th>
+      <th>Algorithm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Prediction</td>
+      <td>Bellman Expectation Equation</td>
+      <td>Iterative Policy Evaluation</td>
+    </tr>
+    <tr>
+      <td>Control</td>
+      <td>Bellman Expectation Equation + Greedy Policy Improvement</td>
+      <td>Policy Iteration</td>
+    </tr>
+    <tr>
+      <td>Control</td>
+      <td>Bellman Optimality Equation</td>
+      <td>Value Iteration</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="async-dynamic-programming">Async. Dynamic Programming</h2>
+<p>All the methods discussed till now were synchronous in nature and at each step of the iteration we used a loop to go over all the states. We can however also asynchronously backup states in any order and this will also lead to the same solution as long as all the states are selected atleast once. The added advantage is that this greatly reduces computational time and gives rise to methods like prioritised sweeping and others.</p>
+
+<h2 id="generalized-policy-iteration">Generalized Policy Iteration</h2>
+<p>We use the term generalized policy iteration (GPI) to refer
+to the general idea of letting policy-evaluation and policy improvement processes interact, independent of the granularity and other details of the two processes. Almost all reinforcement learning methods are well described as GPI. That is, all have identifiable policies and value functions, with the policy always being improved with respect to the value function and the value function always being driven toward the value function for the policy. If both the evaluation process and the improvement process stabilize, that is, no longer produce changes, then the value function and policy must be optimal. The value function stabilizes only when it is consistent with the current policy, and the policy stabilizes only when it is greedy with respect to the current value function. Thus, both processes stabilize only when a policy has been found that is greedy with respect to its own evaluation function. This implies that the Bellman optimality equation holds, and thus that the policy and the value function are optimal.</p>
+
+<h2 id="pros-and-cons-of-dynamic-programming">Pros and Cons of Dynamic Programming</h2>
+
+<p>DP is sometimes thought to be of limited applicability because of the curse of dimensionality, the fact that the number of states often grows exponentially with the number
+of state variables. Large state sets do create diculties, but these are inherent difficulties of the problem, not of DP as a solution method. In fact, DP is comparatively better suited to handling large state spaces than competing methods such as direct search and linear programming.</p>
+
+<p>But DP methods assume we know the dynamics of the environment which is one of the biggest limiting factors for their direct use in many cases. In the upcoming parts we will loot at methods that tackle this issue.</p>]]></content><author><name>Jai Krishna</name></author><category term="Resources" /><category term="Deep Reinforcement Learning" /><category term="mdp" /><category term="optimal value" /><category term="bellman" /><summary type="html"><![CDATA[This post is part of the Deep Reinforcement Learning Blog Series. For a detailed introduction about the series, the curicullum, sources and references used, please check Part 0 - Getting Started.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/drl_logo.jpg" /><media:content medium="image" url="https://textzip.github.io/assets/img/drl_logo.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Deep Reinforcement Learning - Part 0 - Getting Started</title><link href="https://textzip.github.io/posts/DRL-0/" rel="alternate" type="text/html" title="Deep Reinforcement Learning - Part 0 - Getting Started" /><published>2023-01-18T13:13:20+05:30</published><updated>2023-01-23T16:42:20+05:30</updated><id>https://textzip.github.io/posts/DRL-0</id><content type="html" xml:base="https://textzip.github.io/posts/DRL-0/"><![CDATA[<p>Getting into deep reinforcement learning is a tough but rewarding journey. The primary reason it is so difficult for beginners is due to the shear number of fields involved. Deep Reinforcement Learning for Robotics can be broken down into three almost seperate parts:</p>
+<ul>
+  <li>Deep Learning (Neural Networks)</li>
+  <li>Reinforcement Learning Algorithm</li>
+  <li>Choice of State Space, Action Space and Reward Functions</li>
+</ul>
+
+<h1 id="how-to-get-started">How To Get Started</h1>
+<p>There are a finite number of ways to get started with DRL, but I believe that the right curriculum (learning xD) can make you go a long way.</p>
+
+<p>RL Agents pretty much wither and die when left in environments with sparse rewards. One of the easiest solution for both RL Agents and beginners trying to learn DRL is to have a dense reward function that introduces a lot of fun and rewards at every timestep in the journey.</p>
+
+<h3 id="target-audiance">Target-Audiance</h3>
+<p>People who have prior experience with python, numpy(preferably) and basic understanding of probability and statistics. Added benefit if you are comfortable with basic calculus.</p>
+
+<p>You can learn the maths and numpy on the go as and when it is required but a decent understanding of python datatypes, object-oriented-programming is expected.</p>
+
+<h3 id="end-goal">End-Goal</h3>
+<p>The end-goal for this curriculum is to equip you with the skills required to read through research papers and reimplement/modify them, understand opensource projects and ultimately help you get started with research in DRL.</p>
+
+<p>If this is not what your looking for then this probably isn’t the right curriculum for you.</p>
+
+<h2 id="curriculum">Curriculum</h2>
+<p>The curriculum laid out below is my opinon and it might or might not be the best way for you to get into DRL, so please use it accordingly.</p>
+
+<h3 id="system-setup">System Setup</h3>
+<p>Please create a virtualenv and switch to python 3.8 for the entire series. Linux(Ubuntu or any other distro) is the recommended OS, while some of the code and packages might work in windows, I will not be helping with any windows debugging.</p>
+
+<h2 id="phase-one">Phase One</h2>
+<h3 id="1-get-started-with-gymnasium"><strong>1. Get started with gymnasium</strong></h3>
+
+<p><strong>Prerequisites</strong>: <em>python</em></p>
+
+<p><strong>Note</strong>: If you are an existing user of gym please refer to the migration guide to gymnasium <a href="https://gymnasium.farama.org/content/migration-guide/">here</a>.</p>
+
+<ul>
+  <li>
+    <p>Explore the structure of <a href="https://gymnasium.farama.org/content/basic_usage/">gymnasium-api</a>. Render a couple of environments until your comfortable with the syntax and have a general idea of what is happening in the code.</p>
+  </li>
+  <li>
+    <p><strong>Progress Check:</strong> Assignmnet-1 | Solution-1</p>
+  </li>
+</ul>
+
+<h3 id="2-play-around-with-rewards-states-and-actions"><strong>2. Play around with rewards, states and actions</strong></h3>
+
+<p><strong>Prerequisites</strong>: <em>python, gymnasium</em></p>
+
+<ul>
+  <li>
+    <p>Get started with a 3rd party RL Library (<a href="https://stable-baselines3.readthedocs.io/en/master/index.html">SB3</a>, <a href="https://docs.cleanrl.dev/get-started/basic-usage/#get-documentation">CleanRL</a>, <a href="https://docs.ray.io/en/latest/rllib/index.html">RLlib</a> or any other implementation of your choice) and a robust RL algorithm like PPO and focus on changing the rewards, states and actions in the <a href="https://gymnasium.farama.org/environments/classic_control/">basic environments</a> to solve them. Gain an intution of how the RL framework works.</p>
+  </li>
+  <li>
+    <p>For robotics in paticular, try the <a href="https://gymnasium.farama.org/environments/mujoco/">MuJoCo environments</a> like Ant or check <a href="https://github.com/clvrai/awesome-rl-envs">here</a> and <a href="https://github.com/kengz/awesome-deep-rl">here</a> for other available options (This is not an exhaustive list).</p>
+  </li>
+  <li>
+    <p>What happens when you use torque instead of position in the action space ? What happens when you given a combination of negative and postive rewards ? What are termination conditions ?</p>
+  </li>
+  <li>
+    <p>Believe it or not, you are already in a position to replicate a couple of basic DRL papers. Search for papers that are related to blind locomotion in quadrupeds or robotic manipulators (for example), you should be able to comfortably work with any paper that involve changes to only the state, action and rewards.</p>
+  </li>
+  <li>
+    <p>Try importing different robot models into MuJoCo or any other physics engine of your choice and getting them to work or alternativly use one of the above listed rl-envs. Here here a couple of papers that you can implement along with a link to my implementation, feel free to try it on your own first or tinker around with my code directly:</p>
+
+    <blockquote>
+      <p>Fu, Z., Kumar, A., Malik, J., &amp; Pathak, D. (2021). <a href="https://arxiv.org/pdf/2111.01674.pdf">Minimizing Energy Consumption Leads to the Emergence of Gaits in Legged Robots.</a> doi:10.48550/ARXIV.2111.01674</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Franceschetti, A., Tosello, E., Castaman, N., &amp; Ghidoni, S. (2020). <a href="https://arxiv.org/abs/2005.02632">Robotic Arm Control and Task Training through Deep Reinforcement Learning.</a> doi:10.48550/ARXIV.2005.02632</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Michel Aractingi, Pierre-Alexandre Léziart, Thomas Flayols, Julien Perez, Tomi Silander, et al.. <a href="https://hal.laas.fr/hal-03761331/document">Controlling the Solo12 Quadruped Robot with Deep Reinforcement Learning.</a> 2022. ⟨hal-03761331⟩</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Fang-I Hsiao, Cheng-Min Chiang, Alvin Hou, et al.. <a href="https://web.stanford.edu/class/aa228/reports/2019/final62.pdf">Reinforcement Learning Based Quadcopter Controller</a></p>
+    </blockquote>
+  </li>
+  <li>
+    <p>You can even try ideas like curriculum learning, dynamic goal generation and other ideas that vary the difficult of the training as per the agents performance.</p>
+  </li>
+  <li>
+    <p><strong>Progress Check:</strong> Assignmnet-2 | Solution-2</p>
+  </li>
+</ul>
+
+<h3 id="3-learn-tabular-reinforcement-learning-methods"><strong>3. Learn Tabular Reinforcement Learning Methods</strong></h3>
+
+<p><strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em></p>
+
+<p><strong>NOTE</strong>: <em>You can continue to explore ideas and research papers from step 2 in parallel.</em></p>
+
+<ul>
+  <li>
+    <p>Learn about the basics/fundamentals of reinforcement learning mainly: K-Arm Bandits, MDP, Monte-Carlo Methods, Temporal Difference Methods, Bootstrapping</p>
+  </li>
+  <li>
+    <p>Refer to the <a href="#sources--references">Sources &amp; References</a> for links to external resources like video lectures.</p>
+  </li>
+  <li>
+    <p>Refer to the following sections of the blog series for code and theory:</p>
+
+    <blockquote>
+      <p><a href="https://textzip.github.io/posts/DRL-1/">Part 1 - Multi-Arm Bandits</a></p>
+    </blockquote>
+
+    <blockquote>
+      <p><a href="https://textzip.github.io/posts/DRL-2/">Part 2 - Finite MDP</a></p>
+    </blockquote>
+
+    <blockquote>
+      <p><a href="https://textzip.github.io/posts/DRL-3/">Part 3 - Dynamic Programming</a></p>
+    </blockquote>
+
+    <blockquote>
+      <p>Part 4 - Monte Carlo and Temporal Difference Methods</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Solve some of the basic low dimenssional problems from the gym environments like <a href="https://gymnasium.farama.org/environments/toy_text/">toy-text</a> problems</p>
+  </li>
+  <li>
+    <p><strong>Progress Check:</strong> Assignmnet-3 | Solution-3</p>
+  </li>
+</ul>
+
+<h2 id="phase-two">Phase Two</h2>
+
+<h3 id="4-deep-learning-framework"><strong>4. Deep Learning Framework</strong></h3>
+<p><strong>Prerequisites</strong>: <em>python, numpy</em></p>
+
+<ul>
+  <li>
+    <p>Pick a library of your choice for learning Neural Networks, this guide will be based on PyTorch. (Other options like TensorFlow exist, pick whatever works best for you.)</p>
+  </li>
+  <li>
+    <p>Learn Deep Learning using PyTorch. In paticular try a couple of basic projects till your comfortable with the following ideas: Loss Functions, Activation Functions, PyTorch Syntax, MLP, CNN, RNN, LSTM, GAN, Autoencoders, Weight Initializations, Dropout, Optimizers.</p>
+  </li>
+  <li>
+    <p>Refer to the <a href="#sources--references">Sources &amp; References</a> for links to external resources for learning.</p>
+  </li>
+  <li>
+    <p>Do a couple of pure Deep-Learning projects like binary/multi-class classification, De-noising Images and so on..</p>
+  </li>
+  <li>
+    <p>Try going through some of the classic papers in DL that laid the foundation for modern DL. <a href="https://github.com/TextZip/drl-resources">Here</a> is a link to my collection of must read classics. Here are links to an external collection that is more exhaustive <a href="https://spinningup.openai.com/en/latest/spinningup/keypapers.html#bonus-classic-papers-in-rl-theory-or-review">spinning-openai</a>, <a href="https://github.com/tigerneil/awesome-deep-rl">awesome-deep-rl</a>, <a href="https://github.com/jgvictores/awesome-deep-reinforcement-learning">awesome-deep-reinforcement-learning</a></p>
+  </li>
+  <li>
+    <p><strong>Progress Check:</strong> Assignmnet-4 | Solution-4</p>
+  </li>
+</ul>
+
+<h3 id="5-apply-deep-learning-to-rl"><strong>5. Apply Deep Learning to RL</strong></h3>
+<p><strong>Prerequisites</strong>: <em>python, numpy, rl-library-of-your-choice</em></p>
+
+<ul>
+  <li>
+    <p>Make small changes to the exisiting neural networks from your prior projects in Section <a href="#2-play-around-with-rewards-states-and-actions">2. Play around with rewards, states and actions</a> which were based on 3rd party RL libraries.</p>
+  </li>
+  <li>
+    <p>Change the number of layers, the type of NNet, the activation functon, maybe add a CNN and take camera input in the state.</p>
+  </li>
+  <li>
+    <p>Upgrade projects you worked on earlier like quadruped/robotics arm by adding camera inputs to the state space or change the NNet type to RNNs or LSTMs and check how the performace of the agent changes.</p>
+  </li>
+  <li>
+    <p><strong>Progress Check:</strong> Assignmnet-5 | Solution-5</p>
+  </li>
+</ul>
+
+<h3 id="6-approx-methods-in-rl"><strong>6. Approx. Methods in RL</strong></h3>
+<p><strong>Prerequisites</strong>: <em>python, numpy, PyTorch</em></p>
+
+<ul>
+  <li>
+    <p>Learn Deep Q-Learning, Policy Gradient, Actor-Critic Methods and other algorithms and implement them.</p>
+  </li>
+  <li>
+    <p>Refer to the following sections of the blog series:</p>
+
+    <blockquote>
+      <p>Part 5 - Deep SARSA and Q-Learning</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Part 6 - REINFORCE, AC, DDPG, TD3, SAC</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Part 7 - A2C, PPO, TRPO, GAE, A3C</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>You should now be able to implement a good number of research papers, explore ideas like HER, PER, World Models and other concepts.</p>
+  </li>
+  <li>
+    <p><strong>Progress Check:</strong> Assignmnet-6 | Solution-6</p>
+  </li>
+</ul>
+
+<h2 id="where-does-this-blog-fit-in-">Where Does This Blog Fit in ?</h2>
+
+<p>Some drawbacks of the existing resources for DRL:</p>
+
+<ul>
+  <li>
+    <p>Most of them only focus on the theory or the code but not both. A majority of the courses that cover the theory in great detail do not have any coding components making it very difficult to implement any learning. The courses which are coding centric only focus on the code and skip most of the theory and give a vague intution about the proof or the derivation for the formulas used.</p>
+  </li>
+  <li>
+    <p>Many courses use their own custom environments for teaching (ahm ahm Coursera Specialization) while this can make learning/teaching easy. Some use jupyter notebooks for teaching, most if not all the RL libraries and opensource projects in the internet use argparse and write their code in modular file structures. Once you step outside the course sandbox it becomes very difficult to switch or even follow other projects.</p>
+  </li>
+  <li>
+    <p>A good majority of courses are topic specific aka they only teach something with limits scope or prespective in mind. For example, there are tons of Deep Learning courses but there usually isn’t a deep learning for reinforcement learning course. So, you end up learning a lot more than what is needed and the course usually might focus on things that are not really required for DRL.</p>
+  </li>
+</ul>
+
+<p><strong>The primary goal for this blog series is to bridge the gap between theory and code in Deep Reinforcement Learning.</strong></p>
+
+<p>This blog isn’t a one stop solution and will not teach you DRL from start to finish, you will still need to learn a good portion of the curriculum from other resources. This blog is a sort of an extended cheatsheet for people to refer to when they are learning/implementing DRL via code. It contains a mix of theory and code that build on top of each other.</p>
+
+<h3 id="structure-of-the-blog">Structure of the blog</h3>
+<ul>
+  <li><a href="https://textzip.github.io/posts/DRL-0/">Part 0 - Getting Started</a></li>
+  <li><a href="https://textzip.github.io/posts/DRL-1/">Part 1 - Multi-Arm Bandits</a></li>
+  <li><a href="https://textzip.github.io/posts/DRL-2/">Part 2 - Finite MDP</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em></li>
+  <li><a href="https://textzip.github.io/posts/DRL-3/">Part 3 - Dynamic Programming</a> | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy</em></li>
+  <li><a href="https://textzip.github.io/posts/DRL-4/">Part 4 - Monte Carlo, Temporal Difference &amp; Bootstrapping Methods</a> | <strong>Prerequisites</strong>: <em>Python, gymnasium, numpy</em></li>
+  <li>Part 5 - Deep SARSA and Q-Learning | <strong>Prerequisites</strong>: <em>python, gymnasium, numpy, torch</em></li>
+  <li>Part 6 - REINFORCE, AC, DDPG, TD3, SAC</li>
+  <li>Part 7 - A2C, PPO, TRPO, GAE, A3C</li>
+  <li>TBA (HER, PER, Distillation)</li>
+</ul>
+
+<h2 id="sources--references">Sources &amp; References</h2>
+<p>This section contains a collection of all the various sources for this blog series (in no paticular order):</p>
+<ol>
+  <li>Sutton, R. S., Barto, A. G. (2018 ). <a href="http://incompleteideas.net/book/the-book.html">Reinforcement Learning: An Introduction.</a> The MIT Press.</li>
+  <li>David Silver (2015). <a href="https://www.davidsilver.uk/teaching/">Lectures on Reinforcement Learning</a></li>
+  <li>Udemy Course <a href="https://www.udemy.com/course/beginner-master-rl-1/">Reinforcement Learning beginner to master - AI in Python</a></li>
+  <li>Udemy Course <a href="https://www.udemy.com/course/deep-q-learning-from-paper-to-code/">Modern Reinforcement Learning: Deep Q Learning in PyTorch</a></li>
+  <li>Chris G. Willcocks - Durham University <a href="https://youtube.com/playlist?list=PLMsTLcO6ettgmyLVrcPvFLYi2Rs-R4JOE">Reinforcement Learning Lectures</a></li>
+  <li>(My repo) <a href="https://github.com/TextZip/drl-algorithms">drl-algorithms</a></li>
+  <li>Pieter Abbeel <a href="https://www.youtube.com/playlist?list=PLwRJQ4m4UJjNymuBM9RdmB3Z9N5-0IlY0">Foundations of Deep RL</a></li>
+  <li>Weng, L. (2018, February 19). <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview/">A (long) peek into reinforcement learning. Lil’Log</a></li>
+  <li>Aditya Chopra. (2022). <a href="https://adeecc.vercel.app/blog/intro-to-basic-rl">Introduction to Concepts in Reinforcement Learning</a></li>
+</ol>
+
+<p>This section contains a collection of various references which are required to learn DRL and have been mentioned in the curriculum but have not been covered in this blog series:</p>
+<ol>
+  <li>Udemy Course <a href="https://www.udemy.com/course/pytorch-for-deep-learning/">PyTorch for Deep Learning in 2023: Zero to Mastery</a></li>
+  <li>Udemy Course <a href="https://www.udemy.com/course/deeplearning_x/">A deep understanding of deep learning (with Python intro)</a>
+<!-- 3. Python --></li>
+</ol>
+
+<p>This section contains other references that I have not used in this blog series but are in general useful:</p>
+<ol>
+  <li>Coursera <a href="https://www.coursera.org/specializations/reinforcement-learning">Reinforcement Learning Specialization</a></li>
+  <li>HuggingFace <a href="https://huggingface.co/deep-rl-course/unit0/introduction?fw=pt">Deep Reinforcement Learning Course</a></li>
+  <li>Professor Emma Brunskill, Stanford University <a href="https://www.youtube.com/watch?v=FgzM3zpZ55o&amp;list=PLoROMvodv4rOSOPzutgyCTapiGlY2Nd8u">Stanford CS234: Reinforcement Learning | Winter 2019</a></li>
+  <li>DeepMind x UCL <a href="https://www.youtube.com/watch?v=_DpLWBG_nvk&amp;list=PLki3HkfgNEsKiZXMoYlR-14r1t_MAS7M8">RL Lecture Series</a></li>
+  <li>RAIL <a href="https://www.youtube.com/watch?v=JHrlF10v2Og&amp;list=PL_iWQOsE6TfXxKgI1GgyV1B_Xa0DxE5eH">CS285: Deep Reinforcement Learning Series UC Berkeley</a></li>
+</ol>]]></content><author><name>Jai Krishna</name></author><category term="Resources" /><category term="Deep Reinforcement Learning" /><category term="mdp" /><category term="optimal value" /><category term="bellman" /><summary type="html"><![CDATA[Getting into deep reinforcement learning is a tough but rewarding journey. The primary reason it is so difficult for beginners is due to the shear number of fields involved. Deep Reinforcement Learning for Robotics can be broken down into three almost seperate parts: Deep Learning (Neural Networks) Reinforcement Learning Algorithm Choice of State Space, Action Space and Reward Functions]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/drl_logo.jpg" /><media:content medium="image" url="https://textzip.github.io/assets/img/drl_logo.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds</title><link href="https://textzip.github.io/posts/Energy-DRL/" rel="alternate" type="text/html" title="Energy Minimization based Deep Reinforcement Learning Policies for Quadrupeds" /><published>2022-12-11T13:13:20+05:30</published><updated>2023-02-22T10:14:52+05:30</updated><id>https://textzip.github.io/posts/Energy-DRL</id><content type="html" xml:base="https://textzip.github.io/posts/Energy-DRL/"><![CDATA[<p>The following work has been done during my time at the <a href="https://unit.aist.go.jp/jrl-22022/index_en.html">CNRS-AIST JRL (Joint Robotics Laboratory), IRL, Japan</a> for my undergraduate thesis under the supervision of <a href="https://unit.aist.go.jp/jrl-22022/en/members/member-morisawa.html">Dr. Mitsuharu Morisawa</a> with support from <a href="https://unit.aist.go.jp/jrl-22022/en/members/member-singh.html">Rohan Singh</a>.</p>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/Mq8utqI5-_g" frameborder="0" allowfullscreen=""></iframe>
+
+<blockquote>
+  <p><strong>Note:</strong> Detailed results and video clips can be found in the <a href="#results">Results</a> section below.</p>
+</blockquote>
+
+<h2 id="objective">Objective</h2>
+<p>The primary objective of this work was to create a deep reinforcement learning based policy for quadruped locomotion with emphasis on minimal hand tuning for deployment and easy sim-to-real transfer which was to be used as a baseline policy in our future work.</p>
+
+<p>This has been accomplished using an energy minimization approach for the reward function along with other training specifics like curriculum learning.</p>
+
+<h2 id="hardware--software">Hardware &amp; Software</h2>
+<p>With the core belief of working towards a controller that can be deployed in real-world settings, it is extremely crucial that the entire framework of both software and hardware be scale-able and economically viable. We therefore went ahead with a commercially available quadruped
+platform rather than creating our own quadrupedal platform that might make the results more difficult to verify and the solution equally harder to be deployed in a commercial scale. Similar decisions have been taken wherever crucial decisions had to be taken.</p>
+
+<h3 id="aliengo">AlienGo</h3>
+<p>The AlienGo quadrupedal platform (can be seen in the figure below) by Unitree Robotics first launched in 2018 was our choice for this research study as it strikes the perfect balance between economical cost, features and capabilities. Further, quadruped robots from Unitree Robotics have been one of the most common choice among research labs across the globe. Some select parameters of the robot are listed below:</p>
+<ul>
+  <li><strong>Body size</strong>: 650x310x500mm (when standing)</li>
+  <li><strong>Body weight</strong>: 23kg</li>
+  <li><strong>Driving method</strong>: Servo Motor</li>
+  <li><strong>Degree of Freedom</strong>: 12</li>
+  <li><strong>Structure/placement design</strong>: Unique design (patented)</li>
+  <li><strong>Body IMU</strong>: 1 unit</li>
+  <li><strong>Foot force sensor</strong>: 4 units (1 per foot)</li>
+  <li><strong>Depth sensor</strong>: 2 units</li>
+  <li><strong>Self-position estimation camera</strong>: 1 unit</li>
+</ul>
+
+<p><img src="/assets/img/Energy-DRL/Aliengo.jpg" alt="image1" class="shadow" /></p>
+
+<h3 id="mujoco">MuJoCo</h3>
+<p>MuJoCo has been our choice for simulation as it is a free and open source physics engine that is widely used in the industry for research and development in robotics, biomechanics, graphics and animation. Also, we have observed that it is able to simulate contact dynamics more accurately and was also faster in most of our use cases when compared to other available options. We have also used Ray an open-source compute framework for parallelization of our training.</p>
+
+<h3 id="training-platform">Training Platform</h3>
+<p>Our primary training platform is the GDEP Deep Learning BOX some select system parameters are mentioned below:</p>
+<ul>
+  <li><strong>CPU</strong>: AMD Ryzen Threadripper PRO 5975WX</li>
+  <li><strong>Num. Cores</strong>: 32</li>
+  <li><strong>RAM</strong>: 128GB</li>
+  <li><strong>GPU</strong>: Nvidia RTX A6000 x 2</li>
+</ul>
+
+<h2 id="rl-framework">RL Framework</h2>
+<h3 id="state-space">State Space</h3>
+<p>As stated in <a href="https://arxiv.org/abs/1804.10332">Jie Tan et al. Sim-to-Real: Learning Agile Locomotion For Quadruped Robots</a> the choice of state space has a direct impact on the sim to real transfer, we note that this can be primarily summarized as the fewer dimensions in the state space the easier it is to do a sim to real transfer as the noise and drift increase with an increase in the number of parameters being included in the state space. Many of the recent papers on quadruped locomotion therefore try to avoid using parameters that are noisy or tend to drift such as yaw from the IMU and force values from the foot sensors. While a few papers use methods like supervised learning and estimation techniques to counter the noise and drift in sensor data we decided to eliminate the use of such parameters all together as it didn’t result in any drastic change in the performance of learning policy. Our final state space has 230(46x5) dimensions and its breakdown is listed below:</p>
+
+<ul>
+  <li>$[\omega_x,\omega_y,\omega_z]$ - root angular velocity in the local frame</li>
+  <li>$[\theta]$ - joint angles</li>
+  <li>$[\dot{\theta}]$ - joint velocities</li>
+  <li>$[c]$ - binary foot contacts</li>
+  <li>$[v_x^g,v_y^g,\omega_z^g]$ - goal velocity</li>
+  <li>$[a_{t-1}]$ - previous actions</li>
+  <li>$[s_0,s_1,s_2,s_3]$ - history of the previous four states</li>
+</ul>
+
+<p>The goal velocity consists of three components linear velocity in x and y axis along with angular velocity along the z axis, we have discarded the roll, pitch, yaw and linear velocities that are usually included in the state space for reasons mentioned above. Further, although aliengo has force sensors that can give the magnitude of the force we decided to use a threshold and use binary representation for foot contacts as there is significant noise and drift in the readings.</p>
+
+<h3 id="action-space">Action Space</h3>
+<p>As stated in <a href="https://doi.org/10.1145%2F3099564.3099567">Michiel van de Panne et al. “Learning locomotion skills using DeepRL: does the choice of action space matter? ”</a>, the choice of action space directly effects the learning speed and hence we went ahead with joint angles as the action space representation, further to strongly center all our gait from the neutral standing pose of the robot. The policy outputs are added around the joint position values of the neutral standing pose joint angles before being fed into a low-gain PD controller that outputs the final joint torque values. The final control scheme can be seen here</p>
+
+<p><img src="/assets/img/Energy-DRL/control_scheme.png" alt="image1" class="shadow" /></p>
+
+<h3 id="learning-algorithm">Learning Algorithm</h3>
+<p>Given the continuous nature of the state and action space Approx methods are essential. We went ahead with <a href="https://arxiv.org/pdf/1707.06347.pdf">Proximal Policy Optimization Algorithm</a> that is based on the Actor-Critic Framework as it do not require extensive hyperparamter tuning and are in general is quite stable. We use a Multi Layered Perceptron architecture with 2 hidden layers of size 256 units each and ReLU activation to represent both the actor and critic networks.</p>
+
+<h4 id="hyperparameters">Hyperparameters</h4>
+<p>The hyperparameters were taken from standard implementations which are typically the same across many of the papers. The values have been listed below:</p>
+<ul>
+  <li><strong>Parallel Instances</strong>: 32</li>
+  <li><strong>Minibatch size</strong>: 512</li>
+  <li><strong>Evaluation freq</strong>: 25</li>
+  <li><strong>Adam learning rate</strong>: 1e-4</li>
+  <li><strong>Adam epsilon</strong>: 1e-5</li>
+  <li><strong>Generalized advantage estimate discount</strong>: 0.95</li>
+  <li><strong>Gamma</strong>: 0.99</li>
+  <li><strong>Anneal rate for standard deviation</strong>: 1.0</li>
+  <li><strong>Clipping parameter for PPO surrogate loss</strong>: 0.2</li>
+  <li><strong>Epochs</strong>: 3</li>
+  <li><strong>Max episode horizon</strong>: 400</li>
+</ul>
+
+<h3 id="reward-function">Reward Function</h3>
+<p>The goal for any reinforcement learning policy is to maximize the total reward/expected reward collected. While the state and action space definitely effect the learning rate and stability of the policy, the reward function defines the very nature of the learning policy. The wide variety of literature available on locomotion policies for quadrupeds while almost the same with respect to
+the state and action space has diversity mostly due to the choice of the reward function.</p>
+
+\[\begin{aligned}
+\text{Total Reward} &amp;= \text{Energy Cost} + \text{Survival Reward} + \text{Goal Velocity Cost} \\
+\text{Energy Cost} &amp;= C_1\tau\omega \\
+\text{Survival Reward} &amp;= C_2|v_x^g| + C_3|v_y^g| + C_4|\omega_z^g| \\
+\text{Goal Velocity Cost} &amp;= -C_2|v_x-v_x^g| - C_3|v_y-v_y^g| - C_4|\omega_z - \omega_z^g| \\
+\end{aligned}\]
+
+<p>Where $C_1,C_2,C_3,C_4$ are constants that have to be picked.</p>
+
+<p>We believe that the primary reason reinforcement learning based policies generalize poorly is due to the excessive number of artificial costs added to the reward function for achieving locomotion. Inspired by <a href="https://arxiv.org/abs/2111.01674">Zipeng Fu et al. Minimizing Energy Consumption Leads to the Emergence of Gaits in Legged Robots</a>, we base our reward function on the principle of energy minimization. Another added benefit of energy minimization based policy is the fact that different goal velocity commands result in different gaits. As explained in <a href="">Christopher L. Vaughan et al. “Froude and the contribution of naval architecture to our understanding of bipedal locomotion.”</a>, this is consistent with how animals
+behave and is because a particular gait is only energy efficient for a particular range of goal velocities.</p>
+
+<h3 id="curriculum-learning">Curriculum Learning</h3>
+<p>Curriculum learning is a method of training reinforcement learning (RL) agents in which the difficulty of tasks or environments is gradually increased over time. This approach is based on the idea that starting with simpler tasks and gradually increasing the complexity can help the
+agent learn more efficiently. The agent can focus on mastering basic skills needed to solve the initial tasks before attempting to tackle more complex ones. There are two ways in which curriculum learning is usually implemented. One is to use a pre-defined set of tasks or environments that are ordered by increasing difficulty. The agent is trained on these tasks in a specific order, with the difficulty of the tasks increasing as the agent progresses through the curriculum. Another approach is to use a dynamic curriculum, where the difficulty of the tasks is adjusted based on the agent’s performance. For instance, if the agent struggles with a particular task, the difficulty of that task may be reduced, while the difficulty of easier tasks may be increased to provide more challenge. We use Curriculum learning in a variety of ways to tackle a varity of issues as discussed below.</p>
+<h4 id="cost-curriculum">Cost Curriculum</h4>
+<p>The high energy cost with low reward for smaller values of goal velocity make it extremely difficult for the agent to learn walking at low goal speeds as it settles in a very attractive local minima of standing still and not moving at all to reduce the cost associated with energy rather
+than to learn how to walk. Using a Cost Curriculum, we first let the agent walk at the required low speed with almost zero energy cost and once the agent learns a reasonable gait we slowly increase the cost to its original value so that the gait is fine tuned to be energy efficient.</p>
+<h4 id="terrain-curriculum">Terrain Curriculum</h4>
+<p>For increasing robustness against external perturbation and for better adaptability to real world use cases where the ground is not plane and uniform, it is useful to train the agent in uneven terrain during simulation. But introducing difficult terrain from the beginning of the training might hinder the learning and in some cases the agent might never completely solve the task as the difficulty is too high. Using terrain curriculum enables us to start with a flat plain initially
+and gradually increase the difficult of the terrain to make sure the learning rate is not too difficult that the agent makes no progress at all. We train the agent across two different terrains (Plain
+and Triangle) and test the learnt policy in 2 additional environments (slope and rough).
+<img src="/assets/img/Energy-DRL/terrain_types.png" alt="image1" class="shadow" /></p>
+<h4 id="velocity-curriculum">Velocity Curriculum</h4>
+<p>Training the agent for a single goal velocity while might result in faster training speed, having the ability to smoothly transition between various goal speeds is often crucial and this is especially
+important when we want the policy to adapt to any combination of linear and angular velocity given during evaluation by the user. Therefore, using a velocity curriculum enables us to randomize and cover the whole input velocity domain systematically.</p>
+<h3 id="terminal-conditions">Terminal Conditions</h3>
+<p>Termination conditions enable faster learning as they help the agent only explore states which are useful to the task by stopping the episode as soon as the agent reaches a state from which it cannot recover and any experience gained by the agent from that state onwards does not help
+the agent learn or get better at solving the task at hand. We use two termination conditions to help increase the training speed, both of which are discussed below</p>
+<h4 id="minimum-trunk-height">Minimum Trunk Height</h4>
+<p>This condition ensures that the Center of Mass of the trunk is above 30cm from the ground plane as any kind of walking gait should ensure that the trunk height isn’t too low from the ground. This enable the agent to learn how to stand from a very early stage in the training
+speeding up the overall learning.</p>
+<h4 id="bad-contacts">Bad Contacts</h4>
+<p>This condition ensures that the only points of contact the agent has with the ground plane are through the feet and no other parts of the agent are in contact with the ground plane. This minimizes the probability of the agent learning gaits or behaviours which result in collision between the agents body and the ground plane minimizing damage to agent body and other mechanical parts during deployment.</p>
+<h3 id="sim-to-real">Sim to Real</h3>
+<p>Sim-to-real transfer refers to the problem of transferring a reinforcement learning agent that has been trained in a simulated environment to a real-world environment. This is a challenging
+problem because the simulated environment is typically different from the real-world environment in many ways, such as the dynamics of the system, the sensors and actuators, and the noise and
+uncertainty present in the system.</p>
+
+<p>We employ a mix of domain randomization and system identification for sim-to-real transfer.</p>
+<h2 id="results">Results</h2>
+<p>The energy minimization based policy is able to adjust its gait to the most optimal gait based on the given goal velocity. Traditional policies that do not use energy minimization are only able to exhibit a
+single gait.</p>
+
+<p>All the below videos/picture frames are from a single policy with no changes made other than the goal speed.</p>
+<h3 id="gaits">Gaits</h3>
+<h4 id="walk">Walk</h4>
+<iframe width="640" height="385" src="https://youtube.com/embed/55T5ESUYwDY" frameborder="0" allowfullscreen=""></iframe>
+<p>Generating walking gait at low-speed required the use of curriculum learning as the agent found an attractive local minima where It would just stand still without moving to avoid energy costs
+at low speeds. Furthermore, curriculum learning was used as the primary sim to real transfer technique along with domain randomization.</p>
+
+<p><img src="/assets/img/Energy-DRL/walking_gait.png" alt="image1" class="shadow" />
+Terrain curriculum in particular resulted in better foot-clearance and made the agent robust to external perturbations enabling the robot to walk on extremely difficult terrain.
+<img src="/assets/img/Energy-DRL/curr_example.png" alt="image1" class="shadow" /></p>
+
+<h4 id="trot">Trot</h4>
+<iframe width="640" height="385" src="https://youtube.com/embed/590fHeeqymI" frameborder="0" allowfullscreen=""></iframe>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/hgjm5DERYGM" frameborder="0" allowfullscreen=""></iframe>
+
+<p>This is one of the most commonly generated gait for use in legged locomotion, while other methods are able to generate trotting gait we believe that our method enables us to use less
+energy and torque to reach the same target velocities.
+<img src="/assets/img/Energy-DRL/trotting-gait.png" alt="image1" class="shadow" /></p>
+
+<h4 id="gallop">Gallop</h4>
+<iframe width="640" height="385" src="https://youtube.com/embed/bCSGomO10ps" frameborder="0" allowfullscreen=""></iframe>
+
+<p>While we see a Galloping gait emerge at goal speeds greater than 1.65 m/s in simulation, we need to test if the robot hardware can physically achieve this speed and therefore exhibit the
+gallop gait. The other possible alternative is to use a much lower energy cost to make the agent
+exhibit the gallop gait at a lower goal velocity.
+<img src="/assets/img/Energy-DRL/gallop.png" alt="image1" class="shadow" /></p>
+
+<h3 id="directional-control">Directional Control</h3>
+<iframe width="640" height="385" src="https://youtube.com/embed/M02tf4fWIHI" frameborder="0" allowfullscreen=""></iframe>
+
+<iframe width="640" height="385" src="https://youtube.com/embed/H85NNuzPzLM" frameborder="0" allowfullscreen=""></iframe>
+
+<p>Using velocity curriculum described above, the agent is trained using a random goal velocity vector that consists of linear and angular velocity components. This enables the agent
+to learn not only how to walk but also how to bank and turn in the process.
+<img src="/assets/img/Energy-DRL/directional_control.png" alt="image1" class="shadow" /></p>
+
+<h3 id="emergence-of-asymmetrical-gait">Emergence of Asymmetrical Gait</h3>
+<p>Training in extremely uneven terrain leads to the emergence of asymmetrical gait that maintains
+a low center of gravity and shows almost a crab like walking behaviour which is persistent even
+when the policy is deployed on a smoother terrain. The results of the training are labelled as
+<strong>CP2</strong> and have been described in the latter sections.
+<img src="/assets/img/Energy-DRL/special_gait.png" alt="image1" class="shadow" /></p>
+
+<h3 id="adaptation-to-unseen-terrain">Adaptation to Unseen Terrain</h3>
+<p>While the agent has been trained in the triangle terrain, the learnt policy is able to successfully
+walk on new terrain that it has not seen during training. The base-policy is referred to as <strong>BP</strong>,
+the base policy is then subjected to two different curriculum resulting in policies <strong>CP1</strong> and <strong>CP2</strong>.
+While both <strong>CP1</strong> and <strong>CP2</strong> are trained in the <strong>Triangle Terrain 1 &amp; 2</strong> the maximum height of the triangular peaks for <strong>CP2</strong> is 0.12m <strong>(Triangle Terrain 2)</strong> while it is 0.10m for <strong>CP1</strong>
+<strong>(Triangle Terrain 1)</strong>.
+All the three curriculum’s have been tested on unseen terrains rough with maximum peak height of 0.12m and slopes with max slope height of 0.8m and slope of 32 degrees. The results are as
+follows:
+<img src="/assets/img/Energy-DRL/RewardVsTimestepforPlainTerrain.svg" alt="image1" class="shadow" /></p>
+
+<p><img src="/assets/img/Energy-DRL/RewardVsTimestepforRoughTerrain.svg" alt="image1" class="shadow" /></p>
+
+<p><img src="/assets/img/Energy-DRL/RewardVsTimestepforSlopeTerrain.svg" alt="image1" class="shadow" /></p>
+
+<p><img src="/assets/img/Energy-DRL/RewardVsTimestepforTriangleTerrain1.svg" alt="image1" class="shadow" /></p>
+
+<p><img src="/assets/img/Energy-DRL/RewardVsTimestepforTriangleTerrain2.svg" alt="image1" class="shadow" /></p>
+
+<h3 id="inference">Inference</h3>
+<p>While <strong>CP2</strong> has a clear advantage when deployed in <strong>Triangle Terrain 2</strong>, it performs almost as good as or slightly worse than <strong>CP1</strong> in all the other test cases. Furthermore, it is clearly visible that <strong>BP</strong> isn’t suitable for most of the testing environment as it flat-lines pretty early. While <strong>CP2</strong> learns a more stable gait pattern it is slower and requires lot more movement by the agent which results in <strong>CP1</strong> gaining a few points over it as <strong>CP1</strong> can quickly cover the velocity cost.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>Most of the current reinforcement learning based policies use highly constrained rewards due to
+which the locomotion policy developed doesn’t use the entire solution space. Energy minimization
+based policy is able to adjust its gait to the most optimal gait based on the goal velocity.
+Traditional policies that do not use energy minimization are only able to exhibit a single gait.</p>
+<h3 id="current-limitations">Current Limitations</h3>
+<p>The current implementation of the policy although exhibits different gaits when trained at
+different goal velocities, it fails to learn more than one gait during a single training run. We
+believe this is due to the difference in the weights of the network for different gaits. Also, while
+training in extremely unstructured environments leads to the emergence of asymmetrical gait
+that is extremely stable, the policy seems to forget the older gait and tends to use this gait even
+when deployed later on plain terrain</p>
+
+<!-- Link for Thesis Report: https://drive.google.com/file/d/1Iqkzg1Hm_KEukPT_LOcBMrR1BnOSRvw4/view?usp=sharing -->]]></content><author><name>Jai Krishna</name></author><category term="Projects" /><category term="Quadrupeds" /><category term="mdp" /><category term="optimal value" /><category term="bellman" /><summary type="html"><![CDATA[The following work has been done during my time at the CNRS-AIST JRL (Joint Robotics Laboratory), IRL, Japan for my undergraduate thesis under the supervision of Dr. Mitsuharu Morisawa with support from Rohan Singh.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://textzip.github.io/assets/img/Energy-DRL/go1.png" /><media:content medium="image" url="https://textzip.github.io/assets/img/Energy-DRL/go1.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

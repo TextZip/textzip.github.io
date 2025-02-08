@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en-US" 
+>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Manipulator Workspace Plotter" />
+<meta name="author" content="Jai Krishna" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction I wrote this small script to tinker with DH Parameters and wanted to visualize and understand how joint limits affect the manipulator workspace. While there are many ways of generating the workspace of a manipulator, this particular sketch uses forward kinematics to do so. The full code for the project can be found in the following repo" />
+<meta property="og:description" content="Introduction I wrote this small script to tinker with DH Parameters and wanted to visualize and understand how joint limits affect the manipulator workspace. While there are many ways of generating the workspace of a manipulator, this particular sketch uses forward kinematics to do so. The full code for the project can be found in the following repo" />
+<link rel="canonical" href="https://textzip.github.io/posts/Manipulator-Workspace-Plotter/" />
+<meta property="og:url" content="https://textzip.github.io/posts/Manipulator-Workspace-Plotter/" />
+<meta property="og:site_name" content="Jai Krishna" />
+<meta property="og:image" content="https://textzip.github.io/assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-18T23:42:20+05:30" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://textzip.github.io/assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png" />
+<meta property="twitter:title" content="Manipulator Workspace Plotter" />
+<meta name="twitter:site" content="@twitter_username" />
+<meta name="twitter:creator" content="@Jai Krishna" />
+<meta name="google-site-verification" content="google_meta_tag_verification" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jai Krishna"},"dateModified":"2022-01-18T16:36:00+05:30","datePublished":"2021-05-18T23:42:20+05:30","description":"Introduction I wrote this small script to tinker with DH Parameters and wanted to visualize and understand how joint limits affect the manipulator workspace. While there are many ways of generating the workspace of a manipulator, this particular sketch uses forward kinematics to do so. The full code for the project can be found in the following repo","headline":"Manipulator Workspace Plotter","image":"https://textzip.github.io/assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://textzip.github.io/posts/Manipulator-Workspace-Plotter/"},"url":"https://textzip.github.io/posts/Manipulator-Workspace-Plotter/"}</script>
+ <title>Manipulator Workspace Plotter | Jai Krishna
+ </title>
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Jai Krishna">
+<meta name="application-name" content="Jai Krishna">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="/assets/css/slider/ideal-image-slider.css">
+<link rel="stylesheet" href="/assets/css/slider/themes/default.css">
+  <script src="/assets/js/slider/ideal-image-slider.min.js"></script>
+  <script src="/assets/js/slider/iis-bullet-nav.js"></script>
+  <script src="/assets/js/slider/iis-captions.js"></script>
+  <script>
+  var workspace = new IdealImageSlider.Slider({
+      selector: '#workspace',
+      height: 600,
+      interval: 4000,
+      effect: 'slide',
+      keyboardNav: true,
+      });
+    workspace.addCaptions();
+    workspace.start();
+  </script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script defer
+    src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+  <script async
+    src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
+  <script>
+  /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */
+  MathJax = {
+    tex: {
+      inlineMath: [              /* start/end delimiter pairs for in-line math */
+        ['$','$'],
+        ['\\(','\\)']
+      ],
+      displayMath: [             /* start/end delimiter pairs for display math */
+        ['$$', '$$'],
+        ['\\[', '\\]']
+      ]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  <script defer src="/app.js"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-KGYYX7MFB2"
+></script>
+<script>
+  /* global dataLayer */
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-KGYYX7MFB2");
+</script>
+ <body data-spy="scroll" data-target="#toc">
+<div id="sidebar" class="d-flex flex-column align-items-end">
+ <div class="profile-wrapper text-center">
+   <div id="avatar">
+      <a href="/" alt="avatar" class="mx-auto">
+        <img src="/assets/img/profile.jpg" alt="avatar" onerror="this.style.display='none'">
+      </a>
+   </div>
+   <div class="site-title mt-3">
+      <a href="/">Jai Krishna</a>
+   </div>
+   <div class="site-subtitle font-italic">Robotics | Electronics | Design</div>
+ </div>
+ <ul class="w-100">
+   <li class="nav-item">
+      <a href="/" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>HOME</span>
+      </a>
+   <li class="nav-item">
+      <a href="/projects/" class="nav-link">
+        <i class="fa-fw fas fa-microchip ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>PROJECTS</span>
+      </a>
+   <li class="nav-item">
+      <a href="/resources/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>RESOURCES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/categories/" class="nav-link">
+        <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>CATEGORIES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/archives/" class="nav-link">
+        <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ARCHIVES</span>
+      </a>
+   <li class="nav-item">
+      <a href="/about/" class="nav-link">
+        <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ABOUT | CONTACT</span>
+      </a>
+   <li class="nav-item">
+      <a href="/tags/" class="nav-link">
+        <i class="fa-fw fas fa-chalkboard-teacher ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>TAGS</span>
+      </a>
+ </ul>
+ <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
+      <a href="https://github.com/TextZip" aria-label="github"
+        class="order-3"
+        target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="
+          javascript:location.href = 'mailto:' + ['textzip','gmail.com'].join('@')" aria-label="email"
+        class="order-4"
+        >
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/jai-krishna-bandi" aria-label="linkedin"
+        class="order-5"
+        target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+        <span class="icon-border order-2"></span>
+      <span id="mode-toggle-wrapper" class="order-1">
+<i class="mode-toggle fas fa-adjust"></i>
+<script type="text/javascript">
+  class ModeToggle {
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+      var self = this;
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addListener(function() {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+          self.clearMode();
+        }
+        self.updateMermaid();
+      });
+    } /* constructor() */
+    setDark() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+    setLight() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+    clearMode() {
+      $('html').removeAttr(ModeToggle.MODE_KEY);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+    get hasMode() { return this.mode != null; }
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode
+        || (!this.hasMode && this.isSysDarkPrefer) ) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+    updateMermaid() {
+      if (typeof mermaid !== "undefined") {
+        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
+        let config = { theme: expectedTheme };
+        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $(".mermaid").each(function() {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr("data-processed");
+          $(this).html(svgCode);
+        });
+        mermaid.initialize(config);
+        mermaid.init(undefined, ".mermaid");
+      }
+    }
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+      this.updateMermaid();
+    } /* flipMode() */
+  } /* ModeToggle */
+  let toggle = new ModeToggle();
+  $(".mode-toggle").click(function() {
+    toggle.flipMode();
+  });
+</script>
+      </span>
+ </div>
+</div>
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+ <div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+    <span id="breadcrumb">
+        <span>
+          <a href="/">
+            Posts
+          </a>
+        </span>
+          <span>Manipulator Workspace Plotter</span>
+    </span>
+    <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+   <div id="topbar-title">
+      Post
+   </div>
+    <i id="search-trigger" class="fas fa-search fa-fw"></i>
+    <span id="search-wrapper" class="align-items-center">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search"
+        aria-label="search" autocomplete="off" placeholder="Search...">
+      <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+    </span>
+    <span id="search-cancel" >Cancel</span>
+ </div>
+</div>
+   <div id="main-wrapper">
+     <div id="main">
+<div class="row">
+ <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+   <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+     <h1 data-toc-skip>Manipulator Workspace Plotter</h1>
+     <div class="post-meta text-muted d-flex flex-column">
+       <div>
+          <span class="semi-bold">
+            Bandi Jai Krishna
+          </span>
+<em class="timeago"
+    data-ts="1621361540"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Tue, May 18, 2021, 11:42 PM +0530"
+    >
+  2021-05-18
+</em>
+       </div>
+       <div>
+          <span>
+<em class="timeago lastmod"
+    data-ts="1642503960"
+      data-toggle="tooltip" data-placement="bottom" 
+      title="Tue, Jan 18, 2022,  4:36 PM +0530"
+    >
+  2022-01-18
+</em>
+          </span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1150 words">6 min</span>
+       </div>
+     </div>
+     <div class="post-content">
+       <h2 id="introduction">Introduction</h2>
+<p>I wrote this small script to tinker with DH Parameters and wanted to visualize and understand how joint limits affect the manipulator workspace. While there are many ways of generating the workspace of a manipulator, this particular sketch uses forward kinematics to do so.
+The full code for the project can be found in the following repo</p>
+<p><a href="https://github.com/textzip/DHPnP"><img src="https://gh-card.dev/repos/textzip/DHPnP.svg?fullname=" alt="textzip/DHPnP - GitHub" /></a></p>
+<h2 id="method">Method</h2>
+<p>The idea of plotting workspace from forward kinematics can be broken down into the following smaller tasks</p>
+<ol>
+ <li>Capture the DH Table from the user
+ <li>Create a Homogenous Transformation Matrix ideally(Base to Tool).
+ <li>Take in user inputs for joint limits.
+ <li>Create a dataset of sorts that contains random possible combinations from the possible joint limits.
+ <li>Plug these random points into the Transformation Matrix and plot the outputs.
+</ol>
+<p><strong>A few other points:</strong></p>
+<ul>
+ <li>There is no need to create a dataset with “all” possible combinations for the joint angles, this method will be computationally expensive. We will instead be using monte carlo distribution to generate random points.
+ <li>Angle limits for roll joint at the end of the tool tip need not be considered as change in roll values doesn’t change the tool tip position.
+</ul>
+<h2 id="the-code-explanined">The Code Explanined</h2>
+<h3 id="capture-the-dh-table-from-the-user">Capture the DH Table from the user</h3>
+<p>The first step would be to capture the DH-Parameters for a given manipulators, this can be represented using a “M x 4 matrix” where M is the number of axis for the manipulator.</p>
+<p>We will be creating a matrix using symbolic variables as it would make it easier later for us to solve the matrix multiplications using variables that can later be substituted for.</p>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="c1">%% Homogeneous Matrix Builder</span>
+<span class="n">noParams</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">'Enter the number of axis: '</span><span class="p">);</span>
+<span class="n">T</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="n">flg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sym</span><span class="p">(</span><span class="s1">'A%d%d'</span><span class="p">,[</span><span class="n">noParams</span><span class="p">,</span><span class="mi">4</span><span class="p">]);</span>
+</pre></table></code></div></div>
+<p><strong>noParams</strong> here is used to decide the number of rows for the DH parameter table.
+<strong>A</strong> is the DH-Table Matrix</p>
+<p>On its own for an input of “5” to <strong>noParams</strong>, the <strong>A</strong> matrix would look like this:</p>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="o">&gt;&gt;</span> <span class="n">A</span>
+ 
+<span class="n">A</span> <span class="o">=</span>
+ 
+<span class="p">[</span><span class="n">A11</span><span class="p">,</span> <span class="n">A12</span><span class="p">,</span> <span class="n">A13</span><span class="p">,</span> <span class="n">A14</span><span class="p">]</span>
+<span class="p">[</span><span class="n">A21</span><span class="p">,</span> <span class="n">A22</span><span class="p">,</span> <span class="n">A23</span><span class="p">,</span> <span class="n">A24</span><span class="p">]</span>
+<span class="p">[</span><span class="n">A31</span><span class="p">,</span> <span class="n">A32</span><span class="p">,</span> <span class="n">A33</span><span class="p">,</span> <span class="n">A34</span><span class="p">]</span>
+<span class="p">[</span><span class="n">A41</span><span class="p">,</span> <span class="n">A42</span><span class="p">,</span> <span class="n">A43</span><span class="p">,</span> <span class="n">A44</span><span class="p">]</span>
+<span class="p">[</span><span class="n">A51</span><span class="p">,</span> <span class="n">A52</span><span class="p">,</span> <span class="n">A53</span><span class="p">,</span> <span class="n">A54</span><span class="p">]</span>
+</pre></table></code></div></div>
+<p>The names of the column and row elements are due to the <strong>“A%d%d”</strong> in the <code class="language-plaintext highlighter-rouge">A = sym('A%d%d',[noParams,4]);</code></p>
+<h3 id="create-a-homogenous-transformation-matrix-ideallybase-to-tool">Create a Homogenous Transformation Matrix ideally(Base to Tool).</h3>
+<p>We will now be creating a Homogenous symbolic transformation matrix with the above generated blank DH paramter matrix.</p>
+<ul>
+ <li>Rotation of $L_{k-1}$ about $Z_{k-1}$ is denoted by $\theta_k$.
+ <li>Translation of $L_{k-1}$ about $Z_{k-1}$ is denoted by $d_k$.
+ <li>Translation of $L_{k-1}$ about $X_{k-1}$ is denoted by $a_k$.
+ <li>Rotation of $L_{k-1}$ about $X_{k-1}$ is denoted by $\alpha_k$. 
+Therefore, any homogenous Transformation matrix T can be expressed as the following:
+\(T_{k-1}^k(\theta_k,d_k,a_k,\alpha_k) = R(\theta_k,z)T(d_k,z)T(a_k,x)R(\alpha_k,x)\)
+\(T_{base}^{tool} = T_{base}^1T_1^2T_2^3...T_{n-1}^{tool}\)
+   <div class="language-matlab highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="n">noParams</span>
+  <span class="n">Rz</span> <span class="o">=</span> <span class="p">[</span><span class="nb">cos</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="nb">sin</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="nb">cos</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+  <span class="n">Tz</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+  <span class="n">Tx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+  <span class="n">Rx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="nb">cos</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span><span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="nb">sin</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span><span class="nb">cos</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">)),</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="n">Rz</span><span class="o">*</span><span class="n">Tz</span><span class="o">*</span><span class="n">Tx</span><span class="o">*</span><span class="n">Rx</span><span class="p">);</span>
+<span class="k">end</span>
+</pre></table></code></div>  </div>
+   <p>The next step after generating the DH table would be to fill the empty Transformation Matrix with the acutal values for the manipulator, this is done via user input.</p>
+</ul>
+<p>This part of the code isn’t that straightforward, we will be taking one DH parameter at a time and the user needs to enter the row and column number of the DH paramter they are about to enter. The syntax for user input is <strong>[position,value,1/0]</strong>. Where a 1 would mean its the end of the inputs series and there are no more DH paramters to input, on the other hand 0 can be used to let the program know that there are more DH paramters that need to be entered.</p>
+<p><strong>NOTE:</strong></p>
+<ul>
+ <li>Users only need to enter DH-Paramters that are constant like “link length” and other values that cannot change.
+</ul>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="k">while</span> <span class="n">flg</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">flg</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s1">'Enter data as [position,value,1/0]: '</span><span class="p">);</span> <span class="c1">%constants filler</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">vpa</span><span class="p">(</span><span class="n">subs</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">A</span><span class="p">(</span><span class="n">flg</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">flg</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="n">flg</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span><span class="mi">4</span><span class="p">);</span>
+    <span class="k">end</span>
+	<span class="nb">disp</span><span class="p">(</span><span class="s1">'Tool to Base Transformation Matrix created'</span><span class="p">);</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+</pre></table></code></div></div>
+<p>After the Homogenous Transformation matrix is created, we can extract the tool-tip cordinate equations and convert them into a function so that we can substitue numerical values into the variables to get the tool tip postion.</p>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="n">Tpos</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">T</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">T</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)];</span>
+<span class="n">Tpost</span> <span class="o">=</span> <span class="n">matlabFunction</span><span class="p">(</span><span class="n">Tpos</span><span class="p">);</span>
+</pre></table></code></div></div>
+<p><strong>matlabFunction</strong> is used to convert symbolic expressions into matlab function handles.</p>
+<h3 id="take-in-user-inputs-for-joint-limits">Take in user inputs for joint limits</h3>
+<p>We will now be taking in user inputs for joint limits and create a dataset with random combinations of joint angles using monte carlo.</p>
+<ul>
+ <li><strong>lim</strong> contains all the random datasets generated.
+ <li><strong>N=67312</strong> is the number of random combinations that will be generated, this number can be increased or decresed based on the needs, remember that the higher the number the more dense the workspace plot will turn out, but it will also increase the computation time.
+</ul>
+<blockquote>
+ <p>Dataset = lower limit + (upper limit - lower limit)*random number between 0 and 1</p>
+</blockquote>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="n">ch2</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s1">'Press 1 if you want to plot the 3D workspace'</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">ch2</span> <span class="o">==</span> <span class="mi">1</span> 
+        <span class="n">N</span> <span class="o">=</span> <span class="mi">67312</span><span class="p">;</span>
+        <span class="n">range</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s1">'Enter upper and lower limits of each joint. EXCLUDE ROLL JOINTS'</span><span class="p">);</span>
+        <span class="n">lim</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">lim</span><span class="p">(:,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="nb">rand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+</pre></table></code></div></div>
+<h3 id="creating-a-dataset-of-points">Creating a dataset of points</h3>
+<p>There is nothing much to explain here, we are just iterating through all the possible combinations of numbers that we generated and are storing them in <strong>f</strong></p>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre><td class="rouge-code"><pre><span class="c1">%% Plot Points Collector</span>
+    <span class="n">f</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">7</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">elseif</span> <span class="nb">size</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+        <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">(</span><span class="n">j</span><span class="p">,:)</span><span class="o">=</span><span class="n">Tpost</span><span class="p">(</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">lim</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">9</span><span class="p">));</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+</pre></table></code></div></div>
+<h3 id="plotting-points">Plotting Points</h3>
+<p>While the plot is 3D we will plot a few standard views as moving the plot around when it is extremly dense is a computationally heavy task.</p>
+<div class="language-matlab highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre><td class="rouge-code"><pre><span class="c1">%% Workspace Plotter</span>
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Starting Workspace Plotter'</span><span class="p">);</span>
+    <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span>
+        <span class="nb">plot3</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="s1">'.'</span><span class="p">)</span>
+        <span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+    <span class="k">end</span>
+    <span class="nb">view</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="nb">title</span><span class="p">(</span><span class="s1">'Isometric view'</span><span class="p">);</span>
+    <span class="nb">xlabel</span><span class="p">(</span><span class="s1">'x (m)'</span><span class="p">);</span>
+    <span class="nb">ylabel</span><span class="p">(</span><span class="s1">'y (m)'</span><span class="p">);</span>
+    <span class="nb">zlabel</span><span class="p">(</span><span class="s1">'z (m) '</span><span class="p">);</span>
+    <span class="nb">view</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">% top view</span>
+    <span class="nb">title</span><span class="p">(</span><span class="s1">' Top view'</span><span class="p">);</span>
+    <span class="nb">xlabel</span><span class="p">(</span><span class="s1">'x (m)'</span><span class="p">);</span>
+    <span class="nb">ylabel</span><span class="p">(</span><span class="s1">'y (m)'</span><span class="p">);</span>
+    <span class="nb">view</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]);</span> <span class="c1">% y-z plane</span>
+    <span class="nb">title</span><span class="p">(</span><span class="s1">'Side view, Y-Z'</span><span class="p">);</span>
+    <span class="nb">ylabel</span><span class="p">(</span><span class="s1">'y (m)'</span><span class="p">);</span>
+    <span class="nb">zlabel</span><span class="p">(</span><span class="s1">'z (m)'</span><span class="p">);</span>
+
+    <span class="nb">disp</span><span class="p">(</span><span class="s1">'Plotting Complete'</span><span class="p">);</span>
+    
+</pre></table></code></div></div>
+<h2 id="note">NOTE</h2>
+<p>This version of the documentation is based on the DHPnP_v1.m which is based on the monte carlo method for random point sampling. The older version of the same project is based on a different approach and is significantly slower and more computational expenseive and memory intensive.</p>
+<h2 id="results">Results</h2>
+<p>A few images from both the versions which clearly shows the difference in the resulting workspace plots.</p>
+<div id="workspace">
+  <img data-src="" data-src-2x="" src="/assets/img/DHPnP/Rhino-XR3-With-Monte-Carlo.png" title="" alt="Rhino XR3 With Monte Carlo" />
+  <img data-src="" data-src-2x="" src="/assets/img/DHPnP/Rhino-XR3-Without-Monte-Carlo.png" title="" alt="Rhino XR3 Without Monte Carlo" />
+  <img data-src="" data-src-2x="" src="/assets/img/DHPnP/WAM-7DoF-without-Monte-Carlo.png" title="" alt="WAM 7DoF without Monte Carlo" />
+  <img data-src="" data-src-2x="" src="/assets/img/DHPnP/WAM-7DoF-with-Monte-Carlo.png" title="" alt="WAM 7DoF with Monte Carlo" />
+ </div>
+     </div>
+     <div class="post-tail-wrapper text-muted">
+       <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+            <a href='/categories/projects/'>Projects</a>,
+            <a href='/categories/manipulators/'>Manipulators</a>
+       </div>
+       <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          <a href="/tags/matlab/"
+            class="post-tag no-text-decoration" >matlab</a>
+          <a href="/tags/forward-kinematics/"
+            class="post-tag no-text-decoration" >forward kinematics</a>
+          <a href="/tags/workspace/"
+            class="post-tag no-text-decoration" >workspace</a>
+          <a href="/tags/transformation-matirx/"
+            class="post-tag no-text-decoration" >transformation matirx</a>
+          <a href="/tags/monte-carlo/"
+            class="post-tag no-text-decoration" >monte carlo</a>
+         </div>
+       <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+         <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+         </div>
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+        <a href="https://twitter.com/intent/tweet?text=Manipulator Workspace Plotter - Jai Krishna&url=https://textzip.github.io/posts/Manipulator-Workspace-Plotter/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Manipulator Workspace Plotter - Jai Krishna&u=https://textzip.github.io/posts/Manipulator-Workspace-Plotter/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+        <a href="https://telegram.me/share?text=Manipulator Workspace Plotter - Jai Krishna&url=https://textzip.github.io/posts/Manipulator-Workspace-Plotter/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+  </span>
+</div>
+       </div>
+     </div>
+   </div>
+ </div>
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+ <div class="access">
+   <div id="access-lastmod" class="post">
+      <span>Recent Update</span>
+     <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+       <li><a href="/posts/Loco-DRL/">Proprioceptive Locomotion in Unstructured Environments</a>
+       <li><a href="/posts/FTG-DRL/">Policy Modulated Trajectory Generation for Quadrupeds</a>
+       <li><a href="/posts/NST-DRL/">Neural Style Transfer for Locomotion</a>
+       <li><a href="/posts/LIDAR-DRL/">Locomotion with Weighted Belief in Exteroception</a>
+       <li><a href="/posts/BiMan-DRL/">Bi-Manual Loco-Manipulation in Quadrupeds for Opening Doors</a>
+     </ul>
+   </div>
+   <div id="access-tags">
+      <span>Trending Tags</span>
+     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+     </div>
+   </div>
+ </div>
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+   <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+     <nav id="toc" data-toggle="toc"></nav>
+   </div>
+</div>
+</div>
+<div class="row">
+ <div class="col-12 col-lg-11 col-xl-8">
+   <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+ <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+   <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+   <div class="card-deck mb-4">
+     <div class="card">
+        <a href="/posts/Robotics-Theory-2D-Robotics/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1588616240"
+    >
+  2020-05-04
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Robotics Theory - 2D Robotics</h3>
+           <div class="text-muted small">
+             <p>
+                Introduction
+Coordinate Transformation in 2D
+The motion of manipulators and robots is often very complex and mathematically demanding. A single coordinate frame usually isn’t sufficient, and its o...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/GS-SO-100/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1728373400"
+    >
+  2024-10-08
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Getting Started with SO100 for Reinforcement Learning</h3>
+           <div class="text-muted small">
+             <p>
+                Over the past few years, I’ve had the opportunity to tinker with various robots—quadrupeds, bipeds, wheeled robots, and more. This hands-on experience has helped me apply and refine my skills in re...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+     <div class="card">
+        <a href="/posts/BiMan-DRL/">
+         <div class="card-body">
+<em class="timeago small"
+    data-ts="1733125400"
+    >
+  2024-12-02
+</em>
+           <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Bi-Manual Loco-Manipulation in Quadrupeds for Opening Doors</h3>
+           <div class="text-muted small">
+             <p>
+                This project explores the use of Action Chunking Transformers and related architectures for learning via demonstration for solving loco-manipulation tasks, in paticular interacting with a varity of...
+             </p>
+           </div>
+         </div>
+        </a>
+     </div>
+   </div>
+ </div>
+<div class="post-navigation d-flex justify-content-between">
+  <a href="/posts/ROS-TF101/" class="btn btn-outline-primary"
+    prompt="Older">
+   <p>TF101</p>
+  </a>
+  <a href="/posts/Dino-Game-Arduino/" class="btn btn-outline-primary"
+    prompt="Newer">
+   <p>Dino Game Arduino Edition</p>
+  </a>
+</div>
+    <script src="https://utteranc.es/client.js"
+        repo="TextZip/textzip.github.io"
+        issue-term="title"
+        theme="dark-blue"
+        crossorigin="anonymous"
+        async>
+    </script>
+   </div>
+ </div>
+</div>
+<footer class="d-flex w-100 justify-content-center">
+ <div class="d-flex justify-content-between align-items-center">
+   <div class="footer-left">
+     <p class="mb-0">
+        © 2025
+        <a href="https://github.com/TextZip">Bandi Jai Krishna</a>.
+        <span data-toggle="tooltip" data-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+     </p>
+   </div>
+   <div class="footer-right">
+     <p class="mb-0">
+        Powered by
+        <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+        with
+        <a href="https://github.com/cotes2020/jekyll-theme-chirpy"
+          target="_blank" rel="noopener">Chirpy</a>
+        theme.
+     </p>
+   </div>
+ </div>
+</footer>
+     </div>
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+ <div class="col-12 col-sm-11 post-content">
+   <div id="search-hints">
+     <h4 class="text-muted mb-4">Trending Tags</h4>
+        <a class="post-tag" href="/tags/atmega328p/">atmega328p</a>
+        <a class="post-tag" href="/tags/imu/">imu</a>
+        <a class="post-tag" href="/tags/game/">game</a>
+        <a class="post-tag" href="/tags/reinforcement-learning/">reinforcement learning</a>
+        <a class="post-tag" href="/tags/bellman/">bellman</a>
+        <a class="post-tag" href="/tags/mdp/">mdp</a>
+        <a class="post-tag" href="/tags/optimal-value/">optimal value</a>
+        <a class="post-tag" href="/tags/touch/">touch</a>
+        <a class="post-tag" href="/tags/quadruped/">quadruped</a>
+        <a class="post-tag" href="/tags/ros/">ros</a>
+   </div>
+   <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+ </div>
+</div>
+   </div>
+   <div id="mask"></div>
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script>
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('search-results'),
+  json: '/assets/js/data/search.json',
+  searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="https://textzip.github.io{url}">{title}</a> <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags} </div><p>{snippet}</p></div>',
+  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  templateMiddleware: function(prop, value, template) {
+    if (prop === 'categories') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+      }
+    }
+    if (prop === 'tags') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      }
+    }
+  }
+});
+</script>
+  <script src="/assets/js/slider/ideal-image-slider.min.js"></script>
+  <script src="/assets/js/slider/iis-bullet-nav.js"></script>
+  <script src="/assets/js/slider/iis-captions.js"></script>
+  <script>
+  var workspace = new IdealImageSlider.Slider({
+      selector: '#workspace',
+      height: 600,
+      interval: 4000,
+      effect: 'slide',
+      keyboardNav: true,
+      });
+    workspace.addCaptions();
+    workspace.start();
+  </script>
+  
