@@ -38,8 +38,110 @@ In my free time, I enjoy working on hands-on projects that bring together electr
 
 # Schedule a Meet
 
-Click [here](https://calendar.app.google/4SSiiENYY4oXaR7aA) to open the meet scheduler in a new page (in-case the embedding is broken).
+<!-- Click [here](https://calendar.app.google/4SSiiENYY4oXaR7aA) to open the meet scheduler in a new page (in case the embedding is broken). -->
 
-<!-- Google Calendar Appointment Scheduling begin -->
-<iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3sREk7j-rqdx_u7-c24TQ2_oYs1RAMNQGy8LkLTyDCxwN5Q6EpWr0AD2cbUQxnAFVmqqnuSnxu?gv=true" style="border: 0" width="100%" height="900" frameborder="0"></iframe>
-<!-- end Google Calendar Appointment Scheduling -->
+<div class="meet-embed-card">
+  <!-- <p><strong>Book a meeting</strong></p> -->
+  <p>
+    You can use the embedded scheduler below, or
+    <a href="https://calendar.app.google/4SSiiENYY4oXaR7aA" target="_blank" rel="noopener noreferrer">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+
+<div class="calendar-embed-shell">
+  <iframe
+    src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3sREk7j-rqdx_u7-c24TQ2_oYs1RAMNQGy8LkLTyDCxwN5Q6EpWr0AD2cbUQxnAFVmqqnuSnxu?gv=true"
+    class="calendar-embed"
+    frameborder="0"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin">
+  </iframe>
+</div>
+
+<style>
+  .meet-embed-card {
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+  }
+  .calendar-embed-shell {
+    width: 100%;
+    padding: 12px;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .calendar-embed {
+    display: block;
+    width: 100%;
+    height: 900px;
+    border: 0;
+    border-radius: 0.75rem;
+    background: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .calendar-embed {
+      height: 760px;
+    }
+  }
+
+  /* Light mode */
+  html[mode="light"] .calendar-embed-shell {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Dark mode */
+  html[mode="dark"] .calendar-embed-shell {
+    background: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+  }
+
+  html[mode="light"] .meet-embed-card {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  html[mode="dark"] .meet-embed-card {
+    background: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  /* Fallback when no explicit mode is set and system preference is used */
+  @media (prefers-color-scheme: dark) {
+    html:not([mode]) .calendar-embed-shell {
+      background: #1e1e1e;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    html:not([mode]) .calendar-embed-shell {
+      background: #f8f9fa;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    html:not([mode]) .meet-embed-card {
+      background: #1e1e1e;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    html:not([mode]) .meet-embed-card {
+      background: #f8f9fa;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+  }
+</style>
